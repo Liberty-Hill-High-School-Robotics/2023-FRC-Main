@@ -56,7 +56,7 @@ Children:
             validators: &id004 [ChildDropdownSelected]
             value: Brushless
         Base: CAN SparkMAX
-        Name: CANSparkMAXRF
+        Name: CANSparkMAXRLead
       - Children: []
         Properties:
           CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -72,14 +72,14 @@ Children:
             validators: *id004
             value: Brushless
         Base: CAN SparkMAX
-        Name: CANSparkMAXLF
+        Name: CANSparkMAXLLead
       Properties:
         Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 1
           name: Right Motor
           type: PIDOutput
           validators: [RobotDrive2, ChildDropdownSelected]
-          value: CANSparkMAXRF
+          value: CANSparkMAXLLead
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Maximum Output, validators: null, value: 1.0}
         Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
@@ -87,7 +87,7 @@ Children:
           name: Left Motor
           type: PIDOutput
           validators: [RobotDrive2, ChildDropdownSelected]
-          value: CANSparkMAXLF
+          value: CANSparkMAXRLead
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -109,7 +109,7 @@ Children:
           validators: *id004
           value: Brushless
       Base: CAN SparkMAX
-      Name: CANSparkMAXRB
+      Name: CANSparkMAXRFollow
     - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -125,7 +125,7 @@ Children:
           validators: *id004
           value: Brushless
       Base: CAN SparkMAX
-      Name: CANSparkMAXLB
+      Name: CANSparkMAXLFollow
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -135,7 +135,7 @@ Children:
         validators: null
         value: []
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: DriveArcade}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
@@ -215,6 +215,28 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: Autonomous Command
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Drive}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id006 []
+        name: Parameter presets
+        validators: null
+        value: *id006
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: DriveStop
   Properties: {}
   Base: Commands
   Name: Commands
