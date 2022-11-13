@@ -1,0 +1,6 @@
+The most recent code should always be FRCmainAuton.
+
+If a zip file is present, it is not recent, don't use it.
+
+The .yaml file is only used for robotbuilder, and should 
+always be most recent. 
