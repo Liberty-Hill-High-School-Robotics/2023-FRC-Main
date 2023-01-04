@@ -48,7 +48,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: &id002 [CANID, DistinctValidator]
-            value: '0'
+            value: '3'
           Motor Type: !!robotbuilder.data.properties.ChoicesProperty
             choices: &id003 [Brushless, Brushed]
             default: Brushless
@@ -64,7 +64,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id002
-            value: '1'
+            value: '2'
           Motor Type: !!robotbuilder.data.properties.ChoicesProperty
             choices: *id003
             default: Brushless
@@ -101,7 +101,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '2'
+          value: '4'
         Motor Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id003
           default: Brushless
@@ -117,7 +117,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '3'
+          value: '1'
         Motor Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id003
           default: Brushless
@@ -135,7 +135,7 @@ Children:
         validators: null
         value: []
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: DriveArcade}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
@@ -143,143 +143,6 @@ Children:
         value: *id005
     Base: Subsystem
     Name: Drive
-  - Children:
-    - Children: []
-      Properties:
-        Module ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
-          default: '0'
-          name: Module ID
-          validators: [CompID]
-          value: '0'
-        Module Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [CTREPCM, REVPH]
-          default: CTREPCM
-          name: Module Type
-          validators: null
-          value: CTREPCM
-      Base: Compressor
-      Name: Compressor
-    - Children: []
-      Properties:
-        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id006 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-          default: '0'
-          name: Forward Module (Solenoid)
-          validators: &id007 [Solenoid]
-          value: '0'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id008 ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Reverse Channel (Solenoid)
-          validators: null
-          value: '0'
-        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id009 [CTREPCM, REVPH]
-          default: CTREPCM
-          name: Forward Module Type (Solenoid)
-          validators: null
-          value: CTREPCM
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id010 ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Forward Channel (Solenoid)
-          validators: &id011 [Solenoid]
-          value: '0'
-      Base: Double Solenoid
-      Name: DoubleSolenoid1
-    - Children: []
-      Properties:
-        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '0'
-          name: Forward Module (Solenoid)
-          validators: *id007
-          value: '0'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: '0'
-          name: Reverse Channel (Solenoid)
-          validators: null
-          value: '0'
-        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id009
-          default: CTREPCM
-          name: Forward Module Type (Solenoid)
-          validators: null
-          value: CTREPCM
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id010
-          default: '0'
-          name: Forward Channel (Solenoid)
-          validators: *id011
-          value: '1'
-      Base: Double Solenoid
-      Name: DoubleSolenoid2
-    - Children: []
-      Properties:
-        Output Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id012 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-          default: '0'
-          name: Output Module (Solenoid)
-          validators: &id013 [Solenoid]
-          value: '0'
-        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id014 ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Output Channel (Solenoid)
-          validators: &id015 [Solenoid]
-          value: '2'
-        Output Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id016 [CTREPCM, REVPH]
-          default: CTREPCM
-          name: Output Module Type (Solenoid)
-          validators: null
-          value: CTREPCM
-      Base: Solenoid
-      Name: Solenoid1
-    - Children: []
-      Properties:
-        Output Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id012
-          default: '0'
-          name: Output Module (Solenoid)
-          validators: *id013
-          value: '0'
-        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id014
-          default: '0'
-          name: Output Channel (Solenoid)
-          validators: *id015
-          value: '3'
-        Output Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id016
-          default: CTREPCM
-          name: Output Module Type (Solenoid)
-          validators: null
-          value: CTREPCM
-      Base: Solenoid
-      Name: Solenoid2
-    Properties:
-      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Send to SmartDashboard, validators: null, value: false}
-      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Default command parameters
-        validators: null
-        value: []
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-      Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: []
-        name: Constants
-        validators: null
-        value: []
-    Base: Subsystem
-    Name: Pneumatics
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -368,6 +231,6 @@ Properties:
   Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: 'D:\Github\2023-FRC-Main'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
+    name: Autonomous Command, type: Command, validators: null, value: None}
 Base: Robot
 Name: FRCmainAuton
