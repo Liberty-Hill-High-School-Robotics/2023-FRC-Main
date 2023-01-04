@@ -56,7 +56,7 @@ public class DriveArcade extends CommandBase {
     @Override
     public void execute() {
         m_drive.driveArcade(RobotContainer.getInstance().getdriverJoystick().getRawAxis(0), 
-                            -RobotContainer.getInstance().getdriverJoystick().getRawAxis(1));
+                            RobotContainer.getInstance().getdriverJoystick().getRawAxis(1));
         
     }
 
