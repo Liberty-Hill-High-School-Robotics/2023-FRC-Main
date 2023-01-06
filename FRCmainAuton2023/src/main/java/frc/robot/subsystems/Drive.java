@@ -100,6 +100,11 @@ cANSparkMAXLB = new CANSparkMax(1, MotorType.kBrushless);
         SmartDashboard.putNumber("LeftFrontTemp", cANSparkMAXLF.getMotorTemperature());
         SmartDashboard.putNumber("RightFrontTemp", cANSparkMAXRF.getMotorTemperature());
 
+      //  SmartDashboard.putNumber("LeftBackTemp", cANSparkMAXLB.getEncoder(null, 0));
+        //SmartDashboard.putNumber("RightBackTemp", cANSparkMAXRB.getMotorTemperature());
+       // SmartDashboard.putNumber("LeftFrontTemp", cANSparkMAXLF.getMotorTemperature());
+       // SmartDashboard.putNumber("RightFrontTemp", cANSparkMAXRF.getMotorTemperature());
+
     }
 
     @Override
