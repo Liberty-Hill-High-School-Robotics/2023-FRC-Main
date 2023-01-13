@@ -6,24 +6,19 @@ Children:
   - Children:
     - Children: []
       Properties:
-        Module Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [Automatic, CTRE, Rev]
-          default: Automatic
-          name: Module Type
-          validators: null
-          value: Automatic
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+        Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.007,
+          name: Sensitivity, validators: null, value: 0.007}
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1']
           default: '0'
-          name: CAN ID
-          validators: null
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
           value: '0'
-      Base: PowerDistribution
-      Name: PDH
+      Base: AnalogGyro
+      Name: AnalogGyro 1
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Send to SmartDashboard, validators: null, value: false}
+        name: Send to SmartDashboard, validators: null, value: true}
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
         name: Default command parameters
@@ -35,154 +30,17 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: &id005 []
-    Base: Subsystem
-    Name: Other
-  - Children:
-    - Children:
-      - Children: []
-        Properties:
-          CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id001 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-              '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
-            default: '2'
-            name: CAN ID
-            validators: &id002 [CANID, DistinctValidator]
-            value: '3'
-          Motor Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id003 [Brushless, Brushed]
-            default: Brushless
-            name: Motor Type
-            validators: &id004 [ChildDropdownSelected]
-            value: Brushless
-        Base: CAN SparkMAX
-        Name: CANSparkMAXRF
-      - Children: []
-        Properties:
-          CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
-            default: '2'
-            name: CAN ID
-            validators: *id002
-            value: '2'
-          Motor Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id003
-            default: Brushless
-            name: Motor Type
-            validators: *id004
-            value: Brushless
-        Base: CAN SparkMAX
-        Name: CANSparkMAXLF
-      Properties:
-        Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 1
-          name: Right Motor
-          type: PIDOutput
-          validators: [RobotDrive2, ChildDropdownSelected]
-          value: CANSparkMAXRF
-        Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Maximum Output, validators: null, value: 1.0}
-        Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 0
-          name: Left Motor
-          type: PIDOutput
-          validators: [RobotDrive2, ChildDropdownSelected]
-          value: CANSparkMAXLF
-        Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
-          name: Safety Expiration Time, validators: null, value: 0.1}
-        Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Safety Enabled, validators: null, value: true}
-      Base: Differential Drive
-      Name: DriveMain
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '4'
-        Motor Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id003
-          default: Brushless
-          name: Motor Type
-          validators: *id004
-          value: Brushless
-      Base: CAN SparkMAX
-      Name: CANSparkMAXRB
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '1'
-        Motor Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id003
-          default: Brushless
-          name: Motor Type
-          validators: *id004
-          value: Brushless
-      Base: CAN SparkMAX
-      Name: CANSparkMAXLB
-    Properties:
-      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Send to SmartDashboard, validators: null, value: false}
-      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Default command parameters
-        validators: null
         value: []
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: DriveArcade}
-      Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: []
-        name: Constants
-        validators: null
-        value: *id005
     Base: Subsystem
-    Name: Drive
+    Name: Subsystem 1
   Properties: {}
   Base: Subsystems
   Name: Subsystems
-- Children:
-  - Children: []
-    Properties:
-      Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: ['0', '1', '2', '3', '4', '5']
-        default: 1
-        name: Number
-        validators: [Joystick]
-        value: '0'
-    Base: Joystick
-    Name: driverJoystick
+- Children: []
   Properties: {}
   Base: OI
   Name: Operator Interface
 - Children:
-  - Children: []
-    Properties:
-      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Autonomous Selection, validators: null, value: false}
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
-        value: []
-      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Run When Disabled, validators: null, value: false}
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Drive}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: []
-        name: Parameter presets
-        validators: null
-        value: []
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: false}
-    Base: Command
-    Name: DriveArcade
   - Children: []
     Properties:
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -219,18 +77,18 @@ Properties:
     validators: null
     value: []
   Java Package: !!robotbuilder.data.properties.StringProperty {default: frc.robot,
-    name: Java Package, validators: null, value: org.usfirst.frc8088}
+    name: Java Package, validators: null, value: frc.robot}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Use Default Java Package, validators: null, value: true}
-  Team Number: !!robotbuilder.data.properties.IntegerProperty {default: 0, name: Team
+  Team Number: !!robotbuilder.data.properties.TeamNumberProperty {default: 0, name: Team
       Number, validators: null, value: 8088}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: 'D:\Github\2023-FRC-Main'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: 'D:\Github\2023-FRC-Main'}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\madel\',
+    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\madel\'}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\madel\FRCProjects',
+    extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\Users\madel\FRCProjects'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: None}
+    name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
-Name: FRCmainAuton
+Name: MyRobot
