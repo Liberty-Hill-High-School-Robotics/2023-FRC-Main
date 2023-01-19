@@ -56,6 +56,9 @@ private CANSparkMax cANSparkMAXLB;
     private final RelativeEncoder encoderLF;
     private final RelativeEncoder encoderRF;
     
+    private double oldAxisY;
+    private double finalAxisY;
+    private double tempAxisY;
     /**
     *
     */
@@ -143,13 +146,33 @@ cANSparkMAXLB = new CANSparkMax(1, MotorType.kBrushless);
     //lefty = power    rightx = rotation
     public void driveArcade(double leftY, double rightX) {
             double max = .9;
+            double rampUp = .005; // error allowed
+            double rampD = .005; // ramp down
+            double jsAxisY = rightX; // pull num from joystick
+            double sub = jsAxisY - oldAxisY;
+            
+            
+            if(Math.abs(sub) > rampUp && sub > 0) {
+                 //test to see if it is going forward
+                    tempAxisY = oldAxisY + rampUp;
+            } else if(Math.abs(sub) > rampD && sub < 0){ // test to see if it is going backward
+                    tempAxisY = oldAxisY - rampD;
+            } else {
+                tempAxisY = jsAxisY;
+            }
+            //test to see if value exceds max allowed
+            
+
+
         if(rightX < max*-1){
-            rightX = max*-1;
+            tempAxisY = max*-1;
         }else if (rightX > max){
-            rightX = max;
+            tempAxisY = max;
         } 
+        finalAxisY = tempAxisY;
+            oldAxisY = finalAxisY;
         
-        driveMain.arcadeDrive(leftY, rightX);
+        driveMain.arcadeDrive(leftY, finalAxisY);
     }
 }
 
