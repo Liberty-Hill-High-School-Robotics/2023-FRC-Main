@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-import com.ctre.phoenix.sensors.WPI_PigeonIMU;
+
 import edu.wpi.first.wpilibj.shuffleboard.*;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
 
     private RobotContainer m_robotContainer;
 
-    private WPI_PigeonIMU pigeon2 = new WPI_PigeonIMU(19);
+  
 
     /**
      * This function is run when the robot is first started up and should be
@@ -47,7 +47,6 @@ public class Robot extends TimedRobot {
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
     
-        Shuffleboard.getTab("main").add(pigeon2);
     }
 
     /**
@@ -114,6 +113,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+
+        
+
     }
 
     @Override
