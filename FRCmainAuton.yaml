@@ -155,6 +155,76 @@ Children:
         value: *id005
     Base: Subsystem
     Name: Drive
+  - Children:
+    - Children: []
+      Properties:
+        Output Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: Output Module (Solenoid)
+          validators: [Solenoid]
+          value: '0'
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Output Channel (Solenoid)
+          validators: [Solenoid]
+          value: '0'
+        Output Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: [CTREPCM, REVPH]
+          default: CTREPCM
+          name: Output Module Type (Solenoid)
+          validators: null
+          value: CTREPCM
+      Base: Solenoid
+      Name: Solenoid 1
+    - Children: []
+      Properties:
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: Forward Module (Solenoid)
+          validators: [Solenoid]
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: null
+          value: '0'
+        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: [CTREPCM, REVPH]
+          default: CTREPCM
+          name: Forward Module Type (Solenoid)
+          validators: null
+          value: CTREPCM
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: [Solenoid]
+          value: '1'
+      Base: Double Solenoid
+      Name: Double Solenoid 1
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: false}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Claw
   Properties: {}
   Base: Subsystems
   Name: Subsystems

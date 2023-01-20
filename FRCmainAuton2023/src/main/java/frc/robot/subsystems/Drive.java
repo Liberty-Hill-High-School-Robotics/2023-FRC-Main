@@ -137,7 +137,7 @@ cANSparkMAXLB = new CANSparkMax(1, MotorType.kBrushless);
         SmartDashboard.putNumber("Pitch", pigeon2.getPitch());
         SmartDashboard.putNumber("Roll", pigeon2.getRoll());
         
-         
+        
 
 
     }
