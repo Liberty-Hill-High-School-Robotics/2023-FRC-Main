@@ -81,6 +81,11 @@ public class Drive extends SubsystemBase {
         cANSparkMAXRB.follow(cANSparkMAXRF);
         cANSparkMAXLB.follow(cANSparkMAXLF);
 
+        cANSparkMAXRF.setInverted(false);
+        cANSparkMAXRB.setInverted(false);
+        cANSparkMAXLF.setInverted(true);
+        cANSparkMAXLB.setInverted(true);
+
         encoderLB = cANSparkMAXLB.getEncoder(Type.kHallSensor, 42);
         encoderRB = cANSparkMAXRB.getEncoder(Type.kHallSensor, 42);
         encoderLF = cANSparkMAXLF.getEncoder(Type.kHallSensor, 42);
@@ -139,7 +144,8 @@ public class Drive extends SubsystemBase {
     }
 
     // lefty = power rightx = rotation
-    public void driveArcade(double leftY, double rightX) {
+    public void driveArcade(double power, double rotation) {
+        /* 
         double max = .9;
         double rampUp = .001; // error allowed
         double rampD = .001; // ramp down
@@ -163,7 +169,8 @@ public class Drive extends SubsystemBase {
         }
         finalAxisY = tempAxisY;
         oldAxisY = finalAxisY;
-
-        driveMain.arcadeDrive(leftY, finalAxisY);
+        */
+        finalAxisY = power;
+        driveMain.arcadeDrive(finalAxisY, rotation);
     }
 }
