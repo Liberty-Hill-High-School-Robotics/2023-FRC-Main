@@ -153,6 +153,12 @@ public class Drive extends SubsystemBase {
         cANSparkMAXLF.stopMotor();
     }
 
+
+    public void maxSpeed() {
+        driveArcade(1, 0);
+   
+    }
+
     // lefty = power rightx = rotation
     public void driveArcade(double power, double rotation) {
         /* 
