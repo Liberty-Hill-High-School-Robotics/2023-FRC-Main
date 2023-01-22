@@ -105,6 +105,11 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("LeftFrontTemp", cANSparkMAXLF.getMotorTemperature());
         SmartDashboard.putNumber("RightFrontTemp", cANSparkMAXRF.getMotorTemperature());
 
+        SmartDashboard.putNumber("LBMotorVoltage", cANSparkMAXLB.getBusVoltage());
+        SmartDashboard.putNumber("LFMotorVoltage", cANSparkMAXLF.getBusVoltage());
+        SmartDashboard.putNumber("RBMotorVoltage", cANSparkMAXRB.getBusVoltage());
+        SmartDashboard.putNumber("RFMotorVoltage", cANSparkMAXRF.getBusVoltage());
+
         // encoder CPR
 
         encoderLB.setVelocityConversionFactor(1);
@@ -116,6 +121,11 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("RightBackPosition", encoderRB.getPosition());
         SmartDashboard.putNumber("LeftFrontPosition", encoderLF.getPosition());
         SmartDashboard.putNumber("RightFrontPosition", encoderRF.getPosition());
+
+        SmartDashboard.putNumber("LBVelocity", encoderLB.getVelocity());
+        SmartDashboard.putNumber("RBVelocity", encoderRB.getVelocity());
+        SmartDashboard.putNumber("LFVelocity", encoderLF.getVelocity());
+        SmartDashboard.putNumber("RFVelocity", encoderRF.getVelocity());
 
         // Pigeon2
 
