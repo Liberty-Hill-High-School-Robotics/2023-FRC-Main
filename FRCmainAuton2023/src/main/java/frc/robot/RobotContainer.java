@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.ClawClose;
+import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DriveArcade;
 import frc.robot.commands.MaxSpeed;
 import frc.robot.subsystems.Claw;
@@ -132,6 +133,9 @@ private final Joystick driverJoystick = new Joystick(0);
      //buttonCloseClaw.a().onTrue(m_claw.clawClose());
      buttonCloseClaw.onTrue(new ClawClose(m_claw));
      
+     Trigger buttonOpenClaw = new JoystickButton(driverJoystick, 2);
+     //buttonCloseClaw.a().onTrue(m_claw.clawClose());
+     buttonOpenClaw.onTrue(new ClawOpen(m_claw));
      
       
    
