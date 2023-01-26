@@ -91,6 +91,8 @@ public class Drive extends SubsystemBase {
         encoderLF = cANSparkMAXLF.getEncoder(Type.kHallSensor, 42);
         encoderRF = cANSparkMAXRF.getEncoder(Type.kHallSensor, 42);
 
+        
+
     }
 
     @Override
