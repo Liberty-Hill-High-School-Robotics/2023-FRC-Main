@@ -28,5 +28,42 @@ public class Constants {
     *   public static final int kRightMotor2Port = 3; 
     * }
     */ 
+   
+    public static final class PlacementConstants
+    {
+        public enum placement 
+        {
+            FLOOR (0),  //Position for picking placing up from the floor
+            MIDDLE (1), //Position for placing on the middle node
+            PICKUP (2),  //Position for picking up from the double station
+            TOP    (3)      //Position for placing on the top node
+            ;
+            private final int placementSubSystemIndex;
+
+            placement(int placementSubSystemIndex){
+                this.placementSubSystemIndex = placementSubSystemIndex;
+            }
+            
+            public int getPlacementSubStemIndex(){
+                return this.placementSubSystemIndex;
+            }
+
+        }
+        /*
+        public enum subSystem{
+            VERTICAL    (0),
+            HORIZONTAL  (1),
+            ELBOW       (2),
+            WRIST       (3);
+        }
+
+        private int[] VEencoderVals = {
+            {0},
+            {50},
+            {100},
+            {55};
+        }
+        */
+    }
 }
 
