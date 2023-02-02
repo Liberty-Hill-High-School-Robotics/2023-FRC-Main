@@ -13,6 +13,7 @@
 package frc.robot.subsystems;
 
 
+import frc.robot.Constants;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -84,8 +85,14 @@ vElimitDown = new DigitalInput(1);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void VEUp() {
-        cANSparkMAXV1.set(0.5);
+    public void VEUp(Constants.PlacementConstants.PlacementPosition position) {
+        Constants.PlacementConstants temp = new Constants.PlacementConstants();
+
+        double output = 0;
+
+        output = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.VERTICAL);
+
+        cANSparkMAXV1.set(output);
     }
 
     public void VEDown() {
@@ -105,9 +112,7 @@ vElimitDown = new DigitalInput(1);
         return cANSparkMAXV1.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
-    public void goTo(int where){
-       double setpoint = where;
-    }
+   
 
 
 }
