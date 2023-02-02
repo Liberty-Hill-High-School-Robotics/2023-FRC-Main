@@ -54,26 +54,27 @@ public class VEUp extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_verticalElevator.VEUp();
+        
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        m_verticalElevator.VEUp();
        
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-       // m_verticalElevator.VEStop();
+       m_verticalElevator.VEStop();
     }
 //levee did this
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
       //  if(m_verticalElevator.isVEAtTop() == true || m_verticalElevator.encoderVE.getPosition() >= VEGoTo());
-        return true;
+        return m_verticalElevator.isVEAtBottom();
     }
 
     @Override
