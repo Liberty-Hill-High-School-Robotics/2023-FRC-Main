@@ -62,7 +62,7 @@ compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
  addChild("Compressor",compressor);
  
 
-cANSparkMAXC = new CANSparkMax(5, MotorType.kBrushless);
+cANSparkMAXC = new CANSparkMax(6, MotorType.kBrushless);
  
  
 
