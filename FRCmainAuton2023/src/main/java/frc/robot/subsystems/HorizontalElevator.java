@@ -102,7 +102,7 @@ hRLimitRetracted = new DigitalInput(4);
     }
 
     public void HEStop(){
-        cANSparkMAXH1.set(0);
+        cANSparkMAXH1.stopMotor();
     }
 
     public void HRUp(){

@@ -74,7 +74,7 @@ public class VEUp extends CommandBase {
     @Override
     public boolean isFinished() {
       //  if(m_verticalElevator.isVEAtTop() == true || m_verticalElevator.encoderVE.getPosition() >= VEGoTo());
-        return m_verticalElevator.isVEAtBottom();
+        return m_verticalElevator.isVEAtTop();
     }
 
     @Override

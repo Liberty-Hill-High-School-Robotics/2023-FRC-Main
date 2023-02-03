@@ -71,7 +71,7 @@ public class Constants {
 
         private double[][] placementValues = {
             {0,0,0,0},
-            {0,0,0,0},
+            {50,0,0,0},
             {0,0,0,0},
             {0,0,0,0},
         };
