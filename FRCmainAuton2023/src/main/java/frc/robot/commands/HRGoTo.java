@@ -59,25 +59,11 @@ public class HRGoTo extends CommandBase {
         m_horizontalRotate.HRGoTo(m_position);
         
     }
-boolean goingUp = false;
-boolean goingDown = false;
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if(m_horizontalRotate.encoderHR.getPosition() > m_horizontalRotate.HRGoTo(m_position)){
-            m_horizontalRotate.HRUp();
-                goingUp = true;
-            
-        }else if(m_horizontalRotate.encoderHR.getPosition() <m_horizontalRotate.HRGoTo(m_position)){
-            m_horizontalRotate.HRDown();
-            goingDown = true;
-        }
-
-        if(goingUp == true){
-            m_horizontalRotate.HRUp();
-        }else if(goingDown == true){
-            m_horizontalRotate.HRDown();
-        }
+        
     }
 
     // Called once the command ends or is interrupted.
@@ -87,20 +73,10 @@ boolean goingDown = false;
     }
 
     // Returns true when the command should end.
-    boolean end = false;
+   
     @Override
     public boolean isFinished() {
-        if(goingUp ==  true){
-            if(m_horizontalRotate.encoderHR.getPosition() >= m_horizontalRotate.HRGoTo(m_position)){
-                end = true;
-             } else end  = false;
-        
-        }else if(goingDown == true){
-            if(m_horizontalRotate.encoderHR.getPosition() <= m_horizontalRotate.HRGoTo(m_position)){
-                end = true;
-             } else end  = false;
-        }
-        return end;
+        return m_horizontalRotate.isHRAtPosition();
     }
 
     @Override

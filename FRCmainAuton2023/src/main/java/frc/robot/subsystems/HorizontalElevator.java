@@ -48,6 +48,9 @@ private CANSparkMax cANSparkMAXH2;
     *
     */
     public RelativeEncoder encoderHE;
+    private double targetPosition;
+    private double error = 50;
+
    
 
     public HorizontalElevator() {
@@ -113,11 +116,29 @@ cANSparkMAXH2 = new CANSparkMax(9, MotorType.kBrushless);
     }
 
     
-    public double HEGoTo(Constants.PlacementConstants.PlacementPosition position){
+    public void HEGoTo(Constants.PlacementConstants.PlacementPosition position){
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
-        Double output = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
-        return output;
+        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
+
+        if(encoderHE.getPosition() > targetPosition){
+            HERetract();
+            
+            
+        }else if(encoderHE.getPosition() < targetPosition){
+           
+            HEExtend();
+        }
+
+       
+            
+
+       
     }
+
+   public boolean isHEAtPosition(){
+        
+        return Math.abs(encoderHE.getPosition() - targetPosition) <= error;
+   }
 
     
     

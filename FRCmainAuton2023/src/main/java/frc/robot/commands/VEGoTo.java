@@ -59,25 +59,11 @@ public class VEGoTo extends CommandBase {
         m_verticalElevator.VEGoTo(m_position);
         
     }
-boolean goingUp = false;
-boolean goingDown = false;
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if(m_verticalElevator.encoderVE.getPosition() > m_verticalElevator.VEGoTo(m_position)){
-            m_verticalElevator.VEDown();
-            goingDown = true;
-            
-        }else if(m_verticalElevator.encoderVE.getPosition() < m_verticalElevator.VEGoTo(m_position)){
-            m_verticalElevator.VEUp();
-            goingUp = true;
-        }
-
-        if(goingUp == true){
-            m_verticalElevator.VEUp();
-        }else if(goingDown == true){
-            m_verticalElevator.VEDown();;
-        }
+       
     }
 
     // Called once the command ends or is interrupted.
@@ -87,20 +73,10 @@ boolean goingDown = false;
     }
 
     // Returns true when the command should end.
-    boolean end = false;
+    
     @Override
     public boolean isFinished() {
-        if(goingUp ==  true){
-            if(m_verticalElevator.encoderVE.getPosition() >= m_verticalElevator.VEGoTo(m_position)){
-                end = true;
-             } else end  = false;
-        
-        }else if(goingDown == true){
-            if(m_verticalElevator.encoderVE.getPosition() <= m_verticalElevator.VEGoTo(m_position)){
-                end = true;
-             } else end  = false;
-        }
-        return end;
+       return m_verticalElevator.isVEAtPosition();
     }
 
     @Override

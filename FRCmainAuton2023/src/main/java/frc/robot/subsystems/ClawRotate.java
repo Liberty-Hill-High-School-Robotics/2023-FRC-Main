@@ -20,6 +20,7 @@ import com.revrobotics.SparkMaxRelativeEncoder.Type;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 
 /**
@@ -32,10 +33,12 @@ private CANSparkMax rotateClawMotor;
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
 
-    private RelativeEncoder encoderCR;
+    public RelativeEncoder encoderCR;
 
     private AbsoluteEncoder encoderCRAbsolute;
     private double rotatePower = 0.5;
+    private double targetPosition;
+    private double error = 50;
 
     /**
     *
@@ -88,6 +91,29 @@ reverseLimit.enableLimitSwitch(true);
         rotateClawMotor.set(rotatePower);
     }
 
+    public void CRGoTo(Constants.PlacementConstants.PlacementPosition position){
+        Constants.PlacementConstants temp = new Constants.PlacementConstants();
+        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
+
+        if(encoderCR.getPosition() > targetPosition){
+            rotateClawDown();
+            
+            
+        }else if(encoderCR.getPosition() < targetPosition){
+           
+            rotateClawUp();
+        }
+
+       
+            
+
+       
+    }
+
+   public boolean isCRAtPosition(){
+        
+        return Math.abs(encoderCR.getPosition() - targetPosition) <= error;
+   }
 
 
 }

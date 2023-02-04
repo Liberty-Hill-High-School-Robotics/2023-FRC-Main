@@ -59,25 +59,11 @@ public class HEGoTo extends CommandBase {
         m_horizontalElevator.HEGoTo(m_position);
         
     }
-boolean goingOut = false;
-boolean goingIn = false;
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if(m_horizontalElevator.encoderHE.getPosition() > m_horizontalElevator.HEGoTo(m_position)){
-            m_horizontalElevator.HEExtend();
-            goingOut = true;
-            
-        }else if(m_horizontalElevator.encoderHE.getPosition() <m_horizontalElevator.HEGoTo(m_position)){
-            m_horizontalElevator.HEExtend();
-            goingIn = true;
-        }
-
-        if(goingOut == true){
-            m_horizontalElevator.HEExtend();
-        }else if(goingIn == true){
-            m_horizontalElevator.HERetract();
-        }
+        
     }
 
     // Called once the command ends or is interrupted.
@@ -87,20 +73,11 @@ boolean goingIn = false;
     }
 
     // Returns true when the command should end.
-    boolean end = false;
+    
     @Override
     public boolean isFinished() {
-        if(goingOut ==  true){
-            if(m_horizontalElevator.encoderHE.getPosition() >= m_horizontalElevator.HEGoTo(m_position)){
-                end = true;
-             } else end  = false;
         
-        }else if(goingIn == true){
-            if(m_horizontalElevator.encoderHE.getPosition() <= m_horizontalElevator.HEGoTo(m_position)){
-                end = true;
-             } else end  = false;
-        }
-        return end;
+        return m_horizontalElevator.isHEAtPosition();
     }
 
     @Override

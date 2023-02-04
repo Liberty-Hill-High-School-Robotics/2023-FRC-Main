@@ -197,6 +197,14 @@ private final XboxController operatorController = new XboxController(1);
 //   coded to x because trigger is not an option, change later
   final Trigger buttonRotateClawDown = new JoystickButton(driverJoystick, 6);
     buttonRotateClawDown.onTrue(new RotateClawDown(m_clawRotate));
+
+    final Trigger buttonHRup = new JoystickButton(operatorController, XboxController.Button.kX.value);
+    buttonHRup.whileTrue(new HRUp(m_HorizontalRotate));
+
+    final Trigger buttonHRDown = new JoystickButton(operatorController, XboxController.Button.kA.value);
+    buttonHRDown.whileTrue(new HRDown(m_HorizontalRotate));
+
+    
 //
 //
 //

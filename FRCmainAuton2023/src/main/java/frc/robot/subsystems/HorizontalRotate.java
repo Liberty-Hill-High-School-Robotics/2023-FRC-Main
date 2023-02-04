@@ -17,6 +17,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,7 +32,7 @@ public class HorizontalRotate extends SubsystemBase {
 
 private CANSparkMax horizontalRotatorMotor;
 
-    private double rotatePower = 0.5;
+    private double rotatePower = 0.2;
 
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
@@ -49,14 +50,16 @@ private CANSparkMax horizontalRotatorMotor;
 horizontalRotatorMotor = new CANSparkMax(10, MotorType.kBrushless);
 horizontalRotatorMotor.restoreFactoryDefaults();
 horizontalRotatorMotor.setInverted(false);
+horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
 
-forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
-reverseLimit = horizontalRotatorMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+reverseLimit = horizontalRotatorMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
 forwardLimit.enableLimitSwitch(true);
 reverseLimit.enableLimitSwitch(true);
 
     encoderHR  = horizontalRotatorMotor.getEncoder();
+
     }
 
     @Override
