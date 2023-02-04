@@ -38,8 +38,10 @@ import frc.robot.commands.VEGoTo;
 import frc.robot.commands.VEStop;
 import frc.robot.commands.VEUp;
 import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.ClawRotate;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.HorizontalElevator;
+import frc.robot.subsystems.HorizontalRotate;
 import frc.robot.subsystems.Other;
 import frc.robot.subsystems.VerticalElevator;
 
@@ -70,8 +72,10 @@ public class RobotContainer {
     public final Drive m_drive = new Drive();
     public final Other m_other = new Other();
     public final Claw m_claw = new Claw();
+    public final ClawRotate m_clawRotate = new ClawRotate();
     public final VerticalElevator m_VerticalElevator = new VerticalElevator();
     public final HorizontalElevator m_HorizontalElevator = new HorizontalElevator();
+    public final HorizontalRotate m_HorizontalRotate = new HorizontalRotate();
 
 
 // Joysticks
@@ -126,9 +130,9 @@ private final XboxController operatorController = new XboxController(1);
 
     SmartDashboard.putData("Auto Mode", m_chooser);
 
-    SmartDashboard.putData("RotateClawUp Command", new RotateClawUp(m_claw));
-    SmartDashboard.putData("RotateClawDown Command", new RotateClawDown(m_claw));
-    SmartDashboard.putData("RotateClawStop Command", new RotateClawStop(m_claw));
+    SmartDashboard.putData("RotateClawUp Command", new RotateClawUp(m_clawRotate));
+    SmartDashboard.putData("RotateClawDown Command", new RotateClawDown(m_clawRotate));
+    SmartDashboard.putData("RotateClawStop Command", new RotateClawStop(m_clawRotate));
 
     SmartDashboard.putData("VEUp Command", new VEUp(m_VerticalElevator));
     SmartDashboard.putData("VEDown Command", new VEDown(m_VerticalElevator));
@@ -165,11 +169,11 @@ private final XboxController operatorController = new XboxController(1);
 
  final Trigger buttonRotateClawUp = new JoystickButton(driverJoystick, 5);
 
-    buttonRotateClawUp.onTrue(new RotateClawUp(m_claw));
+    buttonRotateClawUp.onTrue(new RotateClawUp(m_clawRotate));
 //
 //   coded to x because trigger is not an option, change later
   final Trigger buttonRotateClawDown = new JoystickButton(driverJoystick, 6);
-    buttonRotateClawDown.onTrue(new RotateClawDown(m_claw));
+    buttonRotateClawDown.onTrue(new RotateClawDown(m_clawRotate));
 //
 //
 //
