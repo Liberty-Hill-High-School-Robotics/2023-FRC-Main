@@ -28,6 +28,13 @@ import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DriveArcade;
+import frc.robot.commands.Floor;
+import frc.robot.commands.HEExtend;
+import frc.robot.commands.HERetract;
+import frc.robot.commands.HEStop;
+import frc.robot.commands.HRDown;
+import frc.robot.commands.HRStop;
+import frc.robot.commands.HRUp;
 import frc.robot.commands.MaxSpeed;
 import frc.robot.commands.Middle;
 import frc.robot.commands.RotateClawDown;
@@ -134,11 +141,23 @@ private final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("RotateClawDown Command", new RotateClawDown(m_clawRotate));
     SmartDashboard.putData("RotateClawStop Command", new RotateClawStop(m_clawRotate));
 
+    SmartDashboard.putData("ClawOpen Command", new ClawOpen(m_claw));
+    SmartDashboard.putData("ClawClose Command", new ClawClose(m_claw));
+
     SmartDashboard.putData("VEUp Command", new VEUp(m_VerticalElevator));
     SmartDashboard.putData("VEDown Command", new VEDown(m_VerticalElevator));
     SmartDashboard.putData("VEStop Command", new VEStop(m_VerticalElevator));
+
+    SmartDashboard.putData("HEExtend Command", new HEExtend(m_HorizontalElevator));
+    SmartDashboard.putData("HERetract Command", new HERetract(m_HorizontalElevator));
+    SmartDashboard.putData("HEStop Command", new HEStop(m_HorizontalElevator));
+
+    SmartDashboard.putData("HRUp Command", new HRUp(m_HorizontalRotate));
+    SmartDashboard.putData("HRDown Command", new HRDown(m_HorizontalRotate));
+    SmartDashboard.putData("HRStop Command", new HRStop(m_HorizontalRotate));
     
-    SmartDashboard.putData("Middle Command", new Middle(m_VerticalElevator,m_HorizontalElevator));
+    SmartDashboard.putData("Middle Command", new Middle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+    SmartDashboard.putData("Flooe Command", new Floor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
     
   }
 
