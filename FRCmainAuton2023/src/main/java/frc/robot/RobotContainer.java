@@ -133,7 +133,8 @@ private final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("VEUp Command", new VEUp(m_VerticalElevator));
     SmartDashboard.putData("VEDown Command", new VEDown(m_VerticalElevator));
     SmartDashboard.putData("VEStop Command", new VEStop(m_VerticalElevator));
-    SmartDashboard.putData("Middle Command", new Middle(m_VerticalElevator));
+    
+    SmartDashboard.putData("Middle Command", new Middle(m_VerticalElevator,m_HorizontalElevator));
     
   }
 
