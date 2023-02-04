@@ -158,10 +158,10 @@ private final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("HRDown Command", new HRDown(m_HorizontalRotate));
     SmartDashboard.putData("HRStop Command", new HRStop(m_HorizontalRotate));
 
-    SmartDashboard.putData("GoToMiddle Command", new GoToMiddle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
-    SmartDashboard.putData("GoToFloor Command", new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
-    SmartDashboard.putData("GoToPickUp Command", new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
-    SmartDashboard.putData("GoToTop Command", new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+    SmartDashboard.putData("GoToMiddle Command", new GoToMiddle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    SmartDashboard.putData("GoToFloor Command", new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    SmartDashboard.putData("GoToPickUp Command", new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    SmartDashboard.putData("GoToTop Command", new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     
   }
 
