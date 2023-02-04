@@ -54,8 +54,8 @@ compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean("CompressorPSI", compressor.getPressureSwitchValue());
-        SmartDashboard.putBoolean(key: "Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
-        SmartDashboard.putBoolean(key: "Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
+        SmartDashboard.putBoolean( "Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
+        SmartDashboard.putBoolean( "Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
     }
 
     @Override
