@@ -28,7 +28,7 @@ import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DriveArcade;
-import frc.robot.commands.Floor;
+import frc.robot.commands.GoToFloor;
 import frc.robot.commands.HEExtend;
 import frc.robot.commands.HERetract;
 import frc.robot.commands.HEStop;
@@ -36,7 +36,9 @@ import frc.robot.commands.HRDown;
 import frc.robot.commands.HRStop;
 import frc.robot.commands.HRUp;
 import frc.robot.commands.MaxSpeed;
-import frc.robot.commands.Middle;
+import frc.robot.commands.GoToMiddle;
+import frc.robot.commands.GoToPickUp;
+import frc.robot.commands.GoToTop;
 import frc.robot.commands.RotateClawDown;
 import frc.robot.commands.RotateClawStop;
 import frc.robot.commands.RotateClawUp;
@@ -155,9 +157,11 @@ private final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("HRUp Command", new HRUp(m_HorizontalRotate));
     SmartDashboard.putData("HRDown Command", new HRDown(m_HorizontalRotate));
     SmartDashboard.putData("HRStop Command", new HRStop(m_HorizontalRotate));
-    
-    SmartDashboard.putData("Middle Command", new Middle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
-    SmartDashboard.putData("Flooe Command", new Floor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+
+    SmartDashboard.putData("GoToMiddle Command", new GoToMiddle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+    SmartDashboard.putData("GoToFloor Command", new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+    SmartDashboard.putData("GoToPickUp Command", new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
+    SmartDashboard.putData("GoToTop Command", new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate));
     
   }
 
