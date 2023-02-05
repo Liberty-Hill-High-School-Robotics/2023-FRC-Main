@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: Subsystem.
 
 package frc.robot.subsystems;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -22,13 +23,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-
 /**
  *
  */
 public class ClawRotate extends SubsystemBase {
 
-private CANSparkMax rotateClawMotor;
+    private CANSparkMax rotateClawMotor;
 
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
@@ -44,20 +44,20 @@ private CANSparkMax rotateClawMotor;
     *
     */
     public ClawRotate() {
- 
-rotateClawMotor = new CANSparkMax(5, MotorType.kBrushless);
-rotateClawMotor.restoreFactoryDefaults();
-rotateClawMotor.setInverted(false);
 
-forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
-reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        rotateClawMotor = new CANSparkMax(5, MotorType.kBrushless);
+        rotateClawMotor.restoreFactoryDefaults();
+        rotateClawMotor.setInverted(false);
 
-forwardLimit.enableLimitSwitch(true);
-reverseLimit.enableLimitSwitch(true);
+        forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
 
-    encoderCR = rotateClawMotor.getEncoder(Type.kHallSensor, 42);
-    // encoderCRAbsolute = rotateClawMotor.getAbsoluteEncode();
-;
+        forwardLimit.enableLimitSwitch(true);
+        reverseLimit.enableLimitSwitch(true);
+
+        encoderCR = rotateClawMotor.getEncoder(Type.kHallSensor, 42);
+        // encoderCRAbsolute = rotateClawMotor.getAbsoluteEncode();
+        ;
     }
 
     @Override
@@ -73,48 +73,41 @@ reverseLimit.enableLimitSwitch(true);
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
-        
+
     }
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    
     public void rotateClawStop() {
         rotateClawMotor.stopMotor();
     }
-    
+
     public void rotateClawDown() {
         rotateClawMotor.set(-rotatePower);
     }
+
     public void rotateClawUp() {
         rotateClawMotor.set(rotatePower);
     }
 
-    public void CRGoTo(Constants.PlacementConstants.PlacementPosition position){
+    public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
         targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
 
-        if(encoderCR.getPosition() > targetPosition){
+        if (encoderCR.getPosition() > targetPosition) {
             rotateClawDown();
-            
-            
-        }else if(encoderCR.getPosition() < targetPosition){
-           
+
+        } else if (encoderCR.getPosition() < targetPosition) {
+
             rotateClawUp();
         }
 
-       
-            
-
-       
     }
 
-   public boolean isCRAtPosition(){
-        
-        return Math.abs(encoderCR.getPosition() - targetPosition) <= error;
-   }
+    public boolean isCRAtPosition() {
 
+        return Math.abs(encoderCR.getPosition() - targetPosition) <= error;
+    }
 
 }
-

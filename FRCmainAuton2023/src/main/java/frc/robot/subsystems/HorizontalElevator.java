@@ -12,7 +12,6 @@
 
 package frc.robot.subsystems;
 
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
@@ -28,14 +27,14 @@ import frc.robot.Constants;
  */
 public class HorizontalElevator extends SubsystemBase {
 
-private CANSparkMax horizontalElevatorLead;
-private CANSparkMax horizontalElevattorFollow;
+    private CANSparkMax horizontalElevatorLead;
+    private CANSparkMax horizontalElevattorFollow;
 
-private SparkMaxLimitSwitch forwardLimit;
-private SparkMaxLimitSwitch reverseLimit;
+    private SparkMaxLimitSwitch forwardLimit;
+    private SparkMaxLimitSwitch reverseLimit;
 
-private double power = 0.5;
-    
+    private double power = 0.5;
+
     /**
     *
     */
@@ -43,28 +42,24 @@ private double power = 0.5;
     private double targetPosition;
     private double error = 50;
 
-   
-
     public HorizontalElevator() {
 
-horizontalElevatorLead = new CANSparkMax(8, MotorType.kBrushless);
-horizontalElevatorLead.restoreFactoryDefaults();
-horizontalElevatorLead.setInverted(false);
+        horizontalElevatorLead = new CANSparkMax(8, MotorType.kBrushless);
+        horizontalElevatorLead.restoreFactoryDefaults();
+        horizontalElevatorLead.setInverted(false);
 
-horizontalElevattorFollow = new CANSparkMax(9, MotorType.kBrushless);
-horizontalElevattorFollow.restoreFactoryDefaults();
-horizontalElevattorFollow.follow(horizontalElevatorLead,false);
+        horizontalElevattorFollow = new CANSparkMax(9, MotorType.kBrushless);
+        horizontalElevattorFollow.restoreFactoryDefaults();
+        horizontalElevattorFollow.follow(horizontalElevatorLead, false);
 
-forwardLimit = horizontalElevatorLead.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
-reverseLimit = horizontalElevatorLead.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        forwardLimit = horizontalElevatorLead.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        reverseLimit = horizontalElevatorLead.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
 
-forwardLimit.enableLimitSwitch(true);
-reverseLimit.enableLimitSwitch(true);
+        forwardLimit.enableLimitSwitch(true);
+        reverseLimit.enableLimitSwitch(true);
 
+        encoderHE = horizontalElevatorLead.getEncoder();
 
-    encoderHE = horizontalElevatorLead.getEncoder();
-    
-    
     }
 
     @Override
@@ -86,56 +81,43 @@ reverseLimit.enableLimitSwitch(true);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void HEExtend(){
+    public void HEExtend() {
         horizontalElevatorLead.set(power);
     }
 
-    public void HERetract(){
+    public void HERetract() {
         horizontalElevatorLead.set(-power);
     }
 
-    public void HEStop(){
+    public void HEStop() {
         horizontalElevatorLead.stopMotor();
     }
 
-   
-
-    public boolean isHERetracted(){
+    public boolean isHERetracted() {
         return horizontalElevatorLead.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
-    public boolean isHEExtended(){
+    public boolean isHEExtended() {
         return horizontalElevatorLead.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
-    
-    public void HEGoTo(Constants.PlacementConstants.PlacementPosition position){
+    public void HEGoTo(Constants.PlacementConstants.PlacementPosition position) {
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
         targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
 
-        if(encoderHE.getPosition() > targetPosition){
+        if (encoderHE.getPosition() > targetPosition) {
             HERetract();
-            
-            
-        }else if(encoderHE.getPosition() < targetPosition){
-           
+
+        } else if (encoderHE.getPosition() < targetPosition) {
+
             HEExtend();
         }
 
-       
-            
-
-       
     }
 
-   public boolean isHEAtPosition(){
-        
+    public boolean isHEAtPosition() {
+
         return Math.abs(encoderHE.getPosition() - targetPosition) <= error;
-   }
-
-    
-    
-
+    }
 
 }
-

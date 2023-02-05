@@ -23,21 +23,18 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
 /**
  *
  */
 
 public class Drive extends SubsystemBase {
-    
 
-    
     private CANSparkMax rightLeader;
     private CANSparkMax leftLeader;
     private DifferentialDrive driveMain;
     private CANSparkMax rightFollow;
     private CANSparkMax leftFollow;
-    
+
     private RelativeEncoder encoderLeftFollow;
     private RelativeEncoder encoderRightFollow;
     private RelativeEncoder encoderLeftLeader;
@@ -70,11 +67,11 @@ public class Drive extends SubsystemBase {
         rightFollow = new CANSparkMax(4, MotorType.kBrushless);
         rightFollow.restoreFactoryDefaults();
         // rightFollow.setInverted(false);
-        rightFollow.follow(rightLeader,false);
+        rightFollow.follow(rightLeader, false);
 
         leftFollow = new CANSparkMax(1, MotorType.kBrushless);
         leftFollow.restoreFactoryDefaults();
-        leftFollow.follow(leftLeader, false);   // Same direction as leader
+        leftFollow.follow(leftLeader, false); // Same direction as leader
 
         pigeon2 = new Pigeon2(19);
         // sets the two follow motors to follow the lead motors
@@ -148,39 +145,39 @@ public class Drive extends SubsystemBase {
         leftLeader.stopMotor();
     }
 
-
     public void maxSpeed() {
         driveArcade(1, 0);
-   
+
     }
 
     // lefty = power rightx = rotation
     public void driveArcade(double power, double rotation) {
-        /* 
-        double max = .9;
-        double rampUp = .001; // error allowed
-        double rampD = .001; // ramp down
-        double jsAxisY = rightX; // pull num from joystick
-        double sub = jsAxisY - oldAxisY;
-
-        if (Math.abs(sub) > rampUp && sub > 0) {
-            // test to see if it is going forward
-            tempAxisY = oldAxisY + rampUp;
-        } else if (Math.abs(sub) > rampD && sub < 0) { // test to see if it is going backwards
-            tempAxisY = oldAxisY - rampD;
-        } else {
-            tempAxisY = jsAxisY;
-        }
-        // test to see if value exceds max allowed
-
-        if (tempAxisY < max * -1) {
-            tempAxisY = max * -1;
-        } else if (tempAxisY > max) {
-            tempAxisY = max;
-        }
-        finalAxisY = tempAxisY;
-        oldAxisY = finalAxisY;
-        */
+        /*
+         * double max = .9;
+         * double rampUp = .001; // error allowed
+         * double rampD = .001; // ramp down
+         * double jsAxisY = rightX; // pull num from joystick
+         * double sub = jsAxisY - oldAxisY;
+         * 
+         * if (Math.abs(sub) > rampUp && sub > 0) {
+         * // test to see if it is going forward
+         * tempAxisY = oldAxisY + rampUp;
+         * } else if (Math.abs(sub) > rampD && sub < 0) { // test to see if it is going
+         * backwards
+         * tempAxisY = oldAxisY - rampD;
+         * } else {
+         * tempAxisY = jsAxisY;
+         * }
+         * // test to see if value exceds max allowed
+         * 
+         * if (tempAxisY < max * -1) {
+         * tempAxisY = max * -1;
+         * } else if (tempAxisY > max) {
+         * tempAxisY = max;
+         * }
+         * finalAxisY = tempAxisY;
+         * oldAxisY = finalAxisY;
+         */
         finalAxisY = power;
         driveMain.arcadeDrive(finalAxisY, rotation);
     }

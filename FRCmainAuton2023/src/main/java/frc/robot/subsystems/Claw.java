@@ -11,8 +11,11 @@
 // ROBOTBUILDER TYPE: Subsystem.
 
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -20,29 +23,25 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-
 /**
  *
  */
 public class Claw extends SubsystemBase {
 
-private DoubleSolenoid doubleSolenoidClaw;
-private Compressor compressor;
+    private DoubleSolenoid doubleSolenoidClaw;
+    private Compressor compressor;
 
-    
     /**
     *
     */
     public Claw() {
- 
 
-doubleSolenoidClaw = new DoubleSolenoid(1, PneumaticsModuleType.CTREPCM, 0, 4);
- addChild("Claw Open Close", doubleSolenoidClaw);
- 
+        doubleSolenoidClaw = new DoubleSolenoid(1, PneumaticsModuleType.CTREPCM, 0, 4);
+        addChild("Claw Open Close", doubleSolenoidClaw);
 
-compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
- addChild("Compressor",compressor);
- 
+        compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
+        addChild("Compressor", compressor);
+
         compressor.enableDigital();
     }
 
@@ -50,8 +49,8 @@ compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean("CompressorPSI", compressor.getPressureSwitchValue());
-        SmartDashboard.putBoolean( "Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
-        SmartDashboard.putBoolean( "Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
+        SmartDashboard.putBoolean("Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
+        SmartDashboard.putBoolean("Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
     }
 
     @Override
@@ -66,12 +65,17 @@ compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
     public void clawClose() {
         doubleSolenoidClaw.set(Value.kForward);
     }
-    
+
     public void clawOpen() {
         doubleSolenoidClaw.set(Value.kReverse);
     }
-    
 
+    public Boolean isClawOpen(){
+        return doubleSolenoidClaw.isFwdSolenoidDisabled();
+    }
+    
+    public Boolean isClawClosed(){
+        return doubleSolenoidClaw.isRevSolenoidDisabled();
+    }
 
 }
-

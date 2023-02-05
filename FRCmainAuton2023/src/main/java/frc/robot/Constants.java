@@ -52,7 +52,7 @@ public class Constants {
         }
         
         public enum SubSystem{
-            VERTICAL    (0), // top .007, bottom 0.8
+            VERTICAL    (0), // 
             HORIZONTAL  (1),
             ELBOW       (2),
             WRIST       (3);
@@ -71,10 +71,10 @@ public class Constants {
         }
 
         private double[][] placementValues = {
-            {0.7,0,0,0}, //floor
-            {10,0,0.5,0}, // middle
+            {-1000,0,0,0}, //floor
+            {-6,500,0,0.5,0}, // middle
             {0,0,0,0}, // pickup
-            {0.3,0,0,0}, // top
+            {-12900,0,0,0}, // top
             {0,0,0.75,0} // start
         };
 

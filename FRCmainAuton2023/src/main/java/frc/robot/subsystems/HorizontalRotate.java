@@ -12,7 +12,6 @@
 
 package frc.robot.subsystems;
 
-
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -30,13 +29,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-
 /**
  *
  */
 public class HorizontalRotate extends SubsystemBase {
 
-private CANSparkMax horizontalRotatorMotor;
+    private CANSparkMax horizontalRotatorMotor;
 
     private double rotatePower = 0.2;
 
@@ -46,31 +44,28 @@ private CANSparkMax horizontalRotatorMotor;
     /**
     *
     */
-    
+
     public RelativeEncoder encoderHR;
-    
+
     private double targetPosition;
     private double error = .005;
     public DutyCycleEncoder throughBorHR;
-    
 
     public HorizontalRotate() {
 
-horizontalRotatorMotor = new CANSparkMax(10, MotorType.kBrushless);
-horizontalRotatorMotor.restoreFactoryDefaults();
-horizontalRotatorMotor.setInverted(false);//verified on the Hardwear
-horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
+        horizontalRotatorMotor = new CANSparkMax(10, MotorType.kBrushless);
+        horizontalRotatorMotor.restoreFactoryDefaults();
+        horizontalRotatorMotor.setInverted(false);// verified on the Hardwear
+        horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
 
-forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
-reverseLimit = horizontalRotatorMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+        forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+        reverseLimit = horizontalRotatorMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
-forwardLimit.enableLimitSwitch(true);
-reverseLimit.enableLimitSwitch(true);
+        forwardLimit.enableLimitSwitch(true);
+        reverseLimit.enableLimitSwitch(true);
 
-    encoderHR  = horizontalRotatorMotor.getEncoder();
-    throughBorHR = new DutyCycleEncoder(0);
-    
-   
+        encoderHR = horizontalRotatorMotor.getEncoder();
+        throughBorHR = new DutyCycleEncoder(0);
 
     }
 
@@ -95,50 +90,39 @@ reverseLimit.enableLimitSwitch(true);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    
-    public void HRUp(){
+    public void HRUp() {
         horizontalRotatorMotor.set(rotatePower);
     }
 
-    public void HRDown(){
+    public void HRDown() {
         horizontalRotatorMotor.set(-rotatePower);
     }
 
-    public void HRStop(){
+    public void HRStop() {
         horizontalRotatorMotor.stopMotor();
     }
 
-   
-
-    public boolean isHRRetracted(){
+    public boolean isHRRetracted() {
         return horizontalRotatorMotor.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
-
-    
-    public void HRGoTo(Constants.PlacementConstants.PlacementPosition position){
+    public void HRGoTo(Constants.PlacementConstants.PlacementPosition position) {
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
         targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.ELBOW);
 
-        if(throughBorHR.getAbsolutePosition() > targetPosition){
+        if (throughBorHR.getAbsolutePosition() > targetPosition) {
             HRDown();
-            
-            
-        }else if(throughBorHR.getAbsolutePosition() < targetPosition){
-           
+
+        } else if (throughBorHR.getAbsolutePosition() < targetPosition) {
+
             HRUp();
         }
 
-       
-            
-
-       
     }
 
-   public boolean isHRAtPosition(){
-        
+    public boolean isHRAtPosition() {
+
         return Math.abs(throughBorHR.getAbsolutePosition() - targetPosition) <= error;
-   }
+    }
 
 }
-
