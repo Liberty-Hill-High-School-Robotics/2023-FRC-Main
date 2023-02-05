@@ -13,13 +13,19 @@
 package frc.robot.subsystems;
 
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
+import edu.wpi.first.wpilibj.AnalogEncoder;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -42,14 +48,17 @@ private CANSparkMax horizontalRotatorMotor;
     */
     
     public RelativeEncoder encoderHR;
+    
     private double targetPosition;
-    private double error = 50;
+    private double error = .005;
+    public DutyCycleEncoder throughBorHR;
+    
 
     public HorizontalRotate() {
 
 horizontalRotatorMotor = new CANSparkMax(10, MotorType.kBrushless);
 horizontalRotatorMotor.restoreFactoryDefaults();
-horizontalRotatorMotor.setInverted(false);
+horizontalRotatorMotor.setInverted(false);//verified on the Hardwear
 horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
 
 forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
@@ -59,6 +68,9 @@ forwardLimit.enableLimitSwitch(true);
 reverseLimit.enableLimitSwitch(true);
 
     encoderHR  = horizontalRotatorMotor.getEncoder();
+    throughBorHR = new DutyCycleEncoder(0);
+    
+   
 
     }
 
@@ -70,6 +82,8 @@ reverseLimit.enableLimitSwitch(true);
 
         SmartDashboard.putBoolean("Forward Limit Switch", forwardLimit.isPressed());
         SmartDashboard.putBoolean("Reverse Limit Switch", reverseLimit.isPressed());
+
+        SmartDashboard.putNumber("ThroughBorHR", throughBorHR.getAbsolutePosition());
     }
 
     @Override
@@ -104,13 +118,13 @@ reverseLimit.enableLimitSwitch(true);
     
     public void HRGoTo(Constants.PlacementConstants.PlacementPosition position){
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
-        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
+        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.ELBOW);
 
-        if(encoderHR.getPosition() > targetPosition){
+        if(throughBorHR.getAbsolutePosition() > targetPosition){
             HRDown();
             
             
-        }else if(encoderHR.getPosition() < targetPosition){
+        }else if(throughBorHR.getAbsolutePosition() < targetPosition){
            
             HRUp();
         }
@@ -123,7 +137,7 @@ reverseLimit.enableLimitSwitch(true);
 
    public boolean isHRAtPosition(){
         
-        return Math.abs(encoderHR.getPosition() - targetPosition) <= error;
+        return Math.abs(throughBorHR.getAbsolutePosition() - targetPosition) <= error;
    }
 
 }

@@ -36,7 +36,8 @@ public class Constants {
             FLOOR (0),  //Position for picking placing up from the floor
             MIDDLE (1), //Position for placing on the middle node
             PICKUP (2),  //Position for picking up from the double station
-            TOP    (3)      //Position for placing on the top node
+            TOP    (3), 
+            START (4)     //Position for placing on the top node
             ;
             private final int placementPositionIndex;
 
@@ -51,7 +52,7 @@ public class Constants {
         }
         
         public enum SubSystem{
-            VERTICAL    (0),
+            VERTICAL    (0), // top .007, bottom 0.8
             HORIZONTAL  (1),
             ELBOW       (2),
             WRIST       (3);
@@ -70,10 +71,11 @@ public class Constants {
         }
 
         private double[][] placementValues = {
-            {0,0,0,0},
-            {1000,0,0,0},
-            {0,0,0,0},
-            {0,0,0,0},
+            {0.7,0,0,0}, //floor
+            {10,0,0.5,0}, // middle
+            {0,0,0,0}, // pickup
+            {0.3,0,0,0}, // top
+            {0,0,0.75,0} // start
         };
 
         public double getPlacementValues(PlacementPosition position, SubSystem subSystem) {

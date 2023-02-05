@@ -52,7 +52,7 @@ horizontalElevatorLead.restoreFactoryDefaults();
 horizontalElevatorLead.setInverted(false);
 
 horizontalElevattorFollow = new CANSparkMax(9, MotorType.kBrushless);
-horizontalElevattorFollow.restoreFactoryDefaults()
+horizontalElevattorFollow.restoreFactoryDefaults();
 horizontalElevattorFollow.follow(horizontalElevatorLead,false);
 
 forwardLimit = horizontalElevatorLead.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
