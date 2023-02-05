@@ -79,6 +79,8 @@ public class HorizontalRotate extends SubsystemBase {
         SmartDashboard.putBoolean("Reverse Limit Switch", reverseLimit.isPressed());
 
         SmartDashboard.putNumber("ThroughBorHR", throughBorHR.getAbsolutePosition());
+
+        SmartDashboard.putNumber("HRTargetPostion", targetPosition);
     }
 
     @Override

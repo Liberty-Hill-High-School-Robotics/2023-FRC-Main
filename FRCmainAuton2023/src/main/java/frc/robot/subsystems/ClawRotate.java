@@ -91,6 +91,14 @@ public class ClawRotate extends SubsystemBase {
         rotateClawMotor.set(rotatePower);
     }
 
+    public Boolean isClawRotateAtTop(){
+        return rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed).isPressed();
+    }
+
+    public Boolean isClawRotateAtBottom(){
+        return rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed).isPressed();
+    }
+
     public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
         targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
