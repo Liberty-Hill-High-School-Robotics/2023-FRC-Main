@@ -53,7 +53,7 @@ public class HorizontalElevator extends SubsystemBase {
         horizontalElevattorFollow.follow(horizontalElevatorLead, false);
 
         forwardLimit = horizontalElevatorLead.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
-        reverseLimit = horizontalElevatorLead.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        reverseLimit = horizontalElevatorLead.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);

@@ -21,6 +21,7 @@ import java.util.*;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
@@ -33,8 +34,8 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class VerticalElevator extends SubsystemBase {
 
-    private CANSparkMax leadMotor;
-    private CANSparkMax followMotor;
+    private CANSparkMax VEleadMotor;
+    private CANSparkMax VEfollowMotor;
 
     public RelativeEncoder encoderVE;
     private double error = .005;
@@ -44,23 +45,34 @@ public class VerticalElevator extends SubsystemBase {
     public Encoder relativeEncoderVE;
     private int elevatorError;
 
+    private SparkMaxLimitSwitch forwardLimit;
+    private SparkMaxLimitSwitch reverseLimit;
+
     public VerticalElevator() {
 
-        leadMotor = new CANSparkMax(5, MotorType.kBrushless);
-        leadMotor.restoreFactoryDefaults();
-        leadMotor.setInverted(true);
-        encoderVE = leadMotor.getEncoder();
-        leadMotor.setSmartCurrentLimit(2);
+        VEleadMotor = new CANSparkMax(5, MotorType.kBrushless);
+        VEleadMotor.restoreFactoryDefaults();
+        VEleadMotor.setInverted(true);
+        encoderVE = VEleadMotor.getEncoder();
+        VEleadMotor.setSmartCurrentLimit(2);
 
-        followMotor = new CANSparkMax(6, MotorType.kBrushless);
-        followMotor.restoreFactoryDefaults();
-        followMotor.follow(leadMotor, false);
-        followMotor.setSmartCurrentLimit(2);
+        VEfollowMotor = new CANSparkMax(6, MotorType.kBrushless);
+        VEfollowMotor.restoreFactoryDefaults();
+        VEfollowMotor.follow(VEleadMotor, false);
+        VEfollowMotor.setSmartCurrentLimit(2);
 
         throughBorVE = new DutyCycleEncoder(1);
 
         relativeEncoderVE = new Encoder(3, 2);
         relativeEncoderVE.setReverseDirection(true);
+
+        forwardLimit = VEleadMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+        reverseLimit = VEleadMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+
+        forwardLimit.enableLimitSwitch(true);
+        reverseLimit.enableLimitSwitch(true);
+
+        
 
     }
 
@@ -74,6 +86,7 @@ public class VerticalElevator extends SubsystemBase {
         SmartDashboard.putNumber("Target Position", targetPosition);
         SmartDashboard.putNumber("ElevatorError", elevatorError);
         SmartDashboard.putBoolean("VEBottom LimitSwitch", isVEAtBottom());
+        SmartDashboard.putBoolean("VETop LimitSwitch", isVEAtTop());
     }
 
     @Override
@@ -87,24 +100,24 @@ public class VerticalElevator extends SubsystemBase {
 
     public void VEUp() {
 
-        leadMotor.set(ratePower);
+        VEleadMotor.set(ratePower);
     }
 
     public void VEDown() {
-        leadMotor.set(-ratePower);
+        VEleadMotor.set(-ratePower);
     }
 
     public void VEStop() {
-        leadMotor.stopMotor();
+        VEleadMotor.stopMotor();
     }
 
     public boolean isVEAtTop() {
-        return leadMotor.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
+        return VEleadMotor.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
 
     }
 
     public boolean isVEAtBottom() {
-        return leadMotor.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
+        return VEleadMotor.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
     public void VEGoTo(Constants.PlacementConstants.PlacementPosition position) {
@@ -130,7 +143,7 @@ public class VerticalElevator extends SubsystemBase {
     public void zeroElevator() {
         if (isVEAtBottom() != true) {
             VEDown();
-        }
+        }else 
         elevatorError = relativeEncoderVE.get();
     }
 
