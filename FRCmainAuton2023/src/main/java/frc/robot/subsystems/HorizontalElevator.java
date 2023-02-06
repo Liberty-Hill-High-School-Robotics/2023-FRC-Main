@@ -86,7 +86,7 @@ public class HorizontalElevator extends SubsystemBase {
     }
 
     public void HERetract() {
-        horizontalElevatorLead.set(-powere);
+        horizontalElevatorLead.set(-power);
     }
 
     public void HEStop() {
