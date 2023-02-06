@@ -48,6 +48,10 @@ public class Drive extends SubsystemBase {
     private SparkMaxPIDController m_pidControllerLeft;
     private SparkMaxPIDController m_pidControllerRight;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
+
+    private double balanceError = 1;
+    private double slowPower = 0.1;
+    private boolean isBalanced = false;
     
 
     /**
@@ -299,4 +303,25 @@ public class Drive extends SubsystemBase {
         finalAxisY = power;
         driveMain.arcadeDrive(finalAxisY, rotation);
     }
+
+    public void driveForwardSlow() {
+        rightLeader.set(slowPower);
+
+        leftLeader.set(slowPower);
+    }
+
+    public void driveBackwardSlow() {
+        rightLeader.set(-slowPower);
+
+        leftLeader.set(-slowPower);
+    }
+
+    public boolean isRobotBalanced() {
+        if (pigeon2.getPitch() > balanceError && pigeon2.getPitch() < -balanceError) {
+        isBalanced = true;
+        } else isBalanced = false;
+        return isBalanced;
+    }
+
+    
 }
