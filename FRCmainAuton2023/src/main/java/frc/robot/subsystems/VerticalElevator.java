@@ -46,13 +46,13 @@ public class VerticalElevator extends SubsystemBase {
 
     public VerticalElevator() {
 
-        leadMotor = new CANSparkMax(6, MotorType.kBrushless);
+        leadMotor = new CANSparkMax(5, MotorType.kBrushless);
         leadMotor.restoreFactoryDefaults();
         leadMotor.setInverted(true);
         encoderVE = leadMotor.getEncoder();
         leadMotor.setSmartCurrentLimit(2);
 
-        followMotor = new CANSparkMax(7, MotorType.kBrushless);
+        followMotor = new CANSparkMax(6, MotorType.kBrushless);
         followMotor.restoreFactoryDefaults();
         followMotor.follow(leadMotor, false);
         followMotor.setSmartCurrentLimit(2);
@@ -73,6 +73,7 @@ public class VerticalElevator extends SubsystemBase {
         SmartDashboard.putNumber("RelativeEncoderVE", relativeEncoderVE.get());
         SmartDashboard.putNumber("Target Position", targetPosition);
         SmartDashboard.putNumber("ElevatorError", elevatorError);
+        SmartDashboard.putBoolean("VEBottom LimitSwitch", isVEAtBottom());
     }
 
     @Override

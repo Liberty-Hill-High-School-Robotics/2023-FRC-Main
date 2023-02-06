@@ -53,7 +53,7 @@ public class HorizontalRotate extends SubsystemBase {
 
     public HorizontalRotate() {
 
-        horizontalRotatorMotor = new CANSparkMax(10, MotorType.kBrushless);
+        horizontalRotatorMotor = new CANSparkMax(9, MotorType.kBrushless);
         horizontalRotatorMotor.restoreFactoryDefaults();
         horizontalRotatorMotor.setInverted(false);// verified on the Hardwear
         horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);

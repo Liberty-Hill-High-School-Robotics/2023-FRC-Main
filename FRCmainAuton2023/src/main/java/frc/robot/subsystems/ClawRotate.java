@@ -45,7 +45,7 @@ public class ClawRotate extends SubsystemBase {
     */
     public ClawRotate() {
 
-        rotateClawMotor = new CANSparkMax(5, MotorType.kBrushless);
+        rotateClawMotor = new CANSparkMax(10, MotorType.kBrushless);
         rotateClawMotor.restoreFactoryDefaults();
         rotateClawMotor.setInverted(false);
 

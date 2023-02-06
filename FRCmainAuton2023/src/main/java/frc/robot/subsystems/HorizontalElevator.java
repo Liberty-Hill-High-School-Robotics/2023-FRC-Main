@@ -44,11 +44,11 @@ public class HorizontalElevator extends SubsystemBase {
 
     public HorizontalElevator() {
 
-        horizontalElevatorLead = new CANSparkMax(8, MotorType.kBrushless);
+        horizontalElevatorLead = new CANSparkMax(7, MotorType.kBrushless);
         horizontalElevatorLead.restoreFactoryDefaults();
         horizontalElevatorLead.setInverted(false);
 
-        horizontalElevattorFollow = new CANSparkMax(9, MotorType.kBrushless);
+        horizontalElevattorFollow = new CANSparkMax(8, MotorType.kBrushless);
         horizontalElevattorFollow.restoreFactoryDefaults();
         horizontalElevattorFollow.follow(horizontalElevatorLead, false);
 
