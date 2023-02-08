@@ -75,12 +75,13 @@ public class HorizontalRotate extends SubsystemBase {
         SmartDashboard.putNumber("Horizontal Rotator Position", encoderHR.getPosition());
         SmartDashboard.putNumber("Horizontal Rotator Velocity", encoderHR.getVelocity());
 
-        SmartDashboard.putBoolean("Forward Limit Switch", forwardLimit.isPressed());
-        SmartDashboard.putBoolean("Reverse Limit Switch", reverseLimit.isPressed());
+        SmartDashboard.putBoolean("HRForward Limit Switch", forwardLimit.isPressed());
+        SmartDashboard.putBoolean("HRReverse Limit Switch", reverseLimit.isPressed());
 
         SmartDashboard.putNumber("ThroughBorHR", throughBorHR.getAbsolutePosition());
 
         SmartDashboard.putNumber("HRTargetPostion", targetPosition);
+       
     }
 
     @Override

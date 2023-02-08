@@ -188,7 +188,7 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
 
-      buttonClawOpen.whileTrue(new ClawOpen(m_claw)).whileFalse(new ClawClose(m_claw));
+      buttonClawOpen.whileTrue(new ClawOpen(m_claw)).onFalse(new ClawClose(m_claw));
 
  final Trigger buttonRotateClawUp = new JoystickButton(driverJoystick, 5);
 

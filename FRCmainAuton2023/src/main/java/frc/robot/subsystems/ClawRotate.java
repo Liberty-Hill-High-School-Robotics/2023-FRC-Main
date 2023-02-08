@@ -66,8 +66,10 @@ public class ClawRotate extends SubsystemBase {
         SmartDashboard.putNumber("Claw Rotate Position", encoderCR.getPosition());
         SmartDashboard.putNumber("Claw Rotate Velocity", encoderCR.getVelocity());
 
-        SmartDashboard.putBoolean("Forward Limit Switch", forwardLimit.isPressed());
-        SmartDashboard.putBoolean("Reverse Limit Switch", reverseLimit.isPressed());
+        SmartDashboard.putBoolean("CRForward Limit Switch", forwardLimit.isPressed());
+        SmartDashboard.putBoolean("CRReverse Limit Switch", reverseLimit.isPressed());
+
+        SmartDashboard.putNumber("CR TargetPosition", targetPosition);
     }
 
     @Override

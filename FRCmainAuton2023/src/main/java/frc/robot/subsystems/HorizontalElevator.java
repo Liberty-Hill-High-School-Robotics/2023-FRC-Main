@@ -68,8 +68,10 @@ public class HorizontalElevator extends SubsystemBase {
         SmartDashboard.putNumber("Horizontal Elevator Position", encoderHE.getPosition());
         SmartDashboard.putNumber("Horizontal Velocity Position", encoderHE.getVelocity());
 
-        SmartDashboard.putBoolean("Forward Limit Switch", forwardLimit.isPressed());
-        SmartDashboard.putBoolean("Reverse Limit Switch", reverseLimit.isPressed());
+        SmartDashboard.putBoolean("HEForward Limit Switch", forwardLimit.isPressed());
+        SmartDashboard.putBoolean("HEReverse Limit Switch", reverseLimit.isPressed());
+
+        SmartDashboard.putNumber("HE Target Position", targetPosition);
     }
 
     @Override
