@@ -42,7 +42,7 @@ public class VerticalElevator extends SubsystemBase {
     private double error = .005;
     private double targetPosition;
     public DutyCycleEncoder throughBorVE;
-    private Double ratePower = 0.2;
+    private Double ratePower = 0.75;
     public Encoder relativeEncoderVE;
     private int elevatorError;
 
@@ -55,13 +55,13 @@ public class VerticalElevator extends SubsystemBase {
         VEleadMotor.restoreFactoryDefaults();
         VEleadMotor.setInverted(true);
         encoderVE = VEleadMotor.getEncoder();
-        VEleadMotor.setSmartCurrentLimit(2);
+        
         VEleadMotor.setIdleMode(IdleMode.kBrake);
 
         VEfollowMotor = new CANSparkMax(6, MotorType.kBrushless);
         VEfollowMotor.restoreFactoryDefaults();
         VEfollowMotor.follow(VEleadMotor, false);
-        VEfollowMotor.setSmartCurrentLimit(2);
+        
         VEfollowMotor.setIdleMode(IdleMode.kBrake);
 
         throughBorVE = new DutyCycleEncoder(1);
@@ -107,7 +107,7 @@ public class VerticalElevator extends SubsystemBase {
     }
 
     public void VEDown() {
-        VEleadMotor.set(-1*ratePower);
+        VEleadMotor.set(-ratePower);
     }
 
     public void VEStop() {
