@@ -30,15 +30,16 @@ public class Claw extends SubsystemBase {
 
     private DoubleSolenoid doubleSolenoidClaw;
     private Compressor compressor;
+    
 
     /**
     *
     */
     public Claw() {
-
-        doubleSolenoidClaw = new DoubleSolenoid(1, PneumaticsModuleType.CTREPCM, 0, 4);
+        
+        doubleSolenoidClaw = new DoubleSolenoid(18, PneumaticsModuleType.CTREPCM, 0, 4);
         addChild("Claw Open Close", doubleSolenoidClaw);
-
+        
         compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
         addChild("Compressor", compressor);
 
@@ -49,8 +50,8 @@ public class Claw extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean("CompressorPSI", compressor.getPressureSwitchValue());
-        SmartDashboard.putBoolean("Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
-        SmartDashboard.putBoolean("Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
+       // SmartDashboard.putBoolean("Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
+       // SmartDashboard.putBoolean("Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
     }
 
     @Override
@@ -69,13 +70,14 @@ public class Claw extends SubsystemBase {
     public void clawOpen() {
         doubleSolenoidClaw.set(Value.kReverse);
     }
-
+ /* 
     public Boolean isClawOpen(){
-        return doubleSolenoidClaw.isFwdSolenoidDisabled();
+        return doubleSolenoidClaw.isRevSolenoidDisabled();
     }
     
     public Boolean isClawClosed(){
-        return doubleSolenoidClaw.isRevSolenoidDisabled();
+        return doubleSolenoidClaw.isFwdSolenoidDisabled();
     }
+    */
 
 }

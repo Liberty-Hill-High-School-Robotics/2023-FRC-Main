@@ -22,6 +22,7 @@ import java.util.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
@@ -41,7 +42,7 @@ public class VerticalElevator extends SubsystemBase {
     private double error = .005;
     private double targetPosition;
     public DutyCycleEncoder throughBorVE;
-    private Double ratePower = 0.1;
+    private Double ratePower = 0.2;
     public Encoder relativeEncoderVE;
     private int elevatorError;
 
@@ -55,11 +56,13 @@ public class VerticalElevator extends SubsystemBase {
         VEleadMotor.setInverted(true);
         encoderVE = VEleadMotor.getEncoder();
         VEleadMotor.setSmartCurrentLimit(2);
+        VEleadMotor.setIdleMode(IdleMode.kBrake);
 
         VEfollowMotor = new CANSparkMax(6, MotorType.kBrushless);
         VEfollowMotor.restoreFactoryDefaults();
         VEfollowMotor.follow(VEleadMotor, false);
         VEfollowMotor.setSmartCurrentLimit(2);
+        VEfollowMotor.setIdleMode(IdleMode.kBrake);
 
         throughBorVE = new DutyCycleEncoder(1);
 
@@ -104,7 +107,7 @@ public class VerticalElevator extends SubsystemBase {
     }
 
     public void VEDown() {
-        VEleadMotor.set(-ratePower);
+        VEleadMotor.set(-1*ratePower);
     }
 
     public void VEStop() {

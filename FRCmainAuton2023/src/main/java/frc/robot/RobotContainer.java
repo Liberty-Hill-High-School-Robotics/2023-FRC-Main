@@ -188,7 +188,12 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
 
-      buttonClawOpen.whileTrue(new ClawOpen(m_claw)).onFalse(new ClawClose(m_claw));
+      buttonClawOpen.onTrue(new ClawOpen(m_claw));
+
+      final Trigger buttonClawClose = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+
+      buttonClawClose.onTrue(new ClawClose(m_claw));
+      
 
  final Trigger buttonRotateClawUp = new JoystickButton(driverJoystick, 5);
 
@@ -209,6 +214,12 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger buttonVEDown = new JoystickButton(operatorController, XboxController.Button.kB.value);
     buttonVEDown.whileTrue(new VEDown(m_VerticalElevator));
+
+    final Trigger testClawOpen = new JoystickButton(driverJoystick, 1);
+    testClawOpen.onTrue(new ClawOpen(m_claw));
+
+    final Trigger testClawClose = new JoystickButton(driverJoystick, 2);
+    testClawClose.onTrue(new ClawClose(m_claw));
 
     
 //

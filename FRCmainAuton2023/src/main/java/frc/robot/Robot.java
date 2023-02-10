@@ -121,11 +121,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        
+        /*
         if(ranZeroElevator == false){
             m_robotContainer.m_VerticalElevator.zeroElevator();
         }
-        
+        */
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
