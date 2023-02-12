@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder.Type;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -19,6 +20,7 @@ import com.revrobotics.SparkMaxPIDController;
 
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+
 
 
 /**
@@ -52,6 +54,8 @@ public class Drive extends SubsystemBase {
     private double balanceError = 1;
     private double slowPower = 0.1;
     private boolean isBalanced = false;
+    private  double setPointLeft;
+    private double setPointRight; 
     
 
     /**
@@ -202,12 +206,9 @@ public class Drive extends SubsystemBase {
             kMinOutput = min; kMaxOutput = max; 
         }
 
-        double setPoint = RobotContainer.getInstance().driverJoystick.getY()*maxRPM;
-        m_pidControllerLeft.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
-        m_pidControllerRight.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+
     
         
-        SmartDashboard.putNumber("SetPoint", setPoint);
         SmartDashboard.putNumber("LeftEncoder", m_encoderLeft.getVelocity());
         SmartDashboard.putNumber("RightEncoder", m_encoderRight.getVelocity());
         SmartDashboard.putNumber("JoystickValue", RobotContainer.getInstance().driverJoystick.getY());
@@ -246,6 +247,10 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("Yaw", pigeon2.getYaw());
         SmartDashboard.putNumber("Pitch", pigeon2.getPitch());
         SmartDashboard.putNumber("Roll", pigeon2.getRoll());
+
+        SmartDashboard.putNumber("leftSetPoint", setPointLeft);
+        SmartDashboard.putNumber("rightSetPoint", setPointRight);
+
 
         // need yaw pitch and roll, to feed into the accelerometer
         // SmartDashboard.putNumber("acceleration",
@@ -303,6 +308,38 @@ public class Drive extends SubsystemBase {
         finalAxisY = power;
         driveMain.arcadeDrive(finalAxisY, rotation);
     }
+
+
+    public void driveVelocity(double power, double rotation) {
+        power = MathUtil.clamp(power, -1.0, 1.0);
+        rotation = MathUtil.clamp(rotation, -1.0, 1.0);
+        
+        double leftSpeed;
+        double rightSpeed;
+        
+        //turn in place
+        if (power == 0 && rotation != 0){
+              leftSpeed = power - rotation;
+              rightSpeed = power + rotation;
+        } else {
+              leftSpeed = power - Math.abs(power) * rotation;
+              rightSpeed = power + Math.abs(power) * rotation;
+        }
+        
+            // Desaturate wheel speeds
+            double maxMagnitude = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+            if (maxMagnitude > 1.0) {
+              leftSpeed /= maxMagnitude;
+              rightSpeed /= maxMagnitude;
+            }
+
+        setPointLeft = rightSpeed * maxRPM;
+        setPointRight = leftSpeed * maxRPM;
+        m_pidControllerLeft.setReference(setPointLeft, CANSparkMax.ControlType.kVelocity);
+        m_pidControllerRight.setReference(setPointRight, CANSparkMax.ControlType.kVelocity);
+
+    }
+
 
     public void driveForwardSlow() {
         rightLeader.set(slowPower);
