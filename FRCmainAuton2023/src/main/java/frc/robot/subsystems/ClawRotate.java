@@ -49,8 +49,8 @@ public class ClawRotate extends SubsystemBase {
         rotateClawMotor.restoreFactoryDefaults();
         rotateClawMotor.setInverted(false);
 
-        forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
-        reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+        reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);
