@@ -36,7 +36,7 @@ public class ClawRotate extends SubsystemBase {
     public RelativeEncoder encoderCR;
 
     private AbsoluteEncoder encoderCRAbsolute;
-    private double rotatePower = 0.5;
+    private double rotatePower = 0.2;
     private double targetPosition;
     private double error = 50;
 
@@ -47,7 +47,7 @@ public class ClawRotate extends SubsystemBase {
 
         rotateClawMotor = new CANSparkMax(10, MotorType.kBrushless);
         rotateClawMotor.restoreFactoryDefaults();
-        rotateClawMotor.setInverted(false);
+        rotateClawMotor.setInverted(true);
 
         forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
         reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
@@ -94,11 +94,11 @@ public class ClawRotate extends SubsystemBase {
     }
 
     public Boolean isClawRotateAtTop(){
-        return rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed).isPressed();
+        return rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen).isPressed();
     }
 
     public Boolean isClawRotateAtBottom(){
-        return rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed).isPressed();
+        return rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen).isPressed();
     }
 
     public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {

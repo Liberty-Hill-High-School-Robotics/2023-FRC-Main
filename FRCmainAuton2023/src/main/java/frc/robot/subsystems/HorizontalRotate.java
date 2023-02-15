@@ -36,7 +36,7 @@ public class HorizontalRotate extends SubsystemBase {
 
     private CANSparkMax horizontalRotatorMotor;
 
-    private double rotatePower = 0.2;
+    private double rotatePower = 0.15;
 
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
@@ -106,6 +106,9 @@ public class HorizontalRotate extends SubsystemBase {
     }
 
     public boolean isHRRetracted() {
+        return horizontalRotatorMotor.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
+    }
+    public boolean isHRExtended() {
         return horizontalRotatorMotor.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 

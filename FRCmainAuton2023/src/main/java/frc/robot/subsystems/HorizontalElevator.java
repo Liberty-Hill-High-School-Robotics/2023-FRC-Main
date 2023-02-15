@@ -33,7 +33,7 @@ public class HorizontalElevator extends SubsystemBase {
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
 
-    private double power = 0.05;
+    private double power = 0.1;
 
     /**
     *

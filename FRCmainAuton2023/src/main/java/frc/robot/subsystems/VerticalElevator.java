@@ -42,8 +42,8 @@ public class VerticalElevator extends SubsystemBase {
     private double error = .005;
     private double targetPosition;
     public DutyCycleEncoder throughBorVE;
-    private Double ratePowerUp = 0.75;
-    private Double ratePowerDown = -0.5;
+    private Double ratePowerUp = 0.2;
+    private Double ratePowerDown = -0.2;
     public Encoder relativeEncoderVE;
     private int elevatorError;
 
