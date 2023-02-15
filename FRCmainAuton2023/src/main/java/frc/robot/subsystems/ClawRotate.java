@@ -15,9 +15,12 @@ package frc.robot.subsystems;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxLimitSwitch.Type;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
-import com.revrobotics.SparkMaxRelativeEncoder.Type;
+
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.SparkMaxRelativeEncoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -35,7 +38,7 @@ public class ClawRotate extends SubsystemBase {
 
     public RelativeEncoder encoderCR;
 
-    private AbsoluteEncoder encoderCRAbsolute;
+   // private AbsoluteEncoder encoderCRAbsolute;
     private double rotatePower = 0.2;
     private double targetPosition;
     private double error = 50;
@@ -47,7 +50,8 @@ public class ClawRotate extends SubsystemBase {
 
         rotateClawMotor = new CANSparkMax(10, MotorType.kBrushless);
         rotateClawMotor.restoreFactoryDefaults();
-        rotateClawMotor.setInverted(true);
+        rotateClawMotor.setInverted(false);
+        rotateClawMotor.setIdleMode(IdleMode.kBrake);
 
         forwardLimit = rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
         reverseLimit = rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
@@ -55,8 +59,8 @@ public class ClawRotate extends SubsystemBase {
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);
 
-        encoderCR = rotateClawMotor.getEncoder(Type.kHallSensor, 42);
-        // encoderCRAbsolute = rotateClawMotor.getAbsoluteEncode();
+       encoderCR = rotateClawMotor.getEncoder();
+        //encoderCRAbsolute = rotateClawMotor.getAbsoluteEncode();
         ;
     }
 
@@ -94,11 +98,12 @@ public class ClawRotate extends SubsystemBase {
     }
 
     public Boolean isClawRotateAtTop(){
-        return rotateClawMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen).isPressed();
+        
+        return reverseLimit.isPressed();
     }
 
     public Boolean isClawRotateAtBottom(){
-        return rotateClawMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen).isPressed();
+        return forwardLimit.isPressed();
     }
 
     public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {
