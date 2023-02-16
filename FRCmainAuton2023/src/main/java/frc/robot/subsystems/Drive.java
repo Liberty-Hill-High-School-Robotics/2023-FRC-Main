@@ -69,7 +69,7 @@ public class Drive extends SubsystemBase {
 
         leftLeader = new CANSparkMax(2, MotorType.kBrushless);
         leftLeader.restoreFactoryDefaults();
-        leftLeader.setInverted(false);
+        leftLeader.setInverted(true);
 
         driveMain = new DifferentialDrive(leftLeader, rightLeader);
         addChild("DriveMain", driveMain);
