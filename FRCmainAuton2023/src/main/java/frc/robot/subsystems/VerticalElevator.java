@@ -87,7 +87,7 @@ public class VerticalElevator extends SubsystemBase {
         SmartDashboard.putNumber("VEEncoder", encoderVE.getPosition());
         //SmartDashboard.putNumber("ThroughBorVE", throughBorVE.getAbsolutePosition());
         SmartDashboard.putNumber("RelativeEncoderVE", relativeEncoderVE.get());
-        SmartDashboard.putNumber("Target Position", targetPosition);
+        SmartDashboard.putNumber("VETarget Position", targetPosition);
         SmartDashboard.putNumber("ElevatorError", elevatorError);
         SmartDashboard.putBoolean("VEBottom LimitSwitch", isVEAtBottom());
         SmartDashboard.putBoolean("VETop LimitSwitch", isVEAtTop());

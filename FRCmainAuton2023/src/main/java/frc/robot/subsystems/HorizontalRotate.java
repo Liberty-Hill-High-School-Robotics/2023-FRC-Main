@@ -55,8 +55,9 @@ public class HorizontalRotate extends SubsystemBase {
 
         horizontalRotatorMotor = new CANSparkMax(9, MotorType.kBrushless);
         horizontalRotatorMotor.restoreFactoryDefaults();
-        horizontalRotatorMotor.setInverted(false);// verified on the Hardwear
+        horizontalRotatorMotor.setInverted(true);// verified on the Hardwear
         horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
+        
 
         
 
@@ -97,11 +98,11 @@ public class HorizontalRotate extends SubsystemBase {
     // here. Call these from Commands.
 
     public void HRUp() {
-        horizontalRotatorMotor.set(rotatePower);
+        horizontalRotatorMotor.set(-rotatePower);
     }
 
     public void HRDown() {
-        horizontalRotatorMotor.set(-rotatePower);
+        horizontalRotatorMotor.set(rotatePower);
     }
 
     public void HRStop() {

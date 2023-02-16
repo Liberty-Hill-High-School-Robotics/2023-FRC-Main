@@ -67,7 +67,8 @@ public class HRUp extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_horizontalRotate.isHRRetracted();
+        //return m_horizontalRotate.isHRRetracted();
+        return false;
     }
 
     @Override
