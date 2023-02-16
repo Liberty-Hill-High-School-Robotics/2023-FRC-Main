@@ -58,11 +58,14 @@ public class HorizontalRotate extends SubsystemBase {
         horizontalRotatorMotor.setInverted(false);// verified on the Hardwear
         horizontalRotatorMotor.setIdleMode(IdleMode.kBrake);
 
+        
+
         forwardLimit = horizontalRotatorMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
         reverseLimit = horizontalRotatorMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);
+        
 
         encoderHR = horizontalRotatorMotor.getEncoder();
         throughBorHR = new DutyCycleEncoder(0);
