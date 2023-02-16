@@ -69,7 +69,7 @@ public class Drive extends SubsystemBase {
 
         leftLeader = new CANSparkMax(2, MotorType.kBrushless);
         leftLeader.restoreFactoryDefaults();
-        leftLeader.setInverted(true);
+        leftLeader.setInverted(false);
 
         driveMain = new DifferentialDrive(leftLeader, rightLeader);
         addChild("DriveMain", driveMain);
@@ -80,11 +80,11 @@ public class Drive extends SubsystemBase {
         rightFollow = new CANSparkMax(4, MotorType.kBrushless);
         rightFollow.restoreFactoryDefaults();
         // rightFollow.setInverted(false);
-        rightFollow.follow(rightLeader, false);
+        rightFollow.follow(rightLeader);
 
         leftFollow = new CANSparkMax(1, MotorType.kBrushless);
         leftFollow.restoreFactoryDefaults();
-        leftFollow.follow(leftLeader, false); // Same direction as leader
+        leftFollow.follow(leftLeader); // Same direction as leader
 
 
 
