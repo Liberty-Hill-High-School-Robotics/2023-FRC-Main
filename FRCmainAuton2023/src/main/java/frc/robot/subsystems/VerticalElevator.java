@@ -67,7 +67,7 @@ public class VerticalElevator extends SubsystemBase {
 
         throughBorVE = new DutyCycleEncoder(1);
 
-        relativeEncoderVE = new Encoder(3, 2);
+        relativeEncoderVE = new Encoder(1, 2);
         relativeEncoderVE.setReverseDirection(true);
 
         forwardLimit = VEleadMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);

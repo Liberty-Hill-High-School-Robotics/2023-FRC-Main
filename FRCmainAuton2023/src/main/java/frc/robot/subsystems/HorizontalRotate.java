@@ -68,7 +68,7 @@ public class HorizontalRotate extends SubsystemBase {
         
 
         encoderHR = horizontalRotatorMotor.getEncoder();
-        throughBorHR = new DutyCycleEncoder(0);
+        throughBorHR = new DutyCycleEncoder(3);
 
     }
 

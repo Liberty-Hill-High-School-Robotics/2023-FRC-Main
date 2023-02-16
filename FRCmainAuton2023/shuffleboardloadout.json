@@ -603,7 +603,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "1,7": {
+          "1,5": {
             "size": [
               1,
               1
@@ -618,7 +618,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "1,5": {
+          "1,7": {
             "size": [
               1,
               1
@@ -762,6 +762,71 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Claw Rotate Position",
+              "_title": "SmartDashboard/Claw Rotate Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,14": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CR TargetPosition",
+              "_title": "SmartDashboard/CR TargetPosition",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/HE Target Position",
+              "_title": "SmartDashboard/HE Target Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Horizontal Elevator Position",
+              "_title": "SmartDashboard/Horizontal Elevator Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Horizontal Rotator Position",
+              "_title": "SmartDashboard/Horizontal Rotator Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -770,7 +835,7 @@
   "windowGeometry": {
     "x": -1447.3333740234375,
     "y": -582.3333129882812,
-    "width": 1452.6666259765625,
-    "height": 2520.666748046875
+    "width": 1450.6666259765625,
+    "height": 2514.666748046875
   }
 }

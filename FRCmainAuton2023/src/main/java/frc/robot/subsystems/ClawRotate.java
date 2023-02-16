@@ -99,11 +99,11 @@ public class ClawRotate extends SubsystemBase {
 
     public Boolean isClawRotateAtTop(){
         
-        return reverseLimit.isPressed();
+        return forwardLimit.isPressed();
     }
 
     public Boolean isClawRotateAtBottom(){
-        return forwardLimit.isPressed();
+        return reverseLimit.isPressed();
     }
 
     public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {

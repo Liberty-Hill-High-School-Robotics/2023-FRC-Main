@@ -70,8 +70,8 @@ public class RotateClawUp extends CommandBase {
     @Override
     public boolean isFinished() {
 
-       // return m_clawRotate.isClawRotateAtTop();
-       return false;
+       return m_clawRotate.isClawRotateAtTop();
+       //return false;
     }
 
     @Override
