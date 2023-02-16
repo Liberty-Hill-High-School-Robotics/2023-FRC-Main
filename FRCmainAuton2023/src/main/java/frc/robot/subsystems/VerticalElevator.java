@@ -41,7 +41,7 @@ public class VerticalElevator extends SubsystemBase {
     public RelativeEncoder encoderVE;
     private double error = .005;
     private double targetPosition;
-    public DutyCycleEncoder throughBorVE;
+  // public DutyCycleEncoder throughBorVE;
     private Double ratePowerUp = 0.2;
     private Double ratePowerDown = -0.2;
     public Encoder relativeEncoderVE;
@@ -65,7 +65,7 @@ public class VerticalElevator extends SubsystemBase {
         
         VEfollowMotor.setIdleMode(IdleMode.kBrake);
 
-        throughBorVE = new DutyCycleEncoder(1);
+       // throughBorVE = new DutyCycleEncoder(1);
 
         relativeEncoderVE = new Encoder(1, 2);
         relativeEncoderVE.setReverseDirection(true);
@@ -85,7 +85,7 @@ public class VerticalElevator extends SubsystemBase {
         // This method will be called once per scheduler run
 
         SmartDashboard.putNumber("VEEncoder", encoderVE.getPosition());
-        SmartDashboard.putNumber("ThroughBorVE", throughBorVE.getAbsolutePosition());
+        //SmartDashboard.putNumber("ThroughBorVE", throughBorVE.getAbsolutePosition());
         SmartDashboard.putNumber("RelativeEncoderVE", relativeEncoderVE.get());
         SmartDashboard.putNumber("Target Position", targetPosition);
         SmartDashboard.putNumber("ElevatorError", elevatorError);
