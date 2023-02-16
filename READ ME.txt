@@ -4,3 +4,5 @@ If a zip file is present, it is not recent, don't use it.
 
 The .yaml file is only used for robotbuilder, and should 
 always be most recent. 
+
+Don't Change code if you're not madalena or anderson. Both ryan's are allowed, I guess.
