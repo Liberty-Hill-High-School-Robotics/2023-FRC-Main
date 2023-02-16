@@ -370,7 +370,7 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "7,0": {
+          "3,6": {
             "size": [
               1,
               1
@@ -461,7 +461,7 @@
               "_showGlyph": false
             }
           },
-          "8,0": {
+          "7,6": {
             "size": [
               1,
               1
@@ -646,7 +646,7 @@
               "_showGlyph": false
             }
           },
-          "3,2": {
+          "0,8": {
             "size": [
               1,
               1
@@ -659,7 +659,7 @@
               "_showGlyph": false
             }
           },
-          "4,2": {
+          "1,8": {
             "size": [
               1,
               1
@@ -771,20 +771,20 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Claw Rotate Position",
-              "_title": "SmartDashboard/Claw Rotate Position",
+              "_title": "/SmartDashboard/Claw Rotate Position",
               "_glyph": 148,
               "_showGlyph": false
             }
           },
-          "3,14": {
+          "2,10": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/CR TargetPosition",
-              "_title": "SmartDashboard/CR TargetPosition",
+              "_title": "/SmartDashboard/CR TargetPosition",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -797,7 +797,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/HE Target Position",
-              "_title": "SmartDashboard/HE Target Position",
+              "_title": "/SmartDashboard/HE Target Position",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -810,12 +810,12 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Horizontal Elevator Position",
-              "_title": "SmartDashboard/Horizontal Elevator Position",
+              "_title": "/SmartDashboard/Horizontal Elevator Position",
               "_glyph": 148,
               "_showGlyph": false
             }
           },
-          "3,6": {
+          "6,1": {
             "size": [
               1,
               1
@@ -823,7 +823,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Horizontal Rotator Position",
-              "_title": "SmartDashboard/Horizontal Rotator Position",
+              "_title": "/SmartDashboard/Horizontal Rotator Position",
               "_glyph": 148,
               "_showGlyph": false
             }
