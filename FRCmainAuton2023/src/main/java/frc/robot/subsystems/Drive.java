@@ -65,7 +65,7 @@ public class Drive extends SubsystemBase {
 
         rightLeader = new CANSparkMax(3, MotorType.kBrushless);
         rightLeader.restoreFactoryDefaults();
-        rightLeader.setInverted(false);
+        rightLeader.setInverted(true);
 
         leftLeader = new CANSparkMax(2, MotorType.kBrushless);
         leftLeader.restoreFactoryDefaults();
@@ -80,11 +80,11 @@ public class Drive extends SubsystemBase {
         rightFollow = new CANSparkMax(4, MotorType.kBrushless);
         rightFollow.restoreFactoryDefaults();
         // rightFollow.setInverted(false);
-        rightFollow.follow(rightLeader);
+        rightFollow.follow(rightLeader, false);
 
         leftFollow = new CANSparkMax(1, MotorType.kBrushless);
         leftFollow.restoreFactoryDefaults();
-        leftFollow.follow(leftLeader); // Same direction as leader
+        leftFollow.follow(leftLeader, false); // Same direction as leader
 
 
 
@@ -94,11 +94,7 @@ public class Drive extends SubsystemBase {
         pigeon2 = new Pigeon2(19);
 
 
-        // sets the two follow motors to follow the lead motors
-        final Joystick driverJoystick = new Joystick(0);
-        final XboxController operatorController = new XboxController(1);    
-       
-
+        // sets the two follow motors to follow the lead motors       
         
         rightLeader.restoreFactoryDefaults();
         rightFollow.restoreFactoryDefaults();
@@ -307,6 +303,8 @@ public class Drive extends SubsystemBase {
          * oldAxisY = finalAxisY;
          */
         finalAxisY = power;
+        SmartDashboard.putNumber("finalaxisy", finalAxisY);
+        SmartDashboard.putNumber("rotation", rotation);
         driveMain.arcadeDrive(finalAxisY, rotation);
     }
 
