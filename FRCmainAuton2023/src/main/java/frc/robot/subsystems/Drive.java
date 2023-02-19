@@ -145,6 +145,12 @@ public class Drive extends SubsystemBase {
     @Override
     public void periodic() {
 
+        //
+        //
+        driveMain.feed();
+        // DO NOT MOVE, OR DELETE THIS LINE OF CODE!!!!!!!!!!!!!!!
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
         /*
         // This method will be called once per scheduler run
@@ -185,6 +191,7 @@ public class Drive extends SubsystemBase {
         // smartdashboard
 
         // temps
+        /*
         SmartDashboard.putNumber("LeftBackTemp", leftFollow.getMotorTemperature());
         SmartDashboard.putNumber("RightBackTemp", rightFollow.getMotorTemperature());
         SmartDashboard.putNumber("LeftFrontTemp", leftLeader.getMotorTemperature());
@@ -197,7 +204,7 @@ public class Drive extends SubsystemBase {
 
         // encoder CPR
 
-        SmartDashboard.putNumber("LeftBackPosition", encoderLeftFollow.getPosition());
+      SmartDashboard.putNumber("LeftBackPosition", encoderLeftFollow.getPosition());
         SmartDashboard.putNumber("RightBackPosition", encoderRightFollow.getPosition());
         SmartDashboard.putNumber("LeftFrontPosition", encoderLeftLeader.getPosition());
         SmartDashboard.putNumber("RightFrontPosition", encoderRightLeader.getPosition());
@@ -206,6 +213,7 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("RBVelocity", encoderRightFollow.getVelocity());
         SmartDashboard.putNumber("LFVelocity", encoderLeftLeader.getVelocity());
         SmartDashboard.putNumber("RFVelocity", encoderRightLeader.getVelocity());
+        
 
         // Pigeon2
 
@@ -220,7 +228,7 @@ public class Drive extends SubsystemBase {
         // need yaw pitch and roll, to feed into the accelerometer
         // SmartDashboard.putNumber("acceleration",
         // pigeon2.getBiasedAccelerometer(null));
-
+        */
     }
 
     @Override
@@ -328,8 +336,8 @@ public class Drive extends SubsystemBase {
               rightSpeed /= maxMagnitude;
             }
 
-        setPointLeft = power * maxRPM;
-        setPointRight = power * maxRPM;
+        setPointLeft = leftSpeed * maxRPM;
+        setPointRight = rightSpeed * maxRPM;
 
         m_pidControllerLeft.setReference(setPointLeft, CANSparkMax.ControlType.kVelocity);
         m_pidControllerRight.setReference(setPointRight, CANSparkMax.ControlType.kVelocity);
@@ -337,7 +345,7 @@ public class Drive extends SubsystemBase {
     }
 
 
-    public void driveForwardSlow() {
+     public void driveForwardSlow() {
         rightLeader.set(slowPower);
 
         leftLeader.set(slowPower);
