@@ -140,8 +140,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-
-        
+        m_robotContainer.m_drive.driveVelocity(.5, 0);
 
     }
 

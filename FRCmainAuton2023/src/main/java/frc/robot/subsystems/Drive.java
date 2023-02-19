@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveArcade;
 
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
@@ -63,13 +64,17 @@ public class Drive extends SubsystemBase {
     */
     public Drive() {
 
+        
+
         rightLeader = new CANSparkMax(3, MotorType.kBrushless);
         rightLeader.restoreFactoryDefaults();
-        rightLeader.setInverted(true);
+        rightLeader.setIdleMode(IdleMode.kCoast);
+        rightLeader.setInverted(false);
 
         leftLeader = new CANSparkMax(2, MotorType.kBrushless);
         leftLeader.restoreFactoryDefaults();
-        leftLeader.setInverted(false);
+        leftLeader.setIdleMode(IdleMode.kCoast);
+        leftLeader.setInverted(true);
 
         driveMain = new DifferentialDrive(leftLeader, rightLeader);
         addChild("DriveMain", driveMain);
@@ -80,11 +85,22 @@ public class Drive extends SubsystemBase {
         rightFollow = new CANSparkMax(4, MotorType.kBrushless);
         rightFollow.restoreFactoryDefaults();
         // rightFollow.setInverted(false);
+        rightFollow.setIdleMode(IdleMode.kCoast);
         rightFollow.follow(rightLeader, false);
 
         leftFollow = new CANSparkMax(1, MotorType.kBrushless);
         leftFollow.restoreFactoryDefaults();
+        leftFollow.setIdleMode(IdleMode.kCoast);
         leftFollow.follow(leftLeader, false); // Same direction as leader
+
+
+
+
+        //create pid
+        m_pidControllerLeft = leftLeader.getPIDController();
+        m_pidControllerRight = rightLeader.getPIDController();
+
+        setDrivePID();
 
 
 
@@ -95,15 +111,6 @@ public class Drive extends SubsystemBase {
 
 
         // sets the two follow motors to follow the lead motors       
-        
-        rightLeader.restoreFactoryDefaults();
-        rightFollow.restoreFactoryDefaults();
-        leftLeader.restoreFactoryDefaults();
-        leftFollow.restoreFactoryDefaults();
-
-
-        rightFollow.follow(rightLeader);
-        leftFollow.follow(leftLeader);
 
 
         encoderLeftFollow = leftFollow.getEncoder(Type.kHallSensor, 42);
@@ -120,41 +127,8 @@ public class Drive extends SubsystemBase {
         encoderRightLeader.setVelocityConversionFactor(1);
 
 
-        //PID controller stuff
-
-        //create pid
-        m_pidControllerLeft = leftLeader.getPIDController();
-        m_pidControllerRight = rightLeader.getPIDController();
-
-        //Encoder object created to display position values
-        m_encoderLeft = leftLeader.getEncoder();
-        m_encoderRight = rightLeader.getEncoder();
-
-        //DO NOT CHANGE (please)
-        // PID coefficients
-        kP = 0.00006;
-        kI = 0.0000006;
-        kD = 0; 
-        kIz = 0; 
-        kFF = 0.000015;  //.00015 default
-        kMaxOutput = 1; 
-        kMinOutput = -1;
-        maxRPM = 3500; //max rpm (goal)
-
         // set PID coefficients
-        m_pidControllerLeft.setP(kP);
-        m_pidControllerLeft.setI(kI);
-        m_pidControllerLeft.setD(kD);
-        m_pidControllerLeft.setIZone(kIz);
-        m_pidControllerLeft.setFF(kFF);
-        m_pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
 
-        m_pidControllerRight.setP(kP);
-        m_pidControllerRight.setI(kI);
-        m_pidControllerRight.setD(kD);
-        m_pidControllerRight.setIZone(kIz);
-        m_pidControllerRight.setFF(kFF);
-        m_pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
 
         // display PID coefficients on SmartDashboard
         SmartDashboard.putNumber("P Gain", kP);
@@ -170,6 +144,9 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void periodic() {
+
+
+        /*
         // This method will be called once per scheduler run
         //PID stuff
         // read PID coefficients from SmartDashboard
@@ -182,8 +159,8 @@ public class Drive extends SubsystemBase {
         double min = SmartDashboard.getNumber("Min Output", 0);
 
         // if PID coefficients on SmartDashboard have changed, write new values to controller
-        if((p != kP)) { m_pidControllerLeft.setP(p); kP = p; }
-        if((i != kI)) { m_pidControllerLeft.setI(i); kI = i; }
+        /*if((p != kP)) { m_pidControllerLeft.setP(p); kP = p; }
+        ((i != kI)) { m_pidControllerLeft.setI(i); kI = i; }
         if((d != kD)) { m_pidControllerLeft.setD(d); kD = d; }
         if((iz != kIz)) { m_pidControllerLeft.setIZone(iz); kIz = iz; }
         if((ff != kFF)) { m_pidControllerLeft.setFF(ff); kFF = ff; }
@@ -201,15 +178,7 @@ public class Drive extends SubsystemBase {
             m_pidControllerRight.setOutputRange(min, max); 
             kMinOutput = min; kMaxOutput = max; 
         }
-
-
-    
-        
-        SmartDashboard.putNumber("LeftEncoder", m_encoderLeft.getVelocity());
-        SmartDashboard.putNumber("RightEncoder", m_encoderRight.getVelocity());
-        SmartDashboard.putNumber("JoystickValue", RobotContainer.getInstance().driverJoystick.getY());
-
-
+        */
 
 
 
@@ -269,13 +238,13 @@ public class Drive extends SubsystemBase {
     }
 
     public void maxSpeed() {
-        driveArcade(1, 0);
+        //driveArcade(1, 0);
 
     }
     //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (test)
 
     // lefty = power rightx = rotation
-    public void driveArcade(double power, double rotation) {
+   /* public void driveArcade(double power, double rotation) {
         /*
          * double max = .9;
          * double rampUp = .001; // error allowed
@@ -301,13 +270,40 @@ public class Drive extends SubsystemBase {
          * }
          * finalAxisY = tempAxisY;
          * oldAxisY = finalAxisY;
-         */
+         
         finalAxisY = power;
         SmartDashboard.putNumber("finalaxisy", finalAxisY);
         SmartDashboard.putNumber("rotation", rotation);
         driveMain.arcadeDrive(finalAxisY, rotation);
     }
+    */
+    
 
+    public void setDrivePID(){
+        kP = 0.00006;
+        kI = 0.0000006;
+        kD = 0; 
+        kIz = 0; 
+        kFF = 0.000015;  //.00015 default
+        kMaxOutput = 1; 
+        kMinOutput = -1;
+        maxRPM = 3500; //max rpm (goal) 
+         
+
+        m_pidControllerLeft.setP(kP);
+        m_pidControllerLeft.setI(kI);
+        m_pidControllerLeft.setD(kD);
+        m_pidControllerLeft.setIZone(kIz);
+        m_pidControllerLeft.setFF(kFF);
+        m_pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
+
+        m_pidControllerRight.setP(kP);
+        m_pidControllerRight.setI(kI);
+        m_pidControllerRight.setD(kD);
+        m_pidControllerRight.setIZone(kIz);
+        m_pidControllerRight.setFF(kFF);
+        m_pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
+    }
 
     public void driveVelocity(double power, double rotation) {
         power = MathUtil.clamp(power, -1.0, 1.0);
@@ -332,8 +328,9 @@ public class Drive extends SubsystemBase {
               rightSpeed /= maxMagnitude;
             }
 
-        setPointLeft = rightSpeed * maxRPM;
-        setPointRight = leftSpeed * maxRPM;
+        setPointLeft = power * maxRPM;
+        setPointRight = power * maxRPM;
+
         m_pidControllerLeft.setReference(setPointLeft, CANSparkMax.ControlType.kVelocity);
         m_pidControllerRight.setReference(setPointRight, CANSparkMax.ControlType.kVelocity);
 

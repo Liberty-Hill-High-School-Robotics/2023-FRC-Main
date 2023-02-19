@@ -52,6 +52,7 @@ public class DriveArcade extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_drive.setDrivePID();
 
     }
 
@@ -62,8 +63,8 @@ public class DriveArcade extends CommandBase {
         
         SmartDashboard.putNumber("joystickPower", RobotContainer.getInstance().getdriverJoystick().getRawAxis(1));
         SmartDashboard.putNumber("joystickRotation", RobotContainer.getInstance().getdriverJoystick().getRawAxis(0));
-        m_drive.driveArcade(-(RobotContainer.getInstance().getdriverJoystick().getRawAxis(1)), RobotContainer.getInstance().getdriverJoystick().getRawAxis(0));
-        
+        m_drive.driveVelocity(-(RobotContainer.getInstance().getdriverJoystick().getRawAxis(1)), RobotContainer.getInstance().getdriverJoystick().getRawAxis(0));
+
     }
 
     // Called once the command ends or is interrupted.
