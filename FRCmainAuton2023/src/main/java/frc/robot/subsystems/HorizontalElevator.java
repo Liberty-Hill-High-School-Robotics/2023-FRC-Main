@@ -21,6 +21,8 @@ import com.revrobotics.SparkMaxLimitSwitch.Type;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 
 /**
  *
@@ -46,10 +48,12 @@ public class HorizontalElevator extends SubsystemBase {
 
         horizontalElevatorLead = new CANSparkMax(7, MotorType.kBrushless);
         horizontalElevatorLead.restoreFactoryDefaults();
+        horizontalElevatorLead.setIdleMode(IdleMode.kBrake);
         horizontalElevatorLead.setInverted(false);
 
         horizontalElevattorFollow = new CANSparkMax(8, MotorType.kBrushless);
         horizontalElevattorFollow.restoreFactoryDefaults();
+        horizontalElevattorFollow.setIdleMode(IdleMode.kBrake);
         horizontalElevattorFollow.follow(horizontalElevatorLead, false);
 
         forwardLimit = horizontalElevatorLead.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);

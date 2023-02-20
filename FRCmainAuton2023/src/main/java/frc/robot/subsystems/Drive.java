@@ -57,6 +57,9 @@ public class Drive extends SubsystemBase {
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
+
+    private double deadband = 0.05;
+
     
 
     /**
@@ -69,11 +72,13 @@ public class Drive extends SubsystemBase {
         rightLeader = new CANSparkMax(3, MotorType.kBrushless);
         rightLeader.restoreFactoryDefaults();
         rightLeader.setIdleMode(IdleMode.kCoast);
+        rightLeader.setSmartCurrentLimit(40);
         rightLeader.setInverted(false);
 
         leftLeader = new CANSparkMax(2, MotorType.kBrushless);
         leftLeader.restoreFactoryDefaults();
         leftLeader.setIdleMode(IdleMode.kCoast);
+        leftLeader.setSmartCurrentLimit(40);
         leftLeader.setInverted(true);
 
         driveMain = new DifferentialDrive(leftLeader, rightLeader);
@@ -86,11 +91,13 @@ public class Drive extends SubsystemBase {
         rightFollow.restoreFactoryDefaults();
         // rightFollow.setInverted(false);
         rightFollow.setIdleMode(IdleMode.kCoast);
+        rightFollow.setSmartCurrentLimit(40);
         rightFollow.follow(rightLeader, false);
 
         leftFollow = new CANSparkMax(1, MotorType.kBrushless);
         leftFollow.restoreFactoryDefaults();
         leftFollow.setIdleMode(IdleMode.kCoast);
+        leftFollow.setSmartCurrentLimit(40);
         leftFollow.follow(leftLeader, false); // Same direction as leader
 
 
@@ -314,6 +321,15 @@ public class Drive extends SubsystemBase {
     }
 
     public void driveVelocity(double power, double rotation) {
+
+         //adds a deadzone 
+         if(Math.abs(power) <= deadband){
+            power = 0;
+        }
+        if(Math.abs(rotation) <= deadband){
+            rotation = 0;
+        }
+        
         power = MathUtil.clamp(power, -1.0, 1.0);
         rotation = MathUtil.clamp(rotation, -1.0, 1.0);
         
