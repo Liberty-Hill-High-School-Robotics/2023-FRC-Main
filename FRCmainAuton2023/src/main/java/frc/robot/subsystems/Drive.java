@@ -332,6 +332,37 @@ public class Drive extends SubsystemBase {
         
         power = MathUtil.clamp(power, -1.0, 1.0);
         rotation = MathUtil.clamp(rotation, -1.0, 1.0);
+
+         //Madelena ramp up and down
+            
+         double rampUp = .01; // error allowed
+         double rampD = .01; // ramp down
+         double jsAxisY = power; // pull num from joystick
+         double sub = jsAxisY - oldAxisY;
+
+         if(oldAxisY > 0){ // test if going forward
+
+         }else if(oldAxisY < 0){ // test if going backwards
+
+         }else{ // standing still
+
+         }
+         
+         if (Math.abs(sub) > rampUp && sub > 0 && Math.abs(oldAxisY) > .25) {
+         // test to see if it is going accelerating
+         tempAxisY = oldAxisY + rampUp;
+         } else if (Math.abs(sub) > rampD && sub < 0 && Math.abs(oldAxisY) < .25) { // test to see if it is going
+         //backwards
+         tempAxisY = oldAxisY - rampD;
+         } else {
+         tempAxisY = jsAxisY;
+         }
+         
+         power = tempAxisY;
+         oldAxisY = power;
+         
+        
+// end of Madelena's
         
         double leftSpeed;
         double rightSpeed;
@@ -351,40 +382,6 @@ public class Drive extends SubsystemBase {
               leftSpeed /= maxMagnitude;
               rightSpeed /= maxMagnitude;
             }
-
-            //Madelena ramp up and down
-            
-            double rampUp = .01; // error allowed
-            double rampD = .01; // ramp down
-            double jsAxisY = power; // pull num from joystick
-            double sub = jsAxisY - oldAxisY;
-            
-            if (Math.abs(sub) > rampUp && sub > 0 && Math.abs(jsAxisY) > .25) {
-            // test to see if it is going forward
-            tempAxisY = oldAxisY + rampUp;
-            } else if (Math.abs(sub) > rampD && sub < 0 && Math.abs(jsAxisY) > .25) { // test to see if it is going
-            //backwards
-            tempAxisY = oldAxisY - rampD;
-            } else {
-            tempAxisY = jsAxisY;
-            }
-            
-            finalAxisY = tempAxisY;
-            oldAxisY = finalAxisY;
-            
-           
-// end of Madelena's
-
-
-
-
-
-
-
-
-
-
-
 
 
         setPointLeft = leftSpeed * maxRPM;
