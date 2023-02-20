@@ -292,8 +292,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/RBMotorVoltage": true
+              "Y-axis/Unit": "ul"
             }
           },
           "4,0": {
@@ -312,8 +311,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/RFMotorVoltage": true
+              "Y-axis/Unit": "ul"
             }
           },
           "7,3": {
@@ -332,8 +330,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/LBMotorVoltage": true
+              "Y-axis/Unit": "ul"
             }
           },
           "7,0": {
@@ -352,8 +349,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/LFMotorVoltage": true
+              "Y-axis/Unit": "ul"
             }
           }
         }
@@ -872,9 +868,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -1447.3333740234375,
-    "y": -582.3333129882812,
-    "width": 1448.6666259765625,
-    "height": 2508.666748046875
+    "x": -1447.199951171875,
+    "y": -582.4000244140625,
+    "width": 1448.800048828125,
+    "height": 881.5999755859375
   }
 }

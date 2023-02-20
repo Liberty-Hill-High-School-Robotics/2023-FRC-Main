@@ -141,7 +141,7 @@ public final XboxController operatorController = new XboxController(1);
 
     SmartDashboard.putData("Auto Mode", m_chooser);
 
-  /*SmartDashboard.putData("RotateClawUp Command", new RotateClawUp(m_clawRotate));
+  SmartDashboard.putData("RotateClawUp Command", new RotateClawUp(m_clawRotate));
     SmartDashboard.putData("RotateClawDown Command", new RotateClawDown(m_clawRotate));
     SmartDashboard.putData("RotateClawStop Command", new RotateClawStop(m_clawRotate));
 
@@ -164,7 +164,8 @@ public final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("GoToFloor Command", new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     SmartDashboard.putData("GoToPickUp Command", new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     SmartDashboard.putData("GoToTop Command", new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
-    */
+    
+    SmartDashboard.putData("driveBalance", new driveBalance(m_drive));
   }
 
   public static RobotContainer getInstance() {

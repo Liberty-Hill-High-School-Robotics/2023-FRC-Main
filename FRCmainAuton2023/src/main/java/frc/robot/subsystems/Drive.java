@@ -52,8 +52,8 @@ public class Drive extends SubsystemBase {
     private SparkMaxPIDController m_pidControllerRight;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
-    private double balanceError = 1;
-    private double slowPower = 0.15;
+    private double balanceError = 5;
+    private double slowPower = 0.05;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
@@ -220,7 +220,7 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("RBVelocity", encoderRightFollow.getVelocity());
         SmartDashboard.putNumber("LFVelocity", encoderLeftLeader.getVelocity());
         SmartDashboard.putNumber("RFVelocity", encoderRightLeader.getVelocity());
-        
+        */
 
         // Pigeon2
 
@@ -235,7 +235,7 @@ public class Drive extends SubsystemBase {
         // need yaw pitch and roll, to feed into the accelerometer
         // SmartDashboard.putNumber("acceleration",
         // pigeon2.getBiasedAccelerometer(null));
-        */
+        
     }
 
     @Override
