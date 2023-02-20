@@ -165,6 +165,7 @@ public final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("GoToFloor Command", new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     SmartDashboard.putData("GoToPickUp Command", new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     SmartDashboard.putData("GoToTop Command", new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    SmartDashboard.putData("GoToStart Command", new GoToStart(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
     
     SmartDashboard.putData("driveBalance", new driveBalance(m_drive));
 

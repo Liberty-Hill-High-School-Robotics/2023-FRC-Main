@@ -91,6 +91,8 @@ public class VerticalElevator extends SubsystemBase {
         SmartDashboard.putNumber("ElevatorError", elevatorError);
         SmartDashboard.putBoolean("VEBottom LimitSwitch", isVEAtBottom());
         SmartDashboard.putBoolean("VETop LimitSwitch", isVEAtTop());
+
+
     }
 
     @Override
@@ -149,6 +151,10 @@ public class VerticalElevator extends SubsystemBase {
             VEDown();
         }else 
         elevatorError = relativeEncoderVE.get();
+    }
+
+    public void VEHoldPosition(){
+        VEleadMotor.set(.02);
     }
 
 }

@@ -135,4 +135,8 @@ public class HorizontalRotate extends SubsystemBase {
         return Math.abs(throughBorHR.getAbsolutePosition() - targetPosition) <= error;
     }
 
+    public void HRHoldPosition(){
+        horizontalRotatorMotor.set(-.02);
+    }
+
 }

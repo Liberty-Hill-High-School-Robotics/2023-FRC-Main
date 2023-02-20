@@ -108,7 +108,7 @@ public class ClawRotate extends SubsystemBase {
 
     public void CRGoTo(Constants.PlacementConstants.PlacementPosition position) {
         Constants.PlacementConstants temp = new Constants.PlacementConstants();
-        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.HORIZONTAL);
+        targetPosition = temp.getPlacementValues(position, Constants.PlacementConstants.SubSystem.WRIST);
 
         if (encoderCR.getPosition() > targetPosition) {
             rotateClawDown();
