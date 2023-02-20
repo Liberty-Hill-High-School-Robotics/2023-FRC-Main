@@ -53,7 +53,7 @@ public class Drive extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
     private double balanceError = 1;
-    private double slowPower = 0.1;
+    private double slowPower = 0.15;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
@@ -410,6 +410,16 @@ public class Drive extends SubsystemBase {
         isBalanced = true;
         } else isBalanced = false;
         return isBalanced;
+    }
+
+    public void balanceDrive(){
+        if(pigeon2.getPitch() < (0 - balanceError)){
+            driveForwardSlow();
+        }
+        if(pigeon2.getPitch() > (0 + balanceError)){
+            driveBackwardSlow();
+        }
+
     }
 
     
