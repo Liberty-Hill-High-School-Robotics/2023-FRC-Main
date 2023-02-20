@@ -335,27 +335,39 @@ public class Drive extends SubsystemBase {
 
          //Madelena ramp up and down
             
-         double rampUp = .01; // error allowed
-         double rampD = .01; // ramp down
          double jsAxisY = power; // pull num from joystick
-         double sub = jsAxisY - oldAxisY;
+
+         double rampUpForward = .01; // error allowed
+         double rampDownForward = .01; // ramp down
+         double subForward = jsAxisY - oldAxisY;
+
+         double rampUpBackward = -.01; // error allowed
+         double rampDownBackward = -.01; // ramp down
+         double subBackward = Math.abs(jsAxisY) - oldAxisY;
 
          if(oldAxisY > 0){ // test if going forward
+            // test to see if oldAxis is less than .25 && it is accelerating 
+            if(oldAxisY < .25 && Math.abs(subForward) > rampUpForward && subForward > 0){
+                tempAxisY = oldAxisY + rampUpForward;
+            
+            } else if(oldAxisY < .25 && Math.abs(subForward) > rampDownForward && subForward < 0){
+                tempAxisY = oldAxisY - rampDownForward;
+            }else{
+                tempAxisY = jsAxisY;
+            }
 
          }else if(oldAxisY < 0){ // test if going backwards
 
+            if(oldAxisY < -0.25 && Math.abs(subBackward) > rampUpBackward && subBackward > 0){
+                tempAxisY = oldAxisY + rampUpBackward;
+            //
+            } else if(oldAxisY < -.25 && Math.abs(subBackward) > rampDownBackward && subBackward < 0){
+                tempAxisY = oldAxisY - rampDownBackward;
+            }else{
+                tempAxisY = jsAxisY;
+            } 
          }else{ // standing still
-
-         }
-         
-         if (Math.abs(sub) > rampUp && sub > 0 && Math.abs(oldAxisY) > .25) {
-         // test to see if it is going accelerating
-         tempAxisY = oldAxisY + rampUp;
-         } else if (Math.abs(sub) > rampD && sub < 0 && Math.abs(oldAxisY) < .25) { // test to see if it is going
-         //backwards
-         tempAxisY = oldAxisY - rampD;
-         } else {
-         tempAxisY = jsAxisY;
+            tempAxisY = jsAxisY;
          }
          
          power = tempAxisY;
