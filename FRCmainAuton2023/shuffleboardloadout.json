@@ -776,7 +776,7 @@
               "_showGlyph": false
             }
           },
-          "2,10": {
+          "3,12": {
             "size": [
               2,
               1
@@ -827,6 +827,45 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "3,10": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/HE Target Position",
+              "_title": "SmartDashboard/HE Target Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,9": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/VETarget Position",
+              "_title": "SmartDashboard/VETarget Position",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,11": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/HRTargetPostion",
+              "_title": "SmartDashboard/HRTargetPostion",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -835,7 +874,7 @@
   "windowGeometry": {
     "x": -1447.3333740234375,
     "y": -582.3333129882812,
-    "width": 1450.6666259765625,
-    "height": 2514.666748046875
+    "width": 1448.6666259765625,
+    "height": 2508.666748046875
   }
 }
