@@ -353,13 +353,13 @@ public class Drive extends SubsystemBase {
             }
 
             //Madelena ramp up and down
-            double max = .9;
+            
             double rampUp = .01; // error allowed
             double rampD = .01; // ramp down
             double jsAxisY = power; // pull num from joystick
             double sub = jsAxisY - oldAxisY;
             
-            if (Math.abs(sub) > rampUp && sub > 0 && jsAxisY > .25) {
+            if (Math.abs(sub) > rampUp && sub > 0 && Math.abs(jsAxisY) > .25) {
             // test to see if it is going forward
             tempAxisY = oldAxisY + rampUp;
             } else if (Math.abs(sub) > rampD && sub < 0 && Math.abs(jsAxisY) > .25) { // test to see if it is going
@@ -368,13 +368,7 @@ public class Drive extends SubsystemBase {
             } else {
             tempAxisY = jsAxisY;
             }
-            // test to see if value exceds max allowed
             
-            if (tempAxisY < max * -1) {
-            tempAxisY = max * -1;
-            } else if (tempAxisY > max) {
-            tempAxisY = max;
-            }
             finalAxisY = tempAxisY;
             oldAxisY = finalAxisY;
             
