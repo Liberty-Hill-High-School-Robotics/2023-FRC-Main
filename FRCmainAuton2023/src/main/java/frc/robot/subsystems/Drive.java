@@ -1,5 +1,8 @@
 package frc.robot.subsystems;
 
+import java.beans.MethodDescriptor;
+import java.lang.reflect.Method;
+
 import com.ctre.phoenix.sensors.Pigeon2;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
@@ -60,7 +63,9 @@ public class Drive extends SubsystemBase {
 
     private double deadband = 0.05;
 
-    
+    double targetPositionL;
+    double targetPositionR;
+
 
     /**
     *
@@ -405,6 +410,8 @@ public class Drive extends SubsystemBase {
     }
 
 
+
+
      public void driveForwardSlow() {
         rightLeader.set(slowPower);
 
@@ -434,5 +441,23 @@ public class Drive extends SubsystemBase {
 
     }
 
+     public void driveDistance(double numberOfInches){
+        double TICKS_PER_INCH = 23.86;
+        double numberOfTicks = TICKS_PER_INCH * numberOfInches;
+       
+        targetPositionL = encoderLeftLeader.getPosition() + numberOfTicks;
+        targetPositionR = encoderRightLeader.getPosition() + numberOfTicks;
+        m_pidControllerLeft.setReference(targetPositionL, CANSparkMax.ControlType.kPosition);
+        m_pidControllerRight.setReference(targetPositionR, CANSparkMax.ControlType.kPosition);
+    } 
+    public void distanceDone(){
+    if(encoderLeftLeader.getPosition() == targetPositionL){
+    drive.stop;
+}
+    }
+
+
     
+
+
 }
