@@ -1163,15 +1163,127 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "5,13": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/VEGoToFloor/running",
+              "_title": "/SmartDashboard/VEGoToFloor/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "6,13": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/VEGoToMiddle/running",
+              "_title": "/SmartDashboard/VEGoToMiddle/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "7,13": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/VEGoToPickup/running",
+              "_title": "/SmartDashboard/VEGoToPickup/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,13": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/VEGoToTop/running",
+              "_title": "/SmartDashboard/VEGoToTop/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "1,9": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/ElevatorError",
+              "_title": "/SmartDashboard/ElevatorError",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,15": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/VE5motor",
+              "_title": "/SmartDashboard/VE5motor",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,15": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/VE6motor",
+              "_title": "/SmartDashboard/VE6motor",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
+      }
+    },
+    {
+      "title": "Tab 4",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {}
       }
     }
   ],
   "windowGeometry": {
     "x": -1447.3333740234375,
     "y": -582.3333129882812,
-    "width": 1454.6666259765625,
-    "height": 2526.666748046875
+    "width": 1452.6666259765625,
+    "height": 2520.666748046875
   }
 }

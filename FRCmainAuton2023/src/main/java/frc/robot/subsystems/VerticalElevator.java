@@ -39,7 +39,7 @@ public class VerticalElevator extends SubsystemBase {
     private CANSparkMax VEfollowMotor;
 
     public RelativeEncoder encoderVE;
-    private double error = .005;
+    private double error = 500;
     private double targetPosition;
   // public DutyCycleEncoder throughBorVE;
     private Double ratePowerUp = 0.2;
@@ -76,6 +76,9 @@ public class VerticalElevator extends SubsystemBase {
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);
 
+        VEleadMotor.setSmartCurrentLimit(30);
+        VEfollowMotor.setSmartCurrentLimit(30);
+
         
 
     }
@@ -83,6 +86,9 @@ public class VerticalElevator extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        if(isVEAtBottom()){
+            elevatorError = relativeEncoderVE.get();
+        }
 
         SmartDashboard.putNumber("VEEncoder", encoderVE.getPosition());
         //SmartDashboard.putNumber("ThroughBorVE", throughBorVE.getAbsolutePosition());
@@ -91,6 +97,11 @@ public class VerticalElevator extends SubsystemBase {
         SmartDashboard.putNumber("ElevatorError", elevatorError);
         SmartDashboard.putBoolean("VEBottom LimitSwitch", isVEAtBottom());
         SmartDashboard.putBoolean("VETop LimitSwitch", isVEAtTop());
+
+        SmartDashboard.putNumber("VE5motor", VEleadMotor.getMotorTemperature());
+        SmartDashboard.putNumber("VE6motor", VEfollowMotor.getMotorTemperature());
+       
+        
 
 
     }
@@ -132,11 +143,11 @@ public class VerticalElevator extends SubsystemBase {
                 + elevatorError);
 
         if (relativeEncoderVE.get() < targetPosition) {
-            VEDown();
+            VEUp();
 
         } else if (relativeEncoderVE.get() > targetPosition) {
 
-            VEUp();
+            VEDown();
         }
 
     }
