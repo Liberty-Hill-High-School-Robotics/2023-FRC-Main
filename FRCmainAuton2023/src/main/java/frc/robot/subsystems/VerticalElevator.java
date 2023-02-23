@@ -39,10 +39,10 @@ public class VerticalElevator extends SubsystemBase {
     private CANSparkMax VEfollowMotor;
 
     public RelativeEncoder encoderVE;
-    private double error = 500;
+    private double error = 200;
     private double targetPosition;
   // public DutyCycleEncoder throughBorVE;
-    private Double ratePowerUp = 0.2;
+    private Double ratePowerUp = 0.4;
     private Double ratePowerDown = -0.2;
     public Encoder relativeEncoderVE;
     private int elevatorError;
