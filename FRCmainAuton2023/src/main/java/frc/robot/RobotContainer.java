@@ -233,10 +233,6 @@ public final XboxController operatorController = new XboxController(1);
     buttonGoToPickupPos.onTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
 
-    //under buttons
-
-    final Trigger buttonPivotOut = new JoystickButton(operatorController, XboxController.Button.)
-
 
     //
     //starting config and balance button
