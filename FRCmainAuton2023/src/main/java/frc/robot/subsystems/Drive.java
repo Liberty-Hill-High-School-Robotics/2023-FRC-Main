@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveArcade;
+import frc.robot.commands.DriveStop;
 
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -451,9 +452,11 @@ public class Drive extends SubsystemBase {
         m_pidControllerRight.setReference(targetPositionR, CANSparkMax.ControlType.kPosition);
     } 
     public void distanceDone(){
-    if(encoderLeftLeader.getPosition() == targetPositionL){
-    drive.stop;
-}
+        double positionDelta;
+    if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) && (encoderRightLeader.getPosition() >= (targetPositionR-positionDelta))) {
+        driveStop; 
+    }
+
     }
 
 
