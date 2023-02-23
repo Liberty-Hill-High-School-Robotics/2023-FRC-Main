@@ -452,9 +452,9 @@ public class Drive extends SubsystemBase {
         m_pidControllerRight.setReference(targetPositionR, CANSparkMax.ControlType.kPosition);
     } 
     public void distanceDone(){
-        double positionDelta;
+        double positionDelta = 0;
     if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) && (encoderRightLeader.getPosition() >= (targetPositionR-positionDelta))) {
-        driveStop; 
+        driveStop();
     }
 
     }

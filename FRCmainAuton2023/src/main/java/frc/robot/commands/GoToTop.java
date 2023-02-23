@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: SequentialCommandGroup.
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.PlacementConstants.PlacementPosition;
 import frc.robot.subsystems.ClawRotate;
@@ -47,11 +48,12 @@ public class GoToTop extends SequentialCommandGroup {
         //          new command3(argsN, subsystem)
         //      )    
         //  );
+        new ParallelCommandGroup(
         new VEGoTo(verticalElevator, PlacementPosition.TOP),
         new HEGoTo(horizontalElevator, PlacementPosition.TOP),
         new HRGoTo(horizontalRotate, PlacementPosition.TOP),
         new CRGoTo(clawRoatate, PlacementPosition.TOP)
-
+        )
         );
     }
 
