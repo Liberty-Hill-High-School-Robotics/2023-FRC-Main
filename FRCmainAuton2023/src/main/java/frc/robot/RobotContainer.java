@@ -194,6 +194,8 @@ public final XboxController operatorController = new XboxController(1);
     SmartDashboard.putData("HEGoToStart", new HEGoTo(m_HorizontalElevator, PlacementPosition.START));
     SmartDashboard.putData("VEGoToStart", new VEGoTo(m_VerticalElevator, PlacementPosition.START));
 
+    SmartDashboard.putData("MaxSpeed", new MaxSpeed(m_drive));
+
   }
 
   public static RobotContainer getInstance() {

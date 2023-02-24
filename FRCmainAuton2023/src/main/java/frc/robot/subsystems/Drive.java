@@ -62,7 +62,7 @@ public class Drive extends SubsystemBase {
     private  double setPointLeft;
     private double setPointRight; 
 
-    private double deadband = 0.05;
+    private double deadband = 0.1;
 
     double targetPositionL;
     double targetPositionR;
@@ -204,7 +204,7 @@ public class Drive extends SubsystemBase {
         // smartdashboard
 
         // temps
-        /*
+        
         SmartDashboard.putNumber("LeftBackTemp", leftFollow.getMotorTemperature());
         SmartDashboard.putNumber("RightBackTemp", rightFollow.getMotorTemperature());
         SmartDashboard.putNumber("LeftFrontTemp", leftLeader.getMotorTemperature());
@@ -226,7 +226,7 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("RBVelocity", encoderRightFollow.getVelocity());
         SmartDashboard.putNumber("LFVelocity", encoderLeftLeader.getVelocity());
         SmartDashboard.putNumber("RFVelocity", encoderRightLeader.getVelocity());
-        */
+        
 
         // Pigeon2
 
@@ -236,6 +236,9 @@ public class Drive extends SubsystemBase {
 
         SmartDashboard.putNumber("leftSetPoint", setPointLeft);
         SmartDashboard.putNumber("rightSetPoint", setPointRight);
+
+        SmartDashboard.putNumber("setPointRight", setPointRight);
+        SmartDashboard.putNumber("setPointLeft", setPointLeft);
 
 
         // need yaw pitch and roll, to feed into the accelerometer
@@ -259,7 +262,7 @@ public class Drive extends SubsystemBase {
     }
 
     public void maxSpeed() {
-        //driveArcade(1, 0);
+        driveVelocity(-1, 0);
 
     }
     //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (test)
@@ -347,9 +350,9 @@ public class Drive extends SubsystemBase {
          double rampDownForward = .01; // ramp down
          double subForward = jsAxisY - oldAxisY;
 
-         double rampUpBackward = -.01; // error allowed
-         double rampDownBackward = -.01; // ramp down
-         double subBackward = Math.abs(jsAxisY) - oldAxisY;
+         double rampUpBackward = -.025; // error allowed
+         double rampDownBackward = -.025; // ramp down
+         double subBackward = jsAxisY - oldAxisY;
 
          if(oldAxisY > 0){ // test if going forward
             // test to see if oldAxis is less than .25 && it is accelerating 
@@ -364,10 +367,10 @@ public class Drive extends SubsystemBase {
 
          }else if(oldAxisY < 0){ // test if going backwards
 
-            if(oldAxisY < -0.25 && Math.abs(subBackward) > rampUpBackward && subBackward > 0){
+            if(oldAxisY > -1 && Math.abs(subBackward) > Math.abs(rampUpBackward) && subBackward < 0){
                 tempAxisY = oldAxisY + rampUpBackward;
             //
-            } else if(oldAxisY < -.25 && Math.abs(subBackward) > rampDownBackward && subBackward < 0){
+            } else if(oldAxisY > -1 && Math.abs(subBackward) > Math.abs(rampDownBackward) && subBackward > 0){
                 tempAxisY = oldAxisY - rampDownBackward;
             }else{
                 tempAxisY = jsAxisY;
@@ -387,11 +390,11 @@ public class Drive extends SubsystemBase {
         
         //turn in place
         if (power == 0 && rotation != 0){
-              leftSpeed = power - rotation;
-              rightSpeed = power + rotation;
+              leftSpeed = power - rotation*.5;
+              rightSpeed = power + rotation*.5;
         } else {
-              leftSpeed = power - Math.abs(power) * rotation;
-              rightSpeed = power + Math.abs(power) * rotation;
+              leftSpeed = power - (Math.abs(power) * rotation)*.5;
+              rightSpeed = power + (Math.abs(power) * rotation)*.5;
         }
         
             // Desaturate wheel speeds
