@@ -60,7 +60,7 @@ public class  driveBalance extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        new WaitCommand(20.0);
+        
         m_drive.balanceDrive();
     }
 

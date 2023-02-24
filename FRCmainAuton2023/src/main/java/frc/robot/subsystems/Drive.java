@@ -240,6 +240,8 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("setPointRight", setPointRight);
         SmartDashboard.putNumber("setPointLeft", setPointLeft);
 
+        SmartDashboard.putBoolean("IsRoboBalanced", isRobotBalanced());
+
 
         // need yaw pitch and roll, to feed into the accelerometer
         // SmartDashboard.putNumber("acceleration",
@@ -429,7 +431,7 @@ public class Drive extends SubsystemBase {
     }
 
     public boolean isRobotBalanced() {
-        if (pigeon2.getPitch() > balanceError && pigeon2.getPitch() < -balanceError) {
+        if (pigeon2.getPitch() < balanceError && pigeon2.getPitch() > -balanceError) {
         isBalanced = true;
         } else isBalanced = false;
         return isBalanced;
