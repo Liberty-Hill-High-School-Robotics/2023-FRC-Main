@@ -12,6 +12,9 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+
 import java.util.function.DoubleSupplier;
 
 import com.ctre.phoenix.sensors.Pigeon2;
@@ -57,6 +60,7 @@ public class  driveBalance extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        new WaitCommand(20.0);
         m_drive.balanceDrive();
     }
 
