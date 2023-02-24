@@ -29,6 +29,8 @@ import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DriveArcade;
 import frc.robot.commands.GoToFloor;
+import frc.robot.commands.GoToFloor2Down;
+import frc.robot.commands.GoToFloor2Up;
 import frc.robot.commands.GoToMiddle;
 import frc.robot.commands.GoToPickUp;
 import frc.robot.commands.GoToStart;
@@ -248,21 +250,25 @@ public final XboxController operatorController = new XboxController(1);
     buttonGoToPickupPos.whileTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
     .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
+    //
     //cone pickup thing
     final Trigger buttonFloor2Sequence = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
-    buttonFloor2Sequence.
+    buttonFloor2Sequence.whileTrue(new GoToFloor2Up(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .onFalse(new GoToFloor2Down(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
 
 
     //lights - driver joystick
-    //final Trigger buttonLEDPurple = new JoystickButton(operatorController, );
+    final Trigger buttonLEDPurple = new JoystickButton(driverJoystick, 3);
+    final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 5);
+
 
     //
     //starting config and balance button
-    
+    //add balance here
 
-    final Trigger buttonBalance = new JoystickButton(operatorController, XboxController.Button.kBack.value);
-    buttonBalance.whileTrue(new driveBalance(m_drive));
+    final Trigger buttonStartPos = new JoystickButton(operatorController, XboxController.Button.kStart.value);
+    buttonStartPos.onTrue(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
 
 
