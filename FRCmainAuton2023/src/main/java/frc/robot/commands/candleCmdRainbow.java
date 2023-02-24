@@ -6,14 +6,14 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Other;
 import frc.robot.subsystems.VerticalElevator;
 
-public class candleCmdPurple extends CommandBase {
+public class candleCmdRainbow extends CommandBase {
     //define required subsystem
         private final Other m_Other;
  
         
 
 
-    public candleCmdPurple(Other subsystem) {
+    public candleCmdRainbow(Other subsystem) {
 
         //requires subsystem
         m_Other = subsystem;
@@ -32,7 +32,7 @@ public class candleCmdPurple extends CommandBase {
     @Override
     public void execute() {
         //[subsystem].[command]
-        m_Other.candlePurple();
+        m_Other.candleRainbow();
     }
 
     // Called once the command ends or is interrupted.

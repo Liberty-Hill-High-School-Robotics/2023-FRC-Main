@@ -38,7 +38,7 @@ public class candleCmdGold extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_Other.candleIdle();
+        m_Other.candleOff();
     }
 
     // Returns true when the command should end.

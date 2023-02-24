@@ -67,10 +67,16 @@ pDH = new PowerDistribution();
 
     }
 
-    public void candleIdle(){
+    public void candleOff(){
         //set to an idle configuration
-        candle1.configBrightnessScalar(.5);
+        candle1.configBrightnessScalar(0);
         candle1.setLEDs(255, 255, 255);
+    }
+
+    public void candleRainbow(){
+        candle1.configBrightnessScalar(1);
+        candle1.animate(rainbowAnimation);
+
     }
 }
 
