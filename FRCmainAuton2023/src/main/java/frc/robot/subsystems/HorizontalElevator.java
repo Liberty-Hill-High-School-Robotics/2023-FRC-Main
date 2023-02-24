@@ -42,7 +42,7 @@ public class HorizontalElevator extends SubsystemBase {
     */
     public RelativeEncoder encoderHE;
     private double targetPosition;
-    private double error = .01;
+    private double error = .05;
 
     public HorizontalElevator() {
 

@@ -56,8 +56,8 @@ public class Drive extends SubsystemBase {
     private SparkMaxPIDController m_pidControllerRight;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
-    private double balanceError = 5;
-    private double slowPower = 0.05;
+    private double balanceError = .5;
+    private double slowPower = 0.075;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
