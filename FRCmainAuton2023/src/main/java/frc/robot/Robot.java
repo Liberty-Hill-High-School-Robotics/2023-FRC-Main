@@ -61,15 +61,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-        //CANdle stuff
-        //panther purple = 80, 45, 127
-        //gold = 255, 200, 46
-        CANdle candle = new CANdle(20);
-        candle.configLEDType(LEDStripType.RGB);
-        candle.configBrightnessScalar(1);
-        RainbowAnimation rainbowAnimation = new RainbowAnimation(1, 1, 0);
-        candle.animate(rainbowAnimation);
-
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
