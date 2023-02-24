@@ -231,17 +231,20 @@ public final XboxController operatorController = new XboxController(1);
       //left buttons, all go to certain posistions
       //lettered pad
     final Trigger buttonGoToMiddle = new JoystickButton(operatorController, XboxController.Button.kB.value);
-    buttonGoToMiddle.onTrue(new GoToMiddle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    buttonGoToMiddle.whileTrue(new GoToMiddle(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
     final Trigger buttonGoToTop = new JoystickButton(operatorController, XboxController.Button.kY.value);
-    buttonGoToTop.onTrue(new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    buttonGoToTop.whileTrue(new GoToTop(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
     final Trigger buttonGoToFloor = new JoystickButton(operatorController, XboxController.Button.kA.value);
-    buttonGoToFloor.onTrue(new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    buttonGoToFloor.whileTrue(new GoToFloor(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
     final Trigger buttonGoToPickupPos = new JoystickButton(operatorController, XboxController.Button.kX.value);
-    buttonGoToPickupPos.onTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
-
+    buttonGoToPickupPos.whileTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
 
     //lights
@@ -249,8 +252,7 @@ public final XboxController operatorController = new XboxController(1);
 
     //
     //starting config and balance button
-    final Trigger buttonGoToStartingPos = new JoystickButton(operatorController, XboxController.Button.kStart.value);
-    buttonGoToStartingPos.onTrue(new GoToStart(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    
 
     final Trigger buttonBalance = new JoystickButton(operatorController, XboxController.Button.kBack.value);
     buttonBalance.whileTrue(new driveBalance(m_drive));
@@ -258,8 +260,8 @@ public final XboxController operatorController = new XboxController(1);
 
 
     //claw
-    final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Axis.kRightTrigger.value);
-    buttonClawOpen.onTrue(new ClawOpen(m_claw));
+    final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
+    buttonClawOpen.whileTrue(new ClawOpen(m_claw)).whileFalse( new ClawClose(m_claw));
 
 
 
