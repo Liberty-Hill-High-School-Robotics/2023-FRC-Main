@@ -55,15 +55,15 @@ pDH = new PowerDistribution();
         //set brightness
         candle1.configBrightnessScalar(1);
         //set color
-        candle1.setLEDs(80, 45, 127);
+        candle1.setLEDs(255, 17, 255);
 
     }
 
     public void candleGold(){
         //set brightness
-        candle1.configBrightnessScalar(1);
+        candle1.configBrightnessScalar(100);
         //set color
-        candle1.setLEDs(255, 200, 46);
+        candle1.setLEDs(255, 100, 0);
 
     }
 
