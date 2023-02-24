@@ -248,8 +248,13 @@ public final XboxController operatorController = new XboxController(1);
     buttonGoToPickupPos.whileTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
     .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
+    //cone pickup thing
+    final Trigger buttonFloor2Sequence = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+    buttonFloor2Sequence.
 
-    //lights
+
+
+    //lights - driver joystick
     //final Trigger buttonLEDPurple = new JoystickButton(operatorController, );
 
     //
