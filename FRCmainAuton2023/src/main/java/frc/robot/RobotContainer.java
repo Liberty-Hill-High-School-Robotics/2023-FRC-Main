@@ -51,6 +51,7 @@ import frc.robot.commands.VEStop;
 import frc.robot.commands.VEUp;
 import frc.robot.commands.candleCmdGold;
 import frc.robot.commands.candleCmdPurple;
+import frc.robot.commands.candleCmdRainbow;
 import frc.robot.commands.driveBalance;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawRotate;
@@ -201,6 +202,7 @@ public final XboxController operatorController = new XboxController(1);
 
     SmartDashboard.putData("LEDPurple", new candleCmdPurple(m_other));
     SmartDashboard.putData("LEDGold", new candleCmdGold(m_other));
+    SmartDashboard.putData("LEDRainbow", new candleCmdRainbow(m_other));
 
 
 
