@@ -276,6 +276,10 @@ public final XboxController operatorController = new XboxController(1);
     final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
     buttonClawOpen.whileTrue(new ClawOpen(m_claw)).whileFalse( new ClawClose(m_claw));
 
+    final Trigger buttonBalance = new JoystickButton(driverJoystick, 1);
+    buttonBalance.whileTrue(new driveBalance(m_drive));
+    
+
 
 
      

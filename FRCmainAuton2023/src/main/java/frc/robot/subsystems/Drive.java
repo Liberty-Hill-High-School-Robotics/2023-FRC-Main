@@ -56,8 +56,8 @@ public class Drive extends SubsystemBase {
     private SparkMaxPIDController m_pidControllerRight;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
-    private double balanceError = 4;
-    private double slowPower = 0.06;
+    private double balanceError = 2.5;
+    private double slowPower = 0.1;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
@@ -121,6 +121,7 @@ public class Drive extends SubsystemBase {
 
 
         pigeon2 = new Pigeon2(19);
+        
 
 
         // sets the two follow motors to follow the lead motors       
@@ -438,10 +439,10 @@ public class Drive extends SubsystemBase {
     }
 
     public void balanceDrive(){
-        if(pigeon2.getPitch() < (0 - balanceError)){
+        if(pigeon2.getPitch() < (-balanceError)){
             driveForwardSlow();
         }
-        if(pigeon2.getPitch() > (0 + balanceError)){
+        if(pigeon2.getPitch() > (balanceError)){
             driveBackwardSlow();
         }
 

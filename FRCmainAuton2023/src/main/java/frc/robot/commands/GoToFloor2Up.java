@@ -52,11 +52,11 @@ public class GoToFloor2Up extends SequentialCommandGroup {
         //  );
         new ClawOpen(Claw),
         new ParallelCommandGroup(
-            new VEGoTo(verticalElevator, PlacementPosition.FLOOR2Up),
-            new HEGoTo(horizontalElevator, PlacementPosition.FLOOR2Up),
-            new HRGoTo(horizontalRotate, PlacementPosition.FLOOR2Up),
-            new CRGoTo(clawRotate, PlacementPosition.FLOOR2Up)
-        )
+            new VEGoTo(verticalElevator, PlacementPosition.FLOOR2UP),
+            new HEGoTo(horizontalElevator, PlacementPosition.FLOOR2UP),
+            new HRGoTo(horizontalRotate, PlacementPosition.FLOOR2UP),
+            new CRGoTo(clawRotate, PlacementPosition.FLOOR2UP)
+            )
         );
         
     }
