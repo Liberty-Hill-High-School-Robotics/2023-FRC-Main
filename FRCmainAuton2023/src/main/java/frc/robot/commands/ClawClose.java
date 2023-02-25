@@ -67,7 +67,7 @@ public class ClawClose extends CommandBase {
     @Override
     public boolean isFinished() {
        // return m_claw.isClawOpen();
-       return false;
+       return true;
     }
 
     @Override

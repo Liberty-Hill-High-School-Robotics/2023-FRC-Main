@@ -54,7 +54,10 @@ public class Drive extends SubsystemBase {
     private RelativeEncoder m_encoderRight;
     private SparkMaxPIDController m_pidControllerLeft;
     private SparkMaxPIDController m_pidControllerRight;
+    private SparkMaxPIDController m_pidControllerLeftAuton;
+    private SparkMaxPIDController m_pidControllerRightAuton;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
+    public double kPAuton, kIAuton, kDAuton, kIzAuton, kFFAuton, kMaxOutputAuton, kMinOutputAuton, maxRPMAuton;
 
     private double balanceError = 2.5;
     private double slowPower = 0.1;
@@ -113,7 +116,11 @@ public class Drive extends SubsystemBase {
         m_pidControllerLeft = leftLeader.getPIDController();
         m_pidControllerRight = rightLeader.getPIDController();
 
+        m_pidControllerLeftAuton = leftLeader.getPIDController();
+        m_pidControllerRightAuton = rightLeader.getPIDController();
+
         setDrivePID();
+        setDrivePIDAuton();
 
 
 
@@ -243,6 +250,10 @@ public class Drive extends SubsystemBase {
 
         SmartDashboard.putBoolean("IsRoboBalanced", isRobotBalanced());
 
+        SmartDashboard.putNumber("TargetPosLeft", targetPositionL);
+        SmartDashboard.putNumber("TargetPosRight", targetPositionR);
+        
+
 
         // need yaw pitch and roll, to feed into the accelerometer
         // SmartDashboard.putNumber("acceleration",
@@ -332,7 +343,34 @@ public class Drive extends SubsystemBase {
         m_pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
     }
 
+    public void setDrivePIDAuton(){
+        kPAuton = 0.006;
+        kIAuton = 0.0000006;
+        kDAuton = 0; 
+        kIzAuton = 0; 
+        kFFAuton = 0.0;  //.00015 default
+        kMaxOutputAuton = 1; 
+        kMinOutputAuton = -1;
+        maxRPMAuton = 3500; //max rpm (goal) 
+         
+
+        m_pidControllerLeftAuton.setP(kPAuton);
+        m_pidControllerLeftAuton.setI(kIAuton);
+        m_pidControllerLeftAuton.setD(kDAuton);
+        m_pidControllerLeftAuton.setIZone(kIzAuton);
+        m_pidControllerLeftAuton.setFF(kFFAuton);
+        m_pidControllerLeftAuton.setOutputRange(kMinOutputAuton, kMaxOutputAuton);
+
+        m_pidControllerRightAuton.setP(kPAuton);
+        m_pidControllerRightAuton.setI(kIAuton);
+        m_pidControllerRightAuton.setD(kDAuton);
+        m_pidControllerRightAuton.setIZone(kIzAuton);
+        m_pidControllerRightAuton.setFF(kFFAuton);
+        m_pidControllerRightAuton.setOutputRange(kMinOutputAuton, kMaxOutputAuton);
+    }
+
     public void driveVelocity(double power, double rotation) {
+        
 
          //adds a deadzone 
          if(Math.abs(power) <= deadband){
@@ -449,19 +487,27 @@ public class Drive extends SubsystemBase {
     }
 
      public void driveDistance(double numberOfInches){
-        double TICKS_PER_INCH = 23.86;
+        double TICKS_PER_INCH = (42)/(10.71*6*Math.PI);
         double numberOfTicks = TICKS_PER_INCH * numberOfInches;
        
         targetPositionL = encoderLeftLeader.getPosition() + numberOfTicks;
         targetPositionR = encoderRightLeader.getPosition() + numberOfTicks;
-        m_pidControllerLeft.setReference(targetPositionL, CANSparkMax.ControlType.kPosition);
-        m_pidControllerRight.setReference(targetPositionR, CANSparkMax.ControlType.kPosition);
+
+        m_pidControllerLeftAuton.setReference(targetPositionL, CANSparkMax.ControlType.kPosition);
+        m_pidControllerRightAuton.setReference(targetPositionR, CANSparkMax.ControlType.kPosition);
     } 
-    public void distanceDone(){
+
+    public boolean distanceDone(){
         double positionDelta = 0;
-    if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) && (encoderRightLeader.getPosition() >= (targetPositionR-positionDelta))) {
-        driveStop();
+        boolean isDistanceDone = false;
+
+    if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) 
+    && (encoderRightLeader.getPosition() <= (targetPositionR+positionDelta))
+    && (encoderLeftLeader.getPosition() >= (targetPositionL-positionDelta))
+    && (encoderLeftLeader.getPosition() >= targetPositionL-positionDelta)) {
+        isDistanceDone = true;
     }
+    return isDistanceDone;
 
     }
 
