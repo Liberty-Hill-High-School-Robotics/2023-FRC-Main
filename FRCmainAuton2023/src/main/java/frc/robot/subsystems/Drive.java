@@ -59,7 +59,7 @@ public class Drive extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
     public double kPAuton, kIAuton, kDAuton, kIzAuton, kFFAuton, kMaxOutputAuton, kMinOutputAuton, maxRPMAuton;
 
-    private double balanceError = 2.5;
+    private double balanceError = 6;
     private double slowPower = 0.1;
     private boolean isBalanced = false;
     private  double setPointLeft;
@@ -353,7 +353,6 @@ public class Drive extends SubsystemBase {
         kMinOutputAuton = -1;
         maxRPMAuton = 3500; //max rpm (goal) 
          
-
         m_pidControllerLeftAuton.setP(kPAuton);
         m_pidControllerLeftAuton.setI(kIAuton);
         m_pidControllerLeftAuton.setD(kDAuton);
@@ -486,9 +485,14 @@ public class Drive extends SubsystemBase {
 
     }
 
+    
+
      public void driveDistance(double numberOfInches){
-        double TICKS_PER_INCH = (42)/(10.71*6*Math.PI);
-        double numberOfTicks = TICKS_PER_INCH * numberOfInches;
+        double TICKS_PER_INCH = (42)/(10.75*6*Math.PI);
+        SmartDashboard.putNumber("TICKS_PER_INCH", TICKS_PER_INCH);
+        double numberOfTicks = (TICKS_PER_INCH * numberOfInches)*2.6; // we don't know why we are mulitplying by two but we are doing it any way
+
+        SmartDashboard.putNumber("numberOFTicks", numberOfTicks);
        
         targetPositionL = encoderLeftLeader.getPosition() + numberOfTicks;
         targetPositionR = encoderRightLeader.getPosition() + numberOfTicks;
@@ -498,13 +502,11 @@ public class Drive extends SubsystemBase {
     } 
 
     public boolean distanceDone(){
-        double positionDelta = 0;
+        double positionDelta = 1;
         boolean isDistanceDone = false;
 
     if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) 
-    && (encoderRightLeader.getPosition() <= (targetPositionR+positionDelta))
-    && (encoderLeftLeader.getPosition() >= (targetPositionL-positionDelta))
-    && (encoderLeftLeader.getPosition() >= targetPositionL-positionDelta)) {
+    && (encoderLeftLeader.getPosition() >= (targetPositionL-positionDelta))) {
         isDistanceDone = true;
     }
     return isDistanceDone;
