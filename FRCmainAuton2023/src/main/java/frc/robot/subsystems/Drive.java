@@ -538,7 +538,7 @@ public class Drive extends SubsystemBase {
     }
 
     public void slowMode(){
-        maxRPM = 2000;
+        maxRPM = 2500;
     }
 
 
