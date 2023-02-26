@@ -80,8 +80,8 @@ public class Constants {
             {8707,9.73,.62,-28.3}, // top
             {0,0,0.87,0}, // start
             //floor2 up & down
-            {4425, 0, 4.5, 1.5}, //up
-            {2960, 0, 4.5, 1.5} //down
+            {4425, 0,.45, 1.5}, //up
+            {2960, 0, .45, 1.5} //down
         };
 
         public double getPlacementValues(PlacementPosition position, SubSystem subSystem) {
