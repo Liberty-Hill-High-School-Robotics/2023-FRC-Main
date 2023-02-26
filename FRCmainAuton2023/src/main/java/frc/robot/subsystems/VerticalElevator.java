@@ -76,8 +76,8 @@ public class VerticalElevator extends SubsystemBase {
         forwardLimit.enableLimitSwitch(true);
         reverseLimit.enableLimitSwitch(true);
 
-        VEleadMotor.setSmartCurrentLimit(30);
-        VEfollowMotor.setSmartCurrentLimit(30);
+        VEleadMotor.setSmartCurrentLimit(28);
+        VEfollowMotor.setSmartCurrentLimit(28);
 
         
 

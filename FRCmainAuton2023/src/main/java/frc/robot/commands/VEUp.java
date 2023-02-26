@@ -67,7 +67,7 @@ public class VEUp extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-       m_verticalElevator.VEStop();
+       m_verticalElevator.VEHoldPosition();
     }
 //levee did this
     // Returns true when the command should end.
