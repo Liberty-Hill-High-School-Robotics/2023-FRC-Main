@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import java.beans.MethodDescriptor;
 import java.lang.reflect.Method;
 
+import org.ejml.dense.row.decomposition.eig.watched.WatchedDoubleStepQREigen_DDRM;
+
 import com.ctre.phoenix.sensors.Pigeon2;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
@@ -69,6 +71,10 @@ public class Drive extends SubsystemBase {
 
     double targetPositionL;
     double targetPositionR;
+
+    double turnTarget;
+    private double turnError = 2;
+    private double turnSpeed = 0.5;
 
 
     /**
@@ -468,6 +474,19 @@ public class Drive extends SubsystemBase {
         leftLeader.set(-slowPower);
     }
 
+
+    //turn at speed
+    public void driveTurnRight(){
+        rightLeader.set(-turnSpeed);
+        leftLeader.set(turnSpeed);
+    }
+    public void driveTurnLeft(){
+        rightLeader.set(turnSpeed);
+        leftLeader.set(-turnSpeed);
+    }
+
+
+
     public boolean isRobotBalanced() {
         if (pigeon2.getPitch() < balanceError && pigeon2.getPitch() > -balanceError) {
         isBalanced = true;
@@ -515,6 +534,25 @@ public class Drive extends SubsystemBase {
 
     public void slowMode(){
         maxRPM = 2000;
+    }
+
+
+    public void driveTurn(double turnTarget){
+        if(pigeon2.getYaw() < (turnTarget + turnError) || pigeon2.getYaw() < (turnTarget - turnError)){
+            driveTurnRight();
+        }
+        if(pigeon2.getYaw() > (turnTarget + turnError) || pigeon2.getYaw() > (turnTarget - turnError)){
+            driveTurnLeft();
+        }
+
+    }
+
+
+    public boolean turnDone(){
+        if(pigeon2.getYaw() == (turnTarget + turnError) || pigeon2.getYaw() == (turnTarget - turnError)){
+            return true;
+        }
+        return false;
     }
 
 
