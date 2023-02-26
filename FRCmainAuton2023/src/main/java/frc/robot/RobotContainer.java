@@ -302,6 +302,9 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger buttonBalance = new JoystickButton(driverJoystick, 1);
     buttonBalance.whileTrue(new driveBalance(m_drive));
+
+    final Trigger buttonSlowMode = new JoystickButton(driverJoystick, 2);
+    buttonSlowMode.whileTrue(new driveBalance(m_drive));
     
 
 
