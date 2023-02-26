@@ -36,7 +36,7 @@ public class HorizontalRotate extends SubsystemBase {
 
     private CANSparkMax horizontalRotatorMotor;
 
-    private double rotatePower = 0.15;
+    private double rotatePower = 0.3;
 
     private SparkMaxLimitSwitch forwardLimit;
     private SparkMaxLimitSwitch reverseLimit;
