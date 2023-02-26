@@ -30,7 +30,7 @@ import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DriveArcade;
 import frc.robot.commands.DriveOutCommunity;
-import frc.robot.commands.Floor2Sequence;
+
 import frc.robot.commands.GoToFloor;
 import frc.robot.commands.GoToFloor2Down;
 import frc.robot.commands.GoToFloor2Up;
@@ -106,7 +106,7 @@ public class RobotContainer {
     public final GoToTop m_GoToTop = new GoToTop(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate);
     public final GoToStart m_GoToStart = new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate);
     public final GoToFloor2Up m_GoToFloor2Up = new GoToFloor2Up(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate);
-    public final GoToFloor2Down m_GoToFloor2Down = new GoToFloor2Down(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate);
+   
 
 
 // Joysticks
@@ -273,7 +273,8 @@ public final XboxController operatorController = new XboxController(1);
     //
     //cone pickup thing
     final Trigger buttonFloor2Sequence = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
-    buttonFloor2Sequence.onTrue(new Floor2Sequence(m_claw, m_GoToFloor2Up, m_GoToFloor2Down, m_GoToStart, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
+    buttonFloor2Sequence.whileTrue(new GoToFloor2Up(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
+    .onFalse(new GoToFloor2Down(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate, m_GoToStart));
 
     //
     //axis stuff (weird!!!)
