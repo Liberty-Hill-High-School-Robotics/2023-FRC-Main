@@ -51,9 +51,11 @@ import frc.robot.commands.RotateClawDown;
 import frc.robot.commands.RotateClawStop;
 import frc.robot.commands.RotateClawUp;
 import frc.robot.commands.VEDown;
+import frc.robot.commands.VEDownButton;
 import frc.robot.commands.VEGoTo;
 import frc.robot.commands.VEStop;
 import frc.robot.commands.VEUp;
+import frc.robot.commands.VEUpButton;
 import frc.robot.commands.candleCmdGold;
 import frc.robot.commands.candleCmdPurple;
 import frc.robot.commands.candleCmdRainbow;
@@ -261,18 +263,29 @@ public final XboxController operatorController = new XboxController(1);
     buttonGoToPickupPos.whileTrue(new GoToPickUp(m_VerticalElevator,m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
     .whileFalse(new GoToStart(m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
+
     //
     //cone pickup thing
     final Trigger buttonFloor2Sequence = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
     buttonFloor2Sequence.whileTrue(new GoToFloor2Up(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate))
     .onFalse(new GoToFloor2Down(m_claw, m_VerticalElevator, m_HorizontalElevator, m_HorizontalRotate, m_clawRotate));
 
+    //
+    //axis stuff (weird!!!)
+    final Trigger buttonElevatorUp = new JoystickButton(operatorController, XboxController.Axis.kRightY.value);
+    buttonElevatorUp.whileTrue(new VEUpButton(m_VerticalElevator));
+
+    final Trigger buttonElevatorDown = new JoystickButton(operatorController, XboxController.Axis.kRightY.value);
+    buttonElevatorDown.whileTrue(new VEDownButton(m_VerticalElevator));
+
 
 
     //lights - driver joystick
     final Trigger buttonLEDPurple = new JoystickButton(driverJoystick, 3);
-    final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 5);
-
+    buttonLEDPurple.toggleOnTrue(new candleCmdPurple(m_other));
+    final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 5); 
+    buttonLEDGold.toggleOnTrue(new candleCmdGold(m_other));
+   
 
     //
     //starting config and balance button
