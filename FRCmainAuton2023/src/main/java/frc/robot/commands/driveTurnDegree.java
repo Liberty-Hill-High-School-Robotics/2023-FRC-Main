@@ -11,27 +11,24 @@ import frc.robot.subsystems.Drive;
 
 
 
-public class  driveDistance extends CommandBase {
+public class  driveTurnDegree extends CommandBase {
 
         private final Drive m_drive;
-        private final double m_NumOfInches;
 
-
-    public  driveDistance(Drive subsystem, double numOfInches ) {
+    public  driveTurnDegree(Drive subsystem) {
 
 
 
         m_drive = subsystem;
         addRequirements(m_drive);
 
-        m_NumOfInches = numOfInches;
 
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_drive.driveDistance(m_NumOfInches);
+        m_drive.driveTurn(5);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -50,7 +47,7 @@ public class  driveDistance extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_drive.distanceDone();
+        return m_drive.turnDone();
         } 
 
     @Override
