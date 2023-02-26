@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import com.ctre.phoenix.led.CANdle;
@@ -16,6 +17,9 @@ public class Other extends SubsystemBase {
         CANdle candle1 = new CANdle(20);
         //create a rainbow anim.
         RainbowAnimation rainbowAnimation = new RainbowAnimation(1, 1, 0);
+
+        private boolean dashboardPurple = false;
+        private boolean dashboardGold = false;
 
 
 
@@ -35,6 +39,9 @@ pDH = new PowerDistribution();
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putBoolean("LEDpurple", dashboardPurple);
+        SmartDashboard.putBoolean("LEDgold", dashboardGold);
+
 
     }
 
@@ -56,6 +63,8 @@ pDH = new PowerDistribution();
         candle1.configBrightnessScalar(1);
         //set color
         candle1.setLEDs(255, 17, 255);
+        dashboardPurple = true;
+        dashboardGold = false;
 
     }
 
@@ -64,6 +73,8 @@ pDH = new PowerDistribution();
         candle1.configBrightnessScalar(100);
         //set color
         candle1.setLEDs(255, 100, 0);
+        dashboardGold = true;
+        dashboardPurple = false;
 
     }
 
@@ -71,6 +82,8 @@ pDH = new PowerDistribution();
         //set to an idle configuration
         candle1.configBrightnessScalar(0);
         candle1.setLEDs(255, 255, 255);
+        dashboardGold = false;
+        dashboardPurple = false;
     }
 
     public void candleRainbow(){
