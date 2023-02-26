@@ -49,9 +49,10 @@ public class Claw extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("CompressorPSI", compressor.getPressureSwitchValue());
+        SmartDashboard.putBoolean("isCommpressorFull", compressor.getPressureSwitchValue());
        // SmartDashboard.putBoolean("Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
        // SmartDashboard.putBoolean("Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
+       SmartDashboard.putNumber("CompressorPSI", compressor.getPressure());
     }
 
     @Override
