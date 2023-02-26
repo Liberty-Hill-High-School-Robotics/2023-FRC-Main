@@ -282,7 +282,7 @@ public final XboxController operatorController = new XboxController(1);
     //lights - driver joystick
     final Trigger buttonLEDPurple = new JoystickButton(driverJoystick, 3);
     buttonLEDPurple.toggleOnTrue(new candleCmdPurple(m_other));
-    final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 5); 
+    final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 4); 
     buttonLEDGold.toggleOnTrue(new candleCmdGold(m_other));
    
 
