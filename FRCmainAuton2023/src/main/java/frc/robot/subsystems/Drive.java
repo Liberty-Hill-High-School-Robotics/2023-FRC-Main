@@ -47,6 +47,7 @@ public class Drive extends SubsystemBase {
     private RelativeEncoder encoderLeftLeader;
     private RelativeEncoder encoderRightLeader;
 
+
     private double oldAxisY = 0;
     private double finalAxisY;
     private double tempAxisY;
@@ -54,6 +55,7 @@ public class Drive extends SubsystemBase {
 
     private RelativeEncoder m_encoderLeft;
     private RelativeEncoder m_encoderRight;
+
     private SparkMaxPIDController m_pidControllerLeft;
     private SparkMaxPIDController m_pidControllerRight;
     private SparkMaxPIDController m_pidControllerLeftAuton;
@@ -142,16 +144,19 @@ public class Drive extends SubsystemBase {
 
         encoderLeftFollow = leftFollow.getEncoder(Type.kHallSensor, 42);
         encoderLeftFollow.setVelocityConversionFactor(1);
+        encoderLeftFollow.setPositionConversionFactor(42);
 
         encoderRightFollow = rightFollow.getEncoder(Type.kHallSensor, 42);
         encoderRightFollow.setVelocityConversionFactor(1);
-
+        encoderRightFollow.setPositionConversionFactor(42);
 
         encoderLeftLeader = leftLeader.getEncoder(Type.kHallSensor, 42);
         encoderLeftLeader.setVelocityConversionFactor(1);
+        encoderLeftLeader.setPositionConversionFactor(42);
 
         encoderRightLeader = rightLeader.getEncoder(Type.kHallSensor, 42);
         encoderRightLeader.setVelocityConversionFactor(1);
+        encoderRightLeader.setPositionConversionFactor(42);
 
 
         // set PID coefficients
@@ -507,9 +512,9 @@ public class Drive extends SubsystemBase {
     
 
      public void driveDistance(double numberOfInches){
-        double TICKS_PER_INCH = (42)/(10.75*6*Math.PI);
+        double TICKS_PER_INCH = (10.75*42)/(6*Math.PI);
         SmartDashboard.putNumber("TICKS_PER_INCH", TICKS_PER_INCH);
-        double numberOfTicks = (TICKS_PER_INCH * numberOfInches)*2.6; // we don't know why we are mulitplying by two but we are doing it any way
+        double numberOfTicks = (TICKS_PER_INCH * numberOfInches); 
 
         SmartDashboard.putNumber("numberOFTicks", numberOfTicks);
        
@@ -533,7 +538,7 @@ public class Drive extends SubsystemBase {
     }
 
     public void slowMode(){
-        maxRPM = 2000;
+        maxRPM = 1000;
     }
 
 
