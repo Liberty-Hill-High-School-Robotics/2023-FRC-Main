@@ -13,6 +13,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.PlacementConstants.PlacementPosition;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawRotate;
@@ -57,7 +58,9 @@ public class GoToFloor2Down extends SequentialCommandGroup {
             new HRGoTo(horizontalRotate, PlacementPosition.FLOOR2DOWN),
             new CRGoTo(clawRotate, PlacementPosition.FLOOR2DOWN)
         ),
+        new WaitCommand(.25),
         new ClawClose(claw),
+        new WaitCommand(.5),
         new GoToStart(verticalElevator, horizontalElevator, horizontalRotate, clawRotate)
         );
     }

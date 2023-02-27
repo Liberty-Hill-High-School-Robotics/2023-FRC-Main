@@ -76,12 +76,12 @@ public class Constants {
         private double[][] placementValues = {
             {2,0.095,0.49,-40.28}, //floor
             {250,6.45,.74,7.3}, // middle
-            {1000,0,.73,5.24}, // pickup
+            {1000,0,.767,16.1}, // pickup
             {8707,9.73,.62,-28.3}, // top
             {0,0,0.87,0}, // start
             //floor2 up & down
-            {4425, 0,.45, 1.5}, //up
-            {2960, 0, .45, 1.5} //down
+            {6900, 0,.467, 6.83}, //up
+            {2800, 0, .467, 6.83} //down
         };
 
         public double getPlacementValues(PlacementPosition position, SubSystem subSystem) {
