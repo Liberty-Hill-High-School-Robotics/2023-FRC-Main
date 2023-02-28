@@ -50,7 +50,7 @@ public class  slowMode extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_drive.slowMode();
+       //m_drive.slowMode();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -62,9 +62,7 @@ public class  slowMode extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-       
-        m_drive.setDrivePID();
-
+        m_drive.slowModeOff();
     }
     // Returns true when the command should end.
     @Override

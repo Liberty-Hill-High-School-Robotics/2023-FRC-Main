@@ -540,7 +540,14 @@ public class Drive extends SubsystemBase {
     }
 
     public void slowMode(){
-        maxRPM = 2500;
+        slowPower = .333;
+        setPointLeft = setPointLeft * slowPower;
+        setPointRight = setPointRight * slowPower;        
+        
+    }
+
+    public void slowModeOff(){
+        slowPower = 1;
     }
 
 
