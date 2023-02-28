@@ -48,7 +48,7 @@ public class DriveOutCommunity extends SequentialCommandGroup {
         //          new command3(argsN, subsystem)
         //      )    
         //  );
-        new driveDistance(drive, -162)
+        new driveDistance(drive, -150)
         );
     }
 

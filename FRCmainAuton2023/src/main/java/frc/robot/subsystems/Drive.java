@@ -170,6 +170,8 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("Feed Forward", kFF);
         SmartDashboard.putNumber("Max Output", kMaxOutput);
         SmartDashboard.putNumber("Min Output", kMinOutput);
+
+        SmartDashboard.putNumber("targetPostionL", targetPositionL);
   }
 
   
@@ -355,14 +357,14 @@ public class Drive extends SubsystemBase {
     }
 
     public void setDrivePIDAuton(){
-        kPAuton = 0.006;
-        kIAuton = 0.0000006;
-        kDAuton = 0; 
+        kPAuton = 0.0004; //  0.0004;
+        kIAuton = 0.00000000000000000005; //// defult  0.00000000000000000005
+        kDAuton = 0.0; 
         kIzAuton = 0; 
-        kFFAuton = 0.0;  //.00015 default
-        kMaxOutputAuton = 1; 
-        kMinOutputAuton = -1;
-        maxRPMAuton = 3500; //max rpm (goal) 
+        kFFAuton = 0.00;  //.0.00 default
+        kMaxOutputAuton = .3; //-.3
+        kMinOutputAuton = -.3;//-.3
+        maxRPMAuton = 500; //max rpm (goal) 500
          
         m_pidControllerLeftAuton.setP(kPAuton);
         m_pidControllerLeftAuton.setI(kIAuton);
