@@ -53,6 +53,9 @@ public class Claw extends SubsystemBase {
        // SmartDashboard.putBoolean("Claw Closed", doubleSolenoidClaw.isFwdSolenoidDisabled());
        // SmartDashboard.putBoolean("Claw Open", doubleSolenoidClaw.isRevSolenoidDisabled());
        SmartDashboard.putNumber("CompressorPSI", compressor.getPressure());
+
+       SmartDashboard.putBoolean("isClawOpen", isClawOpen());
+       SmartDashboard.putBoolean("isClawClosed", isClawOpen());
     }
 
     @Override
@@ -71,14 +74,14 @@ public class Claw extends SubsystemBase {
     public void clawOpen() {
         doubleSolenoidClaw.set(Value.kReverse);
     }
- /* 
+ 
     public Boolean isClawOpen(){
-        return doubleSolenoidClaw.isRevSolenoidDisabled();
+        return doubleSolenoidClaw.isFwdSolenoidDisabled();
     }
     
     public Boolean isClawClosed(){
-        return doubleSolenoidClaw.isFwdSolenoidDisabled();
+        return doubleSolenoidClaw.isRevSolenoidDisabled();
     }
-    */
+    
 
 }
