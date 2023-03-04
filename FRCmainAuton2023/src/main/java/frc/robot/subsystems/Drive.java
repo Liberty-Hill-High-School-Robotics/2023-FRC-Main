@@ -539,16 +539,9 @@ public class Drive extends SubsystemBase {
 
     }
 
-    public void slowMode(){
-        slowPower = .333;
-        setPointLeft = setPointLeft * slowPower;
-        setPointRight = setPointRight * slowPower;        
-        
-    }
+   
 
-    public void slowModeOff(){
-        slowPower = 1;
-    }
+    
 
 
     public void driveTurn(double turnTarget){

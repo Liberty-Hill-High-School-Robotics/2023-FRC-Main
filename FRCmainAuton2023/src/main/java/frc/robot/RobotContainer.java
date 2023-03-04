@@ -64,6 +64,7 @@ import frc.robot.commands.candleCmdPurple;
 import frc.robot.commands.candleCmdRainbow;
 import frc.robot.commands.driveBalance;
 import frc.robot.commands.slowMode;
+import frc.robot.commands.zTurn;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawRotate;
 import frc.robot.subsystems.Drive;
@@ -278,7 +279,7 @@ public final XboxController operatorController = new XboxController(1);
 
     //
     //axis stuff (weird!!!)
-    
+   
 
 
 
@@ -302,11 +303,16 @@ public final XboxController operatorController = new XboxController(1);
     final Trigger buttonClawOpen = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
     buttonClawOpen.whileTrue(new ClawOpen(m_claw)).whileFalse( new ClawClose(m_claw));
 
-    final Trigger buttonBalance = new JoystickButton(driverJoystick, 1);
+    
+
+    final Trigger buttonBalance = new JoystickButton(driverJoystick, 5);
     buttonBalance.whileTrue(new driveBalance(m_drive));
 
-    final Trigger buttonSlowMode = new JoystickButton(driverJoystick, 2);
+    final Trigger buttonSlowMode = new JoystickButton(driverJoystick, 1);
     buttonSlowMode.whileTrue(new slowMode(m_drive));
+
+    final Trigger zTurnAxis = new JoystickButton(driverJoystick, 2);
+    zTurnAxis.whileTrue(new zTurn(m_drive));
     
 
 
