@@ -54,6 +54,7 @@ public class VerticalElevator extends SubsystemBase {
 
         VEleadMotor = new CANSparkMax(5, MotorType.kBrushless);
         VEleadMotor.restoreFactoryDefaults();
+       
         VEleadMotor.setInverted(true);
         encoderVE = VEleadMotor.getEncoder();
         
@@ -78,6 +79,8 @@ public class VerticalElevator extends SubsystemBase {
 
         VEleadMotor.setSmartCurrentLimit(28);
         VEfollowMotor.setSmartCurrentLimit(28);
+
+        
 
         
 
