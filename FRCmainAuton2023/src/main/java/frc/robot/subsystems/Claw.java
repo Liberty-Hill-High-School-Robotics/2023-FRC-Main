@@ -38,6 +38,7 @@ public class Claw extends SubsystemBase {
     public Claw() {
         
         doubleSolenoidClaw = new DoubleSolenoid(18, PneumaticsModuleType.CTREPCM, 0, 4);
+        
         addChild("Claw Open Close", doubleSolenoidClaw);
         
         compressor = new Compressor(18, PneumaticsModuleType.CTREPCM);
@@ -73,6 +74,10 @@ public class Claw extends SubsystemBase {
 
     public void clawOpen() {
         doubleSolenoidClaw.set(Value.kReverse);
+    }
+
+    public void clawOff() {
+        doubleSolenoidClaw.set(Value.kOff);
     }
  
     public Boolean isClawOpen(){
