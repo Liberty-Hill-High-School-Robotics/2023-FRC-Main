@@ -482,17 +482,6 @@ public class Drive extends SubsystemBase {
     }
 
 
-    //turn at speed
-    public void driveTurnRight(){
-        rightLeader.set(-turnSpeed);
-        leftLeader.set(turnSpeed);
-    }
-    public void driveTurnLeft(){
-        rightLeader.set(turnSpeed);
-        leftLeader.set(-turnSpeed);
-    }
-
-
 
     public boolean isRobotBalanced() {
         if (pigeon2.getPitch() < balanceError && pigeon2.getPitch() > -balanceError) {
@@ -536,21 +525,6 @@ public class Drive extends SubsystemBase {
         isDistanceDone = true;
     }
     return isDistanceDone;
-
-    }
-
-   
-
-    
-
-
-    public void driveTurn(double turnTarget){
-        if(pigeon2.getYaw() < (turnTarget + turnError) || pigeon2.getYaw() < (turnTarget - turnError)){
-            driveTurnRight();
-        }
-        if(pigeon2.getYaw() > (turnTarget + turnError) || pigeon2.getYaw() > (turnTarget - turnError)){
-            driveTurnLeft();
-        }
 
     }
 
