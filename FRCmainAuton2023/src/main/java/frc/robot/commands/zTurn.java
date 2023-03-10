@@ -56,7 +56,7 @@ public class  zTurn extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_drive.driveVelocity(0, (RobotContainer.getInstance().getdriverJoystick().getRawAxis(2))*.5);
+        m_drive.driveVelocity(0, (RobotContainer.getInstance().getdriverJoystick().getRawAxis(2))*.7);
     }
 
     // Called once the command ends or is interrupted.

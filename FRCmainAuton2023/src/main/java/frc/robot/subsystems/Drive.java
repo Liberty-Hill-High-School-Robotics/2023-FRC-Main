@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveArcade;
 import frc.robot.commands.DriveStop;
+import frc.robot.commands.driveTurnDegree;
 
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -75,8 +76,10 @@ public class Drive extends SubsystemBase {
     double targetPositionR;
 
     double turnTarget;
-    private double turnError = 2;
-    private double turnSpeed = 0.5;
+    double turnTargetFinal;
+    private double turnError = 50;
+    private double turnSpeed = -0.5;
+    private double intialYaw;
 
 
     /**
@@ -172,6 +175,9 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("Min Output", kMinOutput);
 
         SmartDashboard.putNumber("targetPostionL", targetPositionL);
+        
+
+       
   }
 
   
@@ -265,6 +271,11 @@ public class Drive extends SubsystemBase {
 
         SmartDashboard.putNumber("TargetPosLeft", targetPositionL);
         SmartDashboard.putNumber("TargetPosRight", targetPositionR);
+        
+        SmartDashboard.putNumber("turnTarget", turnTarget);
+        SmartDashboard.putNumber("tunrTargetFinal", turnTargetFinal);
+
+
         
 
 
@@ -517,7 +528,7 @@ public class Drive extends SubsystemBase {
     } 
 
     public boolean distanceDone(){
-        double positionDelta = 1;
+        double positionDelta = 10;
         boolean isDistanceDone = false;
 
     if((encoderLeftLeader.getPosition() <= (targetPositionL+positionDelta)) 
@@ -528,9 +539,17 @@ public class Drive extends SubsystemBase {
 
     }
 
+    public void driveTurnDegree(double degree){
+        turnTarget = degree;
+        intialYaw = pigeon2.getYaw();
+        driveVelocity(0, turnSpeed);
+
+    }
+
 
     public boolean turnDone(){
-        if(pigeon2.getYaw() == (turnTarget + turnError) || pigeon2.getYaw() == (turnTarget - turnError)){
+        turnTargetFinal = intialYaw + turnTarget;
+        if(pigeon2.getYaw() == (turnTargetFinal + turnError) || pigeon2.getYaw() == (turnTargetFinal - turnError)){
             return true;
         }
         return false;

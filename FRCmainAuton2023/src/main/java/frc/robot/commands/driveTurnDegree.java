@@ -29,17 +29,19 @@ public class  driveTurnDegree extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_drive.driveTurnDegree(m_requestedTurn);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_drive.driveVelocity(m_requestedTurn, 0);
+        
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_drive.driveVelocity(0, 0);
 
     }
 
