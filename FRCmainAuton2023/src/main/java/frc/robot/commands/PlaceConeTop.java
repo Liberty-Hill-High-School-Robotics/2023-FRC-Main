@@ -56,6 +56,7 @@ public class PlaceConeTop extends SequentialCommandGroup {
         //  );
         new ClawClose(claw), 
         new GoToTop(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
+        
         new ClawOpen(claw),
         new WaitCommand(2),
         
