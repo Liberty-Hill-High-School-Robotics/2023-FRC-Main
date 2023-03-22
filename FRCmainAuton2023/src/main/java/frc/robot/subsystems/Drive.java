@@ -349,7 +349,7 @@ public class Drive extends SubsystemBase {
         kFF = 0.000015;  //.00015 default
         kMaxOutput = 1; 
         kMinOutput = -1;
-        maxRPM = 3500; //max rpm (goal) 
+        maxRPM = 4500; //max rpm (goal) 
          
 
         m_pidControllerLeft.setP(kP);

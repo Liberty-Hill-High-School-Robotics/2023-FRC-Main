@@ -60,10 +60,10 @@ public class HRButton extends CommandBase {
     @Override
     public void execute() {
         if(RobotContainer.getInstance().getOperatorController().getRawAxis(5) < -0.8){
-            m_HorizontalRotate.HRUp();
+            m_HorizontalRotate.HRDown();
             isFin = false;
         }else if(RobotContainer.getInstance().getOperatorController().getRawAxis(5) > 0.8){
-            m_HorizontalRotate.HRDown();
+            m_HorizontalRotate.HRUp();
             isFin =false;
         }else if(RobotContainer.getInstance().getOperatorController().getRawAxis(5) < 0.8
         && RobotContainer.getInstance().getOperatorController().getRawAxis(5) > -0.8){

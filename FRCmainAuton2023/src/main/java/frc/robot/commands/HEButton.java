@@ -60,10 +60,10 @@ public class HEButton extends CommandBase {
     @Override
     public void execute() {
         if(RobotContainer.getInstance().getOperatorController().getRawAxis(4) < -0.8){
-            m_horizontalElevator.HEExtend();
+            m_horizontalElevator.HERetract();
             isFin = false;
         }else if(RobotContainer.getInstance().getOperatorController().getRawAxis(4) > 0.8){
-            m_horizontalElevator.HERetract();
+            m_horizontalElevator.HEExtend();
             isFin =false;
         }else if(RobotContainer.getInstance().getOperatorController().getRawAxis(4) < 0.8
         && RobotContainer.getInstance().getOperatorController().getRawAxis(4) > -0.8){
