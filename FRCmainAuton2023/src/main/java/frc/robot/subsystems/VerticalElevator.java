@@ -168,7 +168,7 @@ public class VerticalElevator extends SubsystemBase {
     }
 
     public void VEHoldPosition(){
-        VEleadMotor.set(.02);
+        VEleadMotor.set(.025);
     }
 
 }

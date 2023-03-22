@@ -368,26 +368,14 @@ public class Drive extends SubsystemBase {
     }
 
     public void setDrivePIDAuton(){
-        kPAuton = 0.0004;
-        kIAuton = 0.00000000000000000005;
+        kPAuton = 0.0004; //  0.0004;
+        kIAuton = 0.00000000000000000005; //// defult  0.00000000000000000005
         kDAuton = 0.0; 
         kIzAuton = 0; 
-        kFFAuton = 0.00;
-        kMaxOutputAuton = .3;
-        kMinOutputAuton = -.3;
-        maxRPMAuton = 500; //(goal)
-        /*
-        defaults
-        kPAuton = 0.0004;
-        kIAuton = 0.00000000000000000005;
-        kDAuton = 0.0; 
-        kIzAuton = 0; 
-        kFFAuton = 0.00;
-        kMaxOutputAuton = .3;
-        kMinOutputAuton = -.3;
-        maxRPMAuton = 500; //(goal)
-          
-         */
+        kFFAuton = 0.00;  //.0.00 default
+        kMaxOutputAuton = .3; //-.3
+        kMinOutputAuton = -.3;//-.3
+        maxRPMAuton = 500; //max rpm (goal) 500
          
         m_pidControllerLeftAuton.setP(kPAuton);
         m_pidControllerLeftAuton.setI(kIAuton);
