@@ -346,21 +346,10 @@ public class Drive extends SubsystemBase {
         kI = 0.0000006;
         kD = 0; 
         kIz = 0; 
-        kFF = 0.000015;
+        kFF = 0.000015;  //.00015 default
         kMaxOutput = 1; 
         kMinOutput = -1;
-        maxRPM = 3500; //(goal)
-        /* 
-        defaults       
-        kP = 0.00006;
-        kI = 0.0000006;
-        kD = 0; 
-        kIz = 0; 
-        kFF = 0.000015;
-        kMaxOutput = 1; 
-        kMinOutput = -1;
-        maxRPM = 3500; //(goal)
-        */
+        maxRPM = 4500; //max rpm (goal) 
          
 
         m_pidControllerLeft.setP(kP);
@@ -379,26 +368,14 @@ public class Drive extends SubsystemBase {
     }
 
     public void setDrivePIDAuton(){
-        kPAuton = 0.0004;
-        kIAuton = 0.00000000000000000005;
+        kPAuton = 0.0004; //  0.0004;
+        kIAuton = 0.00000000000000000005; //// defult  0.00000000000000000005
         kDAuton = 0.0; 
         kIzAuton = 0; 
-        kFFAuton = 0.00;
-        kMaxOutputAuton = .3;
-        kMinOutputAuton = -.3;
-        maxRPMAuton = 500; //(goal)
-        /*
-        defaults
-        kPAuton = 0.0004;
-        kIAuton = 0.00000000000000000005;
-        kDAuton = 0.0; 
-        kIzAuton = 0; 
-        kFFAuton = 0.00;
-        kMaxOutputAuton = .3;
-        kMinOutputAuton = -.3;
-        maxRPMAuton = 500; //(goal)
-          
-         */
+        kFFAuton = 0.00;  //.0.00 default
+        kMaxOutputAuton = .3; //-.3
+        kMinOutputAuton = -.3;//-.3
+        maxRPMAuton = 500; //max rpm (goal) 500
          
         m_pidControllerLeftAuton.setP(kPAuton);
         m_pidControllerLeftAuton.setI(kIAuton);
