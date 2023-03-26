@@ -64,6 +64,7 @@ import frc.robot.commands.driveBalance;
 import frc.robot.commands.slowMode;
 import frc.robot.commands.turn;
 import frc.robot.commands.zTurn;
+import frc.robot.commands.zTurnSlow;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawRotate;
 import frc.robot.subsystems.Drive;
@@ -319,6 +320,9 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger zTurnAxis = new JoystickButton(driverJoystick, 2);
     zTurnAxis.whileTrue(new zTurn(m_drive));
+
+    final Trigger zTurnSlowAxis = new JoystickButton(driverJoystick, 7);
+    zTurnSlowAxis.whileTrue(new zTurnSlow(m_drive));
     
 
 
