@@ -49,6 +49,7 @@ import frc.robot.commands.MaxSpeed;
 import frc.robot.commands.PlaceConeTop;
 import frc.robot.commands.PlaceTopAndBalance;
 import frc.robot.commands.PlaceTopConeAndDriveOut;
+import frc.robot.commands.ResetIAccum;
 import frc.robot.commands.RotateClawDown;
 import frc.robot.commands.RotateClawStop;
 import frc.robot.commands.RotateClawUp;
@@ -323,6 +324,9 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger zTurnSlowAxis = new JoystickButton(driverJoystick, 7);
     zTurnSlowAxis.whileTrue(new zTurnSlow(m_drive));
+
+    final Trigger buttonResetIAccum = new JoystickButton(driverJoystick, 8);
+    buttonResetIAccum.onTrue(new ResetIAccum(m_drive));
     
 
 
