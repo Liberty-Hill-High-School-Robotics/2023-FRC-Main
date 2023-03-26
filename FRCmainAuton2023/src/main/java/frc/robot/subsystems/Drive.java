@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveArcade;
 import frc.robot.commands.DriveStop;
+import frc.robot.commands.driveBalance;
 import frc.robot.commands.driveTurnDegree;
 
 import com.revrobotics.SparkMaxPIDController;
@@ -279,6 +280,11 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("tunrTargetFinal", turnTargetFinal);
         SmartDashboard.putNumber("CountsPerRev", encoderLeftLeader.getCountsPerRevolution());
 
+        
+
+        
+        
+
 
         
 
@@ -533,6 +539,8 @@ public class Drive extends SubsystemBase {
     
 
      public void driveDistance(double numberOfInches){
+        setDrivePIDAuton();
+
         double TICKS_PER_INCH = (10.75*42)/(6*Math.PI);
         SmartDashboard.putNumber("TICKS_PER_INCH", TICKS_PER_INCH);
         double numberOfTicks = (TICKS_PER_INCH * numberOfInches); 
