@@ -59,6 +59,8 @@ public class PlaceTopTaxiAndBalance extends SequentialCommandGroup {
         new PlaceConeTop(claw, goToTop, toStart, verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         new WaitCommand(.5),
         new GoToMiddle(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
+        new driveBackCharged(drive),
+        new WaitCommand(1),
         new driveBackPastCharged(drive),
         new WaitCommand(2),
         new driveForwardToCharged(drive),
