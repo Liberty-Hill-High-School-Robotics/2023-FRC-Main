@@ -59,7 +59,8 @@ public class PlaceTopAndBalance extends SequentialCommandGroup {
         new PlaceConeTop(claw, goToTop, toStart, verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         new WaitCommand(.5),
         new GoToMiddle(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
-        new driveBackCharged(drive)
+        new driveBackCharged(drive),
+        new driveBalance(drive)
         
         
         );

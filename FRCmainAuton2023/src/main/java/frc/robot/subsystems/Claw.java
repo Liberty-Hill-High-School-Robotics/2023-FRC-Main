@@ -56,7 +56,7 @@ public class Claw extends SubsystemBase {
        SmartDashboard.putNumber("CompressorPSI", compressor.getPressure());
 
        SmartDashboard.putBoolean("isClawOpen", isClawOpen());
-       SmartDashboard.putBoolean("isClawClosed", isClawOpen());
+       SmartDashboard.putBoolean("isClawClosed", isClawClosed());
     }
 
     @Override
