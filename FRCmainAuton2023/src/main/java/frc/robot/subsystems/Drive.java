@@ -57,12 +57,13 @@ public class Drive extends SubsystemBase {
     private RelativeEncoder m_encoderLeft;
     private RelativeEncoder m_encoderRight;
 
-    private SparkMaxPIDController m_pidControllerLeft;
-    private SparkMaxPIDController m_pidControllerRight;
-    private SparkMaxPIDController m_pidControllerLeftAuton;
-    private SparkMaxPIDController m_pidControllerRightAuton;
+    public SparkMaxPIDController m_pidControllerLeft;
+    public SparkMaxPIDController m_pidControllerRight;
+    public SparkMaxPIDController m_pidControllerLeftAuton;
+    public SparkMaxPIDController m_pidControllerRightAuton;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
     public double kPAuton, kIAuton, kDAuton, kIzAuton, kFFAuton, kMaxOutputAuton, kMinOutputAuton, maxRPMAuton;
+    
 
     private double balanceError = 6;
     private double slowPower = 0.1;
@@ -175,6 +176,8 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("Min Output", kMinOutput);
 
         SmartDashboard.putNumber("targetPostionL", targetPositionL);
+
+        
         
 
        
@@ -274,6 +277,7 @@ public class Drive extends SubsystemBase {
         
         SmartDashboard.putNumber("turnTarget", turnTarget);
         SmartDashboard.putNumber("tunrTargetFinal", turnTargetFinal);
+        SmartDashboard.putNumber("CountsPerRev", encoderLeftLeader.getCountsPerRevolution());
 
 
         
@@ -359,12 +363,18 @@ public class Drive extends SubsystemBase {
         m_pidControllerLeft.setFF(kFF);
         m_pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
 
+       m_pidControllerLeft.setIMaxAccum(.8, 0);
+       
+
         m_pidControllerRight.setP(kP);
         m_pidControllerRight.setI(kI);
         m_pidControllerRight.setD(kD);
         m_pidControllerRight.setIZone(kIz);
         m_pidControllerRight.setFF(kFF);
         m_pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
+
+        m_pidControllerRight.setIMaxAccum(.8, 0);
+
     }
 
     public void setDrivePIDAuton(){
@@ -384,12 +394,17 @@ public class Drive extends SubsystemBase {
         m_pidControllerLeftAuton.setFF(kFFAuton);
         m_pidControllerLeftAuton.setOutputRange(kMinOutputAuton, kMaxOutputAuton);
 
+        m_pidControllerLeftAuton.setIMaxAccum(.2, 0);
+
         m_pidControllerRightAuton.setP(kPAuton);
         m_pidControllerRightAuton.setI(kIAuton);
         m_pidControllerRightAuton.setD(kDAuton);
         m_pidControllerRightAuton.setIZone(kIzAuton);
         m_pidControllerRightAuton.setFF(kFFAuton);
         m_pidControllerRightAuton.setOutputRange(kMinOutputAuton, kMaxOutputAuton);
+
+        m_pidControllerRightAuton.setIMaxAccum(.2, 0);
+
     }
 
     public void driveVelocity(double power, double rotation) {
@@ -457,8 +472,12 @@ public class Drive extends SubsystemBase {
               leftSpeed = power - rotation*.5;
               rightSpeed = power + rotation*.5;
         } else {
-              leftSpeed = power - (Math.abs(power) * rotation)*.5;
-              rightSpeed = power + (Math.abs(power) * rotation)*.5;
+
+            
+            leftSpeed = power - (Math.abs(power) * rotation)*.33;
+            rightSpeed = power + (Math.abs(power) * rotation)*.33;
+
+            
         }
         
             // Desaturate wheel speeds

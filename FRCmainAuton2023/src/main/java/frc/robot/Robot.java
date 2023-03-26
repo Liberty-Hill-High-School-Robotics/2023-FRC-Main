@@ -25,10 +25,6 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import com.ctre.phoenix.led.CANdle;
-import com.ctre.phoenix.led.RainbowAnimation;
-import com.ctre.phoenix.led.CANdle.LEDStripType;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -169,6 +165,10 @@ public class Robot extends TimedRobot {
         ranZeroElevator = true;
         
         m_robotContainer.m_drive.driveStop();
+       // m_robotContainer.m_drive.setIZone(0);
+
+       m_robotContainer.m_drive.m_pidControllerLeftAuton.setIAccum(0);
+       m_robotContainer.m_drive.m_pidControllerRightAuton.setIAccum(0);
 
         
 
@@ -191,6 +191,10 @@ public class Robot extends TimedRobot {
         if(ranZeroElevator == false){
             m_robotContainer.m_VerticalElevator.zeroElevator();
         }
+
+    m_robotContainer.m_drive.m_pidControllerLeft.setIAccum(0);
+       m_robotContainer.m_drive.m_pidControllerRight.setIAccum(0);
+
     
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
