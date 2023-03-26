@@ -41,7 +41,7 @@ public class ClawRotate extends SubsystemBase {
    // private AbsoluteEncoder encoderCRAbsolute;
     private double rotatePower = 0.2;
     private double targetPosition;
-    private double error = .5;
+    private double error = .6;
 
     /**
     *

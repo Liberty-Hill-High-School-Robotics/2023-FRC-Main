@@ -136,7 +136,7 @@ public class HorizontalRotate extends SubsystemBase {
     }
 
     public void HRHoldPosition(){
-        horizontalRotatorMotor.set(-.05);
+        horizontalRotatorMotor.set(-.1);
     }
 
 }
