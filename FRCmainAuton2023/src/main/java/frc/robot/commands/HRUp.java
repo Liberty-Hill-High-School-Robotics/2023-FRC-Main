@@ -61,7 +61,7 @@ public class HRUp extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_horizontalRotate.HRHoldPosition();
+       // m_horizontalRotate.HRHoldPosition();
     }
 
     // Returns true when the command should end.

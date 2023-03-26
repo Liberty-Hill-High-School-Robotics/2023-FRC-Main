@@ -75,7 +75,7 @@ public class VEButton extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_verticalElevator.VEStop();
+        m_verticalElevator.VEHoldPosition();
     }
 
     // Returns true when the command should end.

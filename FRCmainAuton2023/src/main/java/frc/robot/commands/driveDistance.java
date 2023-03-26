@@ -43,6 +43,9 @@ public class  driveDistance extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+
+        m_drive.m_pidControllerLeftAuton.setIAccum(0);
+        m_drive.m_pidControllerRightAuton.setIAccum(0);
        
         m_drive.driveVelocity(0, 0);
     }

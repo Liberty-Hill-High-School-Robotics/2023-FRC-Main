@@ -384,8 +384,8 @@ public class Drive extends SubsystemBase {
     }
 
     public void setDrivePIDAuton(){
-        kPAuton = 0.0004; //  0.0004;
-        kIAuton = 0.00000000000000000005; //// defult  0.00000000000000000005
+        kPAuton = 0.00045; //  0.0004;
+        kIAuton = 0.00000000000000005; //// defult  0.00000000000000000005
         kDAuton = 0.0; 
         kIzAuton = 0; 
         kFFAuton = 0.00;  //.0.00 default
@@ -436,7 +436,7 @@ public class Drive extends SubsystemBase {
          double subForward = jsAxisY - oldAxisY;
 
          double rampUpBackward = -.025; // error allowed
-         double rampDownBackward = -.025; // ramp down
+         double rampDownBackward = -.015; // ramp down
          double subBackward = jsAxisY - oldAxisY;
 
          if(oldAxisY > 0){ // test if going forward
@@ -563,6 +563,8 @@ public class Drive extends SubsystemBase {
         isDistanceDone = true;
     }
     return isDistanceDone;
+
+
 
     }
 
