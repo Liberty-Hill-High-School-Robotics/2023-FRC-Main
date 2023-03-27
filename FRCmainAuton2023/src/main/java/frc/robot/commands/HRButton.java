@@ -76,7 +76,7 @@ public class HRButton extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_HorizontalRotate.HRHoldPosition(Constants.PlacementConstants.PlacementPosition.MIDDLE);
+        m_HorizontalRotate.HRHoldPosition();
     }
 
     // Returns true when the command should end.
