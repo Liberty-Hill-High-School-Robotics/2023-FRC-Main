@@ -66,8 +66,8 @@ public class Drive extends SubsystemBase {
     public double kPAuton, kIAuton, kDAuton, kIzAuton, kFFAuton, kMaxOutputAuton, kMinOutputAuton, maxRPMAuton;
     
 
-    private double balanceError = 5;
-    private double slowPower = 0.1;
+    private double balanceError = 4;
+    private double slowPower = 0.2;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
