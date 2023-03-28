@@ -20,6 +20,8 @@ import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import javax.swing.GrayFilter;
+
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -91,8 +93,8 @@ public class Robot extends TimedRobot {
 
               camera.getProperty("compression").set(100);
               camera2.getProperty("compresion").set(100);
-              
-              // Get a CvSink. This will capture Mats from the camera
+
+// Get a CvSink. This will capture Mats from the camera
               CvSink cvSink = CameraServer.getVideo();
               // Setup a CvSource. This will send images back to the Dashboard
               CvSource outputStream = CameraServer.putVideo("Rectangle", 568, 320);
