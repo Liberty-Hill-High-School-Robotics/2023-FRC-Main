@@ -276,8 +276,9 @@ public class Drive extends SubsystemBase {
         SmartDashboard.putNumber("TargetPosLeft", targetPositionL);
         SmartDashboard.putNumber("TargetPosRight", targetPositionR);
         
+        SmartDashboard.putNumber("TurnInial", intialYaw);
         SmartDashboard.putNumber("turnTarget", turnTarget);
-        SmartDashboard.putNumber("tunrTargetFinal", turnTargetFinal);
+        SmartDashboard.putNumber("tunnTargetFinal", turnTargetFinal);
         SmartDashboard.putNumber("CountsPerRev", encoderLeftLeader.getCountsPerRevolution());
 
         
@@ -571,14 +572,14 @@ public class Drive extends SubsystemBase {
     public void driveTurnDegree(double degree){
         turnTarget = degree;
         intialYaw = pigeon2.getYaw();
-        driveVelocity(0, turnSpeed);
+        driveVelocity(0, -turnSpeed);
 
     }
 
 
     public boolean turnDone(){
         turnTargetFinal = intialYaw + turnTarget;
-        if(pigeon2.getYaw() == (turnTargetFinal + turnError) || pigeon2.getYaw() == (turnTargetFinal - turnError)){
+        if(Math.abs(pigeon2.getYaw()-turnTargetFinal) <= turnError){
             return true;
         }
         return false;
