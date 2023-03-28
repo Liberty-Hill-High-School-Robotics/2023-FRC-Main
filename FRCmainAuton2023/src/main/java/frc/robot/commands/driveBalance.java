@@ -76,7 +76,7 @@ public class  driveBalance extends CommandBase {
     public boolean isFinished() {
         
         return m_drive.isRobotBalanced();
-        } 
+     } 
 
     @Override
     public boolean runsWhenDisabled() {

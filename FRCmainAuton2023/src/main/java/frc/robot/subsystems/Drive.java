@@ -67,7 +67,7 @@ public class Drive extends SubsystemBase {
     
 
     private double balanceError = 4;
-    private double slowPower = 0.2;
+    private double slowPower = 0.3;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
@@ -80,7 +80,7 @@ public class Drive extends SubsystemBase {
     double turnTarget;
     double turnTargetFinal;
     private double turnError = 50;
-    private double turnSpeed = -0.5;
+    private double turnSpeed = -0.75;
     private double intialYaw;
 
 
@@ -507,15 +507,11 @@ public class Drive extends SubsystemBase {
 
 
      public void driveForwardSlow() {
-        rightLeader.set(slowPower);
-
-        leftLeader.set(slowPower);
+        driveVelocity(slowPower, 0);
     }
 
     public void driveBackwardSlow() {
-        rightLeader.set(-slowPower);
-
-        leftLeader.set(-slowPower);
+        driveVelocity(-slowPower, 0);
     }
 
 
@@ -572,7 +568,7 @@ public class Drive extends SubsystemBase {
     public void driveTurnDegree(double degree){
         turnTarget = degree;
         intialYaw = pigeon2.getYaw();
-        driveVelocity(0, -turnSpeed);
+        driveVelocity(0, turnSpeed);
 
     }
 

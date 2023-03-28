@@ -62,7 +62,7 @@ public class Place2andCommunity extends SequentialCommandGroup {
         new WaitCommand(.5),
         new GoToStart(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         //start driving backwards
-        new driveDistance(drive, -10),
+        new driveDistance(drive, -150),
         //turn to face cone
         new WaitCommand(.5),
         new turn(drive),
@@ -84,7 +84,7 @@ public class Place2andCommunity extends SequentialCommandGroup {
         new WaitCommand(.5),
         new ClawOpen(claw),
         new WaitCommand(.5),
-        new GoToStart(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
+        new GoToStart(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate)
         //drive, place etc.
 
         
