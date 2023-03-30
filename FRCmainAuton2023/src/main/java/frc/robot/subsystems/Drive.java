@@ -67,7 +67,7 @@ public class Drive extends SubsystemBase {
     
 
     private double balanceError = 4;
-    private double slowPower = 0.3;
+    private double slowPower = 0.1;
     private boolean isBalanced = false;
     private  double setPointLeft;
     private double setPointRight; 
@@ -437,7 +437,7 @@ public class Drive extends SubsystemBase {
          double subForward = jsAxisY - oldAxisY;
 
          double rampUpBackward = -.025; // error allowed
-         double rampDownBackward = -.015; // ramp down
+         double rampDownBackward = -.015; // ramp down 
          double subBackward = jsAxisY - oldAxisY;
 
          if(oldAxisY > 0){ // test if going forward
