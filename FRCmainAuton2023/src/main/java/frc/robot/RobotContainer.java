@@ -64,6 +64,7 @@ import frc.robot.commands.candleCmdGold;
 import frc.robot.commands.candleCmdPurple;
 import frc.robot.commands.candleCmdRainbow;
 import frc.robot.commands.driveBalance;
+import frc.robot.commands.driveTurnDegree;
 import frc.robot.commands.slowMode;
 import frc.robot.commands.turn;
 import frc.robot.commands.zTurn;
@@ -307,6 +308,14 @@ public final XboxController operatorController = new XboxController(1);
     buttonLEDPurple.toggleOnTrue(new candleCmdPurple(m_other));
     final Trigger buttonLEDGold = new JoystickButton(driverJoystick, 4); 
     buttonLEDGold.toggleOnTrue(new candleCmdGold(m_other));
+
+    final Trigger altbuttonLEDPurple = new JoystickButton(driverJoystick, 11);
+    altbuttonLEDPurple.toggleOnTrue(new candleCmdPurple(m_other));
+    final Trigger altbuttonLEDGold = new JoystickButton(driverJoystick, 12); 
+    altbuttonLEDGold.toggleOnTrue(new candleCmdGold(m_other));
+
+    final Trigger button180Spin = new JoystickButton(driverJoystick, 9);
+    button180Spin.onTrue(new driveTurnDegree(m_drive, 180));
    
 
     //
