@@ -316,7 +316,12 @@ public final XboxController operatorController = new XboxController(1);
 
     final Trigger button180Spin = new JoystickButton(driverJoystick, 9);
     button180Spin.onTrue(new driveTurnDegree(m_drive, 180));
+
+    final Trigger buttonTurn90Left = new JoystickButton(driverJoystick, 5);
+    buttonTurn90Left.onTrue(new driveTurnDegree(m_drive, 90));
    
+    final Trigger buttonTurn90Right = new JoystickButton(driverJoystick, 6);
+    buttonTurn90Right.onTrue(new driveTurnDegree(m_drive, -90));
 
     //
     //starting config and balance button
