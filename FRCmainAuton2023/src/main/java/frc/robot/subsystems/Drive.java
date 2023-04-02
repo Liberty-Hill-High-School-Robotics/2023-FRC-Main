@@ -66,7 +66,7 @@ public class Drive extends SubsystemBase {
     public double kPAuton, kIAuton, kDAuton, kIzAuton, kFFAuton, kMaxOutputAuton, kMinOutputAuton, maxRPMAuton;
     
 
-    private double balanceError = 4;
+    private double balanceError = 1;
     private double slowPower = 0.15;
     private boolean isBalanced = false;
     private  double setPointLeft;
@@ -350,6 +350,9 @@ public class Drive extends SubsystemBase {
         driveMain.arcadeDrive(finalAxisY, rotation);
     }
     */
+    public void driveZero(){
+        driveMain.arcadeDrive(0, 0);
+    }
     
 
     public void setDrivePID(){
@@ -524,11 +527,16 @@ public class Drive extends SubsystemBase {
     }
 
     public void balanceDrive(){
+        SmartDashboard.putString("TEXTBalanceDrive", "Started");
         if(pigeon2.getPitch() < (-balanceError)){
-            driveForwardSlow();
+            SmartDashboard.putString("TEXTBalanceDrive", "forward");
+            driveDistance(5);
+            
         }
         if(pigeon2.getPitch() > (balanceError)){
-            driveBackwardSlow();
+            SmartDashboard.putString("TEXTBalanceDrive", "BackWard");
+            driveDistance(-5);
+           
         }
 
     }

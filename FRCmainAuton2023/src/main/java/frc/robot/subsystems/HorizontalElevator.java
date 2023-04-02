@@ -126,4 +126,10 @@ public class HorizontalElevator extends SubsystemBase {
         return Math.abs(encoderHE.getPosition() - targetPosition) <= error;
     }
 
+    public void HEHoldPosition(){
+        
+       horizontalElevatorLead.set(-.005);
+        
+    }
+
 }

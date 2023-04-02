@@ -137,7 +137,7 @@ public class HorizontalRotate extends SubsystemBase {
 
     public void HRHoldPosition(){
         
-        if(throughBorHR.getAbsolutePosition() <= .6){
+        if(throughBorHR.getAbsolutePosition() <= .75){
             horizontalRotatorMotor.set(-.04);
         }else{
             horizontalRotatorMotor.set(0);
