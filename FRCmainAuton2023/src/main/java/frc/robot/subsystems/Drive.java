@@ -576,13 +576,8 @@ public class Drive extends SubsystemBase {
     public void driveTurnDegree(double degree){
         turnTarget = degree;
         intialYaw = pigeon2.getYaw();
-        if(degree > 0){
+      
             driveVelocity(0, (turnSpeed)*-1);
-        }else if(degree < 0){
-            driveVelocity(0, turnSpeed);
-        }
-        
-
     }
 
 

@@ -63,13 +63,13 @@ public class Place2andCommunity extends SequentialCommandGroup {
         new WaitCommand(.5),
         new GoToStart(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         //start driving backwards
-        new driveDistance(drive, -150).withTimeout(3.75),
+        new driveDistance(drive, -120).withTimeout(2),
         //turn to face cone
         new WaitCommand(.5),
-        new driveTurnDegree(drive, 180),
+        new driveTurnDegree(drive, 200),
         new GoToFloor(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         //drive up to cone
-        new driveDistance(drive, 10),
+        new driveDistance(drive,20 ),
         new WaitCommand(.5),
         new GoToMiddle(verticalElevator, horizontalElevator, horizontalRotate, clawRoatate),
         new driveDistance(drive, 10), //to push cone in back of claw

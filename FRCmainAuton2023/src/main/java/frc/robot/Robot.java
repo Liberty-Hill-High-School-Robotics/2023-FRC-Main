@@ -170,10 +170,11 @@ public class Robot extends TimedRobot {
         
         m_robotContainer.m_drive.driveStop();
        // m_robotContainer.m_drive.setIZone(0);
-
+       m_robotContainer.m_drive.driveZero();
+       
        m_robotContainer.m_drive.m_pidControllerLeftAuton.setIAccum(0);
       m_robotContainer.m_drive.m_pidControllerRightAuton.setIAccum(0);
-        m_robotContainer.m_drive.driveZero();
+        
         
 
         // schedule the autonomous command (example)

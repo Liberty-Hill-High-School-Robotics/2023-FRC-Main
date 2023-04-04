@@ -62,7 +62,7 @@ public class  driveBalance extends CommandBase {
     public void execute() {
         
         m_drive.balanceDrive();
-        new WaitCommand(.75);
+        new WaitCommand(1);
     }
 
     // Called once the command ends or is interrupted.
