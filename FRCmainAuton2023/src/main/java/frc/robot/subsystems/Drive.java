@@ -191,7 +191,9 @@ public class Drive extends SubsystemBase {
 
         //
         //
+        driveMain.setExpiration(1);
         driveMain.feed();
+      
         // DO NOT MOVE, OR DELETE THIS LINE OF CODE!!!!!!!!!!!!!!!
         //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
